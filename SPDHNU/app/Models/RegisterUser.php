@@ -14,9 +14,9 @@ class RegisterUser extends Model
      * @var string
      */
     protected $table = 'register_user';
-    protected $primaryKey = 'nik';
-    protected $guarded = 'nik';
+    protected $guarded = 'id';
     protected $fillable = [
+        'nik',
         'kecamatan',
         'nama',
         'nama_mwc',

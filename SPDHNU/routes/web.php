@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LembagaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,8 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::any('/login', [LoginController::class, 'login'])->name('login');
+Route::any('/', [LoginController::class, 'login'])->name('login');
 Route::any('/register', [LoginController::class, 'register'])->name('register');
+
+Route::get('/home', [LembagaController::class, 'index'])->name('home');
+Route::any('/lembaga', [LembagaController::class, 'addDataLembaga'])->name('lembaga');

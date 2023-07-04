@@ -27,7 +27,7 @@
             @include('sweetalert::alert')
             <!-- Right column container -->
             <div class="mb-12 md:mb-0 md:w-8/12 lg:w-fit xl:w-5/12 w-full mx-6">
-              <form method="POST" class="bg-slate-100 p-6">
+              <form method="POST" class="bg-slate-100 p-6" action="{{route('login')}}">
                 @csrf
                 <!--Sign in section-->
                 <!-- Email input -->
