@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -17,9 +18,8 @@ class LoginController extends Controller
 
         $user = User::query()->where('email',$email)->where('password',$password)->first();
         if(empty($user)){
-            return redirect()->back()->withErrors([
-                'message' => 'Uername Atau Password Salah'
-            ]);
+            Alert::error('Oops!', 'Username Atau Password Salah!');
+            return redirect()->back();
         }
 
         if(!session()->isStarted())
