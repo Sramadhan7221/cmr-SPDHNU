@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('proposal', function (Blueprint $table) {
             $table->uuid('id_proposal')->primary();
+            $table->uuid('lembaga')->nullable();
             $table->string('no_NPHD', 150)->unique();
             $table->string('peruntukan', 150);
             $table->string('file_proposal', 225);
@@ -20,6 +21,8 @@ return new class extends Migration
             $table->decimal('total_rab')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index('lembaga', 'lembaga_proposal_IDX');
         });
     }
 
