@@ -8,6 +8,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
+    public function register(Request $request){
+        if($request->method() == "GET"){
+            return view('register');
+        }
+    }
+
     public function login(Request $request){
         if($request->method() == "GET"){
             return view('login');

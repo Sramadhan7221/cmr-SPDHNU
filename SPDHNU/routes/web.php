@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::any('/login', [LoginController::class, 'login'])->name('login');
+Route::any('/register', [LoginController::class, 'register'])->name('register');

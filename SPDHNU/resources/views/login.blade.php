@@ -14,15 +14,15 @@
         <div class="h-full lg:w-[1000px] mx-auto">
             <!-- Left column container with background-->
             <div
-            class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
+            class="g-6 flex h-full flex-wrap items-center justify-center">
             <div
-              class="shrink-1 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
+              class="shrink-1 w-full mx-8 mb-4 lg:mx-0 lg:mb-0 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
               <img
                 src="https://tse1.mm.bing.net/th/id/OIP.CRQFoZJdpELDLXrankr5SQHaE-?pid=ImgDet&rs=1"
                 class="w-[300px]"
                 alt="Sample image" />
-                <h1 class="text-xl font-semibold mb-8">SPDHNU TASIKMALAYA</h1>
-                <p>SPDHNU (Sistem Pengelolaan Dana Hibah Nahdlathul Ulama) merupakan aplikasi pengelolaan data dari dana hibah.</p>
+                <h1 class="text-xl font-semibold mb-8">SIBAHNU TASIKMALAYA</h1>
+                <p>SIBAHNU (Sistem Informasi Hibah Nahdlathul Ulama) merupakan aplikasi pengelolaan data dari dana hibah.</p>
             </div>
             @include('sweetalert::alert')
             <!-- Right column container -->
@@ -63,6 +63,9 @@
                     class="bg-green-600 px-4 py-1 text-lg text-white rounded-md w-full">
                     Login
                   </button>
+                </div>
+                <div class="flex gap-2 mt-3">
+                    <p>Belum mempunyai akun?</p><a href="{{route('register')}}" class="text-cyan-600">Daftar Sekarang?</a>
                 </div>
               </form>
             </div>
