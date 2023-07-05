@@ -18,14 +18,13 @@ class Wilayah extends Model
     protected $keyType = 'string';
     public static function getKecamatan () {
         return self::query()
-            ->whereRaw("LEFT(kode,5) = '32.06' and LENGTH(kode) = 8")
+            ->whereRaw("LEFT(kode,5) = '32.06' AND LENGTH(kode) = 8")
             ->get(['kode','nama']);
     }
 
-    public function getDesa (string $kecamatan) {
-        return $this->query()
-            ->where('LEFT(kode,8)', $kecamatan)
-            ->where('LENGTH(kode)', 13)
-            ->all();
+    public static function getDesa (string $kecamatan) {
+        return self::query()
+            ->whereRaw("LEFT(kode,8) = '".$kecamatan. "' AND LENGTH(kode) = 13")
+            ->get(['kode','nama']);
     }
 }
