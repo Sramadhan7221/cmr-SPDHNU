@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Wilayah;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\RegisterUser;
@@ -12,9 +13,14 @@ class LembagaController extends Controller
 {
     public function index(){
         $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
-        return view('SibahNU.home', [
-            'user' => $user
-        ]);
+        // dd(Wilayah::query()->where('kode', "32.06")->get(['kode', 'nama']), Wilayah::query()->where('kode', $user->kecamatan)->get(['kode', 'nama']));
+        $data = [
+            'user' => $user,
+            'kabupaten' => Wilayah::query()->where('kode', "32.06")->get(['kode', 'nama']),
+            'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->get(['kode', 'nama']),
+            'desa' => Wilayah::getDesa($user->kecamatan)
+        ];
+        return view('SibahNU.home',$data);
     }
 
     public function addDataLembaga(Request $request){
