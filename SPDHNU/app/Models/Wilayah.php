@@ -15,11 +15,11 @@ class Wilayah extends Model
      */
     protected $table = 'wilayah';
     protected $primaryKey = 'kode';
-    public function getKecamatan () {
-        return $this->query()
-            ->where('LEFT(kode,5)', '32.06')
-            ->where('LENGTH(kode)',8)
-            ->all();
+    protected $keyType = 'string';
+    public static function getKecamatan () {
+        return self::query()
+            ->whereRaw("LEFT(kode,5) = '32.06' and LENGTH(kode) = 8")
+            ->get(['kode','nama']);
     }
 
     public function getDesa (string $kecamatan) {

@@ -51,7 +51,7 @@ class LembagaController extends Controller
         $data = $validated->validate();
         $data['nama_lembaga'] = $user->nama_mwc;
         $data['alamat_lembaga'] = $user->kecamatan;
-        lembaga::query()->create($data);
+        Lembaga::create($data);
         return redirect()->back()->with('Success', 'Data Berhasil Disimpan');
     }
 }

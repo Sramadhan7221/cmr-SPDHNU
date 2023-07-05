@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Wilayah;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\RegisterUser;
@@ -13,7 +14,10 @@ class LoginController extends Controller
 {
     public function register(Request $request){
         if($request->method() == "GET"){
-            return view('register');
+            $data = [
+                'kecamatan' => Wilayah::getKecamatan()
+            ];
+            return view('register',$data);
         }
 
         $rules = [
