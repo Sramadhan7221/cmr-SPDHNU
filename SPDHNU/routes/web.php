@@ -20,3 +20,4 @@ Route::any('/register', [LoginController::class, 'register'])->name('register');
 
 Route::get('/home', [LembagaController::class, 'index'])->name('home');
 Route::any('/lembaga', [LembagaController::class, 'addDataLembaga'])->name('lembaga');
+Route::any('/pimpinan', [LembagaController::class, 'addDataPimpinan'])->name('pimpinan');

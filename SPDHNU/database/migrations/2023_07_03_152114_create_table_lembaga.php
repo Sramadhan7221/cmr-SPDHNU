@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('alamat_lembaga', 550)->nullable();
             $table->string('no_telp', 25);
             $table->string('email_lembaga', 225);
-            $table->string('kabupaten', 13);
+            $table->string('kabupaten', 17);
             $table->string('kecamatan', 13);
             $table->string('desa', 13);
             $table->string('kop_surat', 225);

@@ -167,7 +167,7 @@
                         Alamat MWCNU
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input type="text" class="form-control" value="{{$kecamatan[0]->nama}}" disabled id="input-alamat" required />
+                      <input type="text" class="form-control" value="{{$kecamatan->nama}}" disabled id="input-alamat" required />
                     </div>
                   </div>
 
@@ -194,7 +194,7 @@
                         Kabupaten
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input type="text" name="kabupaten" class="form-control" value="{{$kabupaten[0]->nama}}" data-kode="{{$kabupaten[0]->kode}}" id="input-kabupaten" />
+                      <input type="text" name="kabupaten" disabled class="form-control" value="{{$kabupaten->nama}}" data-kode="{{$kabupaten->kode}}" id="input-kabupaten" />
                     </div>
 
                     <div class="col-md-4">
@@ -202,7 +202,7 @@
                         Kecamatan
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input type="text" name="kecamatan" value="{{$kecamatan[0]->nama}}" data-kode="{{$kabupaten[0]->kode}}" class="form-control" id="input-kecamatan" />
+                      <input type="text" name="kecamatan" disabled value="{{$kecamatan->nama}}" data-kode="{{$kabupaten->kode}}" class="form-control" id="input-kecamatan" />
                     </div>
 
                     <div class="col-md-4">
@@ -254,28 +254,29 @@
               </div>
               <div class="tab-pane fade" id="pills-data-pimpinan" role="tabpanel" aria-labelledby="data-pimpinan-tab">
                 <!-- Multi Columns Form -->
-                <form>
+                <form method="POST" action="{{route('pimpinan')}}">
+                    @csrf
                   <div class="row g-3 mt-4">
                     <div class="col-md-4">
                       <label for="inputName5" class="form-label">
                         Nama Lengkap
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input type="text" class="form-control" id="inputName5" required />
+                      <input type="text" name="nama_pengurus" class="form-control" id="inputName5" required />
                     </div>
                     <div class="col-md-4">
                       <label for="input-jabatan" class="form-label">
                         Jabatan
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input type="text" class="form-control" id="input-jabatan" required />
+                      <input type="text" name="jabatan" class="form-control" id="input-jabatan" required />
                     </div>
                     <div class="col-md-4">
                       <label for="input-nik" class="form-label">
                         No KTP Ketua MWCNU
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input type="text" class="form-control" id="input-nik" required />
+                      <input type="text" name="no_ktp" class="form-control" id="input-nik" required />
                     </div>
                   </div>
 
@@ -285,14 +286,14 @@
                         No HP Ketua MWC
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input type="text" class="form-control" id="input-tlp" required />
+                      <input type="text" name="no_telp" class="form-control" id="input-tlp" required />
                     </div>
                     <div class="col-md-4">
                       <label for="input-ktp" class="form-label">
                         File KTP Ketua
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input type="file" class="form-control" id="input-ktp" required accept="application/pdf" />
+                      <input type="file" name="file_ktp" class="form-control" id="input-ktp" required accept="application/pdf" />
                       <span class="badge bg-primary">
                         File harus berupa PDF
                       </span>
@@ -306,7 +307,7 @@
                         <sup class="text-danger">*</sup>
                       </label>
                       <div class="col-sm-10">
-                        <textarea id="input-alamat-ketua" class="form-control" style="height: 100px"></textarea>
+                        <textarea id="input-alamat-ketua" name="alamat_ktp" class="form-control" style="height: 100px"></textarea>
                       </div>
                     </div>
                   </div>
