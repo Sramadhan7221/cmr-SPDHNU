@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Wilayah;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\RegisterUser;
 use App\Models\lembaga;
 use App\Models\kepengurusan;
@@ -16,8 +15,8 @@ class LembagaController extends Controller
         $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
         $data = [
             'user' => $user,
-            'kabupaten' => Wilayah::query()->where('kode', "32.06")->first(),
-            'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(),
+            'kabupaten' => Wilayah::query()->where('kode', "32.06")->first(['kode', 'nama']),
+            'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'desa' => Wilayah::getDesa($user->kecamatan)
         ];
         return view('SibahNU.home',$data);
@@ -56,8 +55,18 @@ class LembagaController extends Controller
             return redirect()->back()->withErrors($validated)->withInput();
         }
         $data = $validated->validate();
+        //upload image 
+        // $kop_surat = $request->file('kop_surat');
+        // $kop_surat_filename = $kop_surat->getClientOriginalName();
+        // $kop_surat_path = Storage::putFileAs($kop_surat, $kop_surat_filename);
+        // $domisili = $request->file('domisili');
+        // $domisili_filename = $domisili->getClientOriginalName();
+        // $domisili_path = Storage::putFileAs($domisili, $domisili_filename);
+
         $data['nama_lembaga'] = $user->nama_mwc;
         $data['alamat_lembaga'] = $user->kecamatan;
+        // $data['kop_surat'] = $kop_surat_path;
+        // $data['domisili'] = $domisili_path;
         Lembaga::create($data);
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
@@ -96,4 +105,5 @@ class LembagaController extends Controller
         kepengurusan::create($data);
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
+
 }

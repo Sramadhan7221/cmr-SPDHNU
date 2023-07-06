@@ -56,6 +56,11 @@ return [
             'throw' => false,
         ],
 
+        'google' => [
+            'driver' => 'google',
+            'credentials' => storage_path('app/sibahnu-credentials.json'),
+            'folder_id' => '1XYWy6qT2YSnqKx5qGadDE09HJijnpBhQ',
+        ],
     ],
 
     /*
