@@ -9,4 +9,12 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+
+    protected $display_menus = [
+        'home' => true,
+        'operator' => false,
+        'persyaratan' => false,
+        'pimpinan' => false
+    ];
+
 }

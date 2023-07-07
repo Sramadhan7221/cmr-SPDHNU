@@ -1,3 +1,6 @@
+</div>
+<!-- End Card with header and footer -->
+</div>
 </section>
 </main>
 <!-- End #main -->

@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LembagaController;
+use App\Http\Controllers\OperatorController;
+use App\Http\Controllers\PimpinanController;
+use App\Http\Controllers\PersyaratanController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +24,7 @@ Route::any('/register', [LoginController::class, 'register'])->name('register');
 
 Route::get('/home', [LembagaController::class, 'index'])->name('home');
 Route::any('/lembaga', [LembagaController::class, 'addDataLembaga'])->name('lembaga');
-Route::any('/pimpinan', [LembagaController::class, 'addDataPimpinan'])->name('pimpinan');
+Route::get('/pimpinan', [PimpinanController::class, 'index'])->name('pimpinan');
+Route::get('/operator', [OperatorController::class, 'index'])->name('operator');
+Route::get('/persyaratan', [PersyaratanController::class, 'index'])->name('persyaratan');
+
