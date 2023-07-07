@@ -31,4 +31,9 @@ class PimpinanController extends Controller
         ];
         return view('SibahNU.pimpinan', $data);
     }
+
+    public function save(Request $request) 
+    {
+        
+    }
 }

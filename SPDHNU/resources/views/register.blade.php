@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=
     , initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   @vite('resources/css/app.css')
   @vite('resources/js/index.js')
   <title>LOGIN</title>
@@ -112,7 +113,15 @@
   </section>
 </body>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
+  $(document).ready(function() {
+    $("#kecamatan").select2(({
+      placeholder: "--Pilih Kecamatan--",
+      allowClear: true
+    }))
+  })
+
   $("#kecamatan").change(function() {
     $("#nama_mwc").val(`MWC ${$(this).find(":selected").text()}`)
   })

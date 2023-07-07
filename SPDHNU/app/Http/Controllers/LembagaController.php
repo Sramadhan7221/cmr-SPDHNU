@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\RegisterUser;
 use App\Models\lembaga;
 use App\Models\kepengurusan;
+use App\Models\UserLembaga;
 use Illuminate\Support\Facades\Validator;
 
 class LembagaController extends Controller
@@ -38,6 +39,8 @@ class LembagaController extends Controller
         $rules = [
             'no_telp' => 'required|numeric|unique:lembaga,no_telp',
             'email_lembaga' => 'required|email|unique:lembaga,email_lembaga',
+            'alamat_lembaga' => 'required',
+            'nama_lembaga' => 'required',
             'kabupaten' => 'required',
             'kecamatan' => 'required',
             'desa' => 'required',
@@ -59,6 +62,8 @@ class LembagaController extends Controller
             'kop_surat.max' => 'Ukuran file harus 2MB',
             'domisili.required' => 'Domisili Harus Diisi',
             'domisili.max' => 'Ukuran file harus 2MB',
+            'alamat_lembaga.required' => 'Alamat Harus Diisi',
+            'nama_lembaga.required' => 'Nama Lembaga Harus Diisi'
         ];
 
         $validated = Validator::make($request->all(),$rules,$message);
@@ -74,11 +79,13 @@ class LembagaController extends Controller
         // $domisili_filename = $domisili->getClientOriginalName();
         // $domisili_path = Storage::putFileAs($domisili, $domisili_filename);
 
-        $data['nama_lembaga'] = $user->nama_mwc;
-        $data['alamat_lembaga'] = $user->kecamatan;
+        // $data['nama_lembaga'] = $user->nama_mwc;
+        // $data['alamat_lembaga'] = $user->kecamatan;
         // $data['kop_surat'] = $kop_surat_path;
         // $data['domisili'] = $domisili_path;
-        Lembaga::create($data);
+        $lembaga = Lembaga::create($data);
+        UserLembaga::where('user_nik', $user->nik)
+            ->update(['id_lembaga' => $lembaga->id_lembaga]);
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 
