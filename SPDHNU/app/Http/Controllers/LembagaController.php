@@ -66,7 +66,7 @@ class LembagaController extends Controller
             return redirect()->back()->withErrors($validated)->withInput();
         }
         $data = $validated->validate();
-        //upload image 
+        //upload image
         // $kop_surat = $request->file('kop_surat');
         // $kop_surat_filename = $kop_surat->getClientOriginalName();
         // $kop_surat_path = Storage::putFileAs($kop_surat, $kop_surat_filename);
@@ -112,7 +112,7 @@ class LembagaController extends Controller
         }
 
         $data = $validated->validate();
-        $data['role'] = 'OPERATOR';
+        $data['role'] = 'PIMPINAN';
         kepengurusan::create($data);
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }

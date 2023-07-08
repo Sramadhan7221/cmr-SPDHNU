@@ -23,8 +23,13 @@ Route::any('/', [LoginController::class, 'login'])->name('login');
 Route::any('/register', [LoginController::class, 'register'])->name('register');
 
 Route::get('/home', [LembagaController::class, 'index'])->name('home');
-Route::any('/lembaga', [LembagaController::class, 'addDataLembaga'])->name('lembaga');
+Route::post('/lembaga', [PimpinanController::class, 'addDataLembaga'])->name('lembaga');
+
 Route::get('/pimpinan', [PimpinanController::class, 'index'])->name('pimpinan');
+Route::post('/addpimpinan', [PimpinanController::class, 'AddDataPimpinan'])->name('addpimpinan');
+
 Route::get('/operator', [OperatorController::class, 'index'])->name('operator');
+Route::post('/addoperator', [OperatorController::class, 'AdddataOperator'])->name('addoperator');
+
 Route::get('/persyaratan', [PersyaratanController::class, 'index'])->name('persyaratan');
 

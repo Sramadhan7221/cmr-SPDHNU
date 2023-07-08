@@ -63,8 +63,14 @@ class LoginController extends Controller
         $password = $request->input('password');
 
         $user = RegisterUser::query()->where('email',$email)->where('password',$password)->first();
+        dd($user);
         if(empty($user)){
             Alert::error('Oops!', 'Username Atau Password Salah!');
+            return redirect()->back();
+        }
+
+        if(!Hash::check($password, $user->password)){
+            Alert::error('Oops!', 'Password Tidak Cocok');
             return redirect()->back();
         }
 
@@ -73,5 +79,10 @@ class LoginController extends Controller
             session()->put('logged','yes',true);
             session()->put('id_user',$user->nik);
             return redirect('home');
+    }
+
+    public function logout(){
+        session()->flush();
+        return redirect(route('login'));
     }
 }
