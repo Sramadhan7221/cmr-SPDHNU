@@ -6,6 +6,8 @@ use App\Models\Wilayah;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\RegisterUser;
+use App\Models\UserLembaga;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,6 +52,7 @@ class LoginController extends Controller
         }
         $data = $validated->validate();
         RegisterUser::query()->create($data);
+        UserLembaga::query()->create(['user_nik'=>$data['nik']]);
         return redirect(route('login'))->with('success','Register Berhasil');
 
     }

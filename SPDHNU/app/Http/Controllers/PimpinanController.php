@@ -70,4 +70,8 @@ class PimpinanController extends Controller
     }
 
 
+    public function save(Request $request)
+    {
+
+    }
 }
