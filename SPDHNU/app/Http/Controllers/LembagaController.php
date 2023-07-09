@@ -16,6 +16,7 @@ class LembagaController extends Controller
     {
         $this->display_menus = [
             'home' => true,
+            'daftarhibah' => false,
             'operator' => false,
             'persyaratan' => false,
             'pimpinan' => false

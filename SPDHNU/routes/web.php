@@ -6,6 +6,7 @@ use App\Http\Controllers\LembagaController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PimpinanController;
 use App\Http\Controllers\PersyaratanController;
+use App\Http\Controllers\DaftarHibahController;
 
 
 /*
@@ -32,4 +33,6 @@ Route::get('/operator', [OperatorController::class, 'index'])->name('operator');
 Route::post('/addoperator', [OperatorController::class, 'AdddataOperator'])->name('addoperator');
 
 Route::get('/persyaratan', [PersyaratanController::class, 'index'])->name('persyaratan');
+Route::any('/addPersyaratan', [PersyaratanController::class, 'addPersyaratan'])->name('addPersyaratan');
 
+Route::get('/daftarhibah', [DaftarHibahController::class, 'index'])->name('daftarHibah');

@@ -17,7 +17,7 @@
   <link href="https://fonts.gstatic.com" rel="preconnect" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
 
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
   <!-- Option 1: Include in HTML -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -26,15 +26,15 @@
   @vite('resources/css/app.css')
 </head>
 
-<body>
+<body x-data="{isLoading: false}">
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="{{asset('aseets/logo.png')}}" alt="" />
-        <span class="d-none d-lg-block">PCNU Tasikmalaya</span>
+        <span class="d-none text-green-800 d-lg-block">PCNU Tasikmalaya</span>
       </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
+      <i class="bi bi-list toggle-sidebar-btn "></i>
     </div>
     <!-- End Logo -->
   </header>
@@ -44,21 +44,22 @@
   <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="/home">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li>
       <!-- End Dashboard Nav -->
 
+      <li class="nav-heading">Permohonan</li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="hibah.html">
-          <i class="bi bi-grid"></i>
-          <span>Permohonan Hibah</span>
+        <a class="nav-link collapsed" href="">
+          <i class="ri-file-copy-2-line"></i>
+          <span>Daftar Hibah</span>
         </a>
       </li>
       <!-- End Hibah Nav -->
-      <li class="nav-item">
+      <li class="nav-item mt-14">
         <a class="btn nav-link collapsed" href="hibah.html">
           <i class="bi bi-grid"></i>
           <span>LOGOUT</span>

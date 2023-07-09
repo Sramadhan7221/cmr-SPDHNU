@@ -64,9 +64,7 @@ class LoginController extends Controller
 
         $email = $request->input('email');
         $password = $request->input('password');
-
-        $user = RegisterUser::query()->where('email',$email)->where('password',$password)->first();
-        dd($user);
+        $user = RegisterUser::query()->where('email',$email)->first();
         if(empty($user)){
             Alert::error('Oops!', 'Username Atau Password Salah!');
             return redirect()->back();

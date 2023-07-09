@@ -20,7 +20,7 @@
             Nama Lengkap
             <sup class="text-danger">*</sup>
             </label>
-            <input type="text" name="nama_pengurus" class="form-control" id="inputName5" />
+            <input type="text" name="nama_pengurus" class="form-control" id="inputName5" required/>
         </div>
 
         <div class="col-md-4">
@@ -28,7 +28,7 @@
             No KTP Operator MWCNU
             <sup class="text-danger">*</sup>
             </label>
-            <input type="text" class="form-control" name="no_ktp" id="input-nik" />
+            <input type="text" class="form-control" name="no_ktp" id="input-nik" required/>
         </div>
 
         <div class="col-md-4">
@@ -36,7 +36,7 @@
             No HP Operator MWC
             <sup class="text-danger">*</sup>
             </label>
-            <input type="text" class="form-control" name="no_telp" id="input-tlp" />
+            <input type="text" class="form-control" name="no_telp" id="input-tlp" required/>
         </div>
         </div>
 
@@ -47,13 +47,13 @@
             <sup class="text-danger">*</sup>
             </label>
             <div class="col-sm-10">
-            <textarea id="input-alamat-operator" name="alamat_ktp" class="form-control" style="height: 100px"></textarea>
+            <textarea id="input-alamat-operator" name="alamat_ktp" class="form-control" style="height: 100px" required></textarea>
             </div>
         </div>
         </div>
         <div class="row g-3 pt-4 mt-4 mb-4">
         <div class="text-end">
-            <button type="submit" class="btn btn-primary col-md-3">
+            <button type="submit" class="bg-green-800 p-2 rounded-md text-white col-md-3">
             <i class="ri-file-edit-line"></i>
             Perbaharui data MWCNU
             </button>

@@ -86,7 +86,7 @@
             <sup class="text-danger">*</sup>
             </label>
             <input type="file" name="kop_surat" class="form-control" id="input-kabupaten" />
-            <span class="badge bg-primary">
+            <span class="badge bg-success">
             File harus berupa JPG/PNG
             </span>
         </div>
@@ -97,14 +97,14 @@
             <sup class="text-danger">*</sup>
             </label>
             <input type="file" class="form-control" id="input-kecamatan" name="domisili" accept="application/pdf" />
-            <span class="badge bg-primary">
+            <span class="badge bg-success">
             File harus berupa PDF
             </span>
         </div>
         </div>
         <div class="row g-3 pt-4 mt-4 mb-4">
         <div class="text-end">
-            <button type="submit" class="btn btn-primary col-md-3">
+            <button type="submit" class="bg-green-800 p-2 rounded-md text-white col-md-3">
             <i class="ri-file-edit-line"></i>
             Perbaharui data MWCNU
             </button>

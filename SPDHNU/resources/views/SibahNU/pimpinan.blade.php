@@ -10,7 +10,6 @@
       </div>
     </template>
    <!-- Multi Columns Form -->
-   <template x-if="!isLoading">
     <form method="POST" action="{{route('addpimpinan')}}">
         @csrf
         <div class="row g-3 mt-4">
@@ -51,7 +50,7 @@
                 <sup class="text-danger">*</sup>
                 </label>
                 <input type="file" name="file_ktp" class="form-control" id="input-ktp" required accept="application/pdf" />
-                <span class="badge bg-primary">
+                <span class="badge bg-success">
                 File harus berupa PDF
                 </span>
             </div>
@@ -70,14 +69,13 @@
         </div>
         <div class="row g-3 pt-4 mt-4 mb-4">
             <div class="text-end">
-                <button type="submit" class="btn btn-primary col-md-3">
+                <button type="submit" class="bg-green-800 hover:bg-white hover:border border-green-800 p-2 text-white rounded-md col-md-3">
                 <i class="ri-file-edit-line"></i>
                 Perbaharui data MWCNU
                 </button>
             </div>
         </div>
     </form>
-   </template>
    <!-- End Multi Columns Form -->
 </div>
 @include('SibahNU.template.footer')
