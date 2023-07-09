@@ -4,13 +4,13 @@
   @include('sweetalert::alert')
   <template x-if="isLoading">
     <div class="fixed inset-0 z-[100] bg-white">
-        <div class="flex h-screen w-full items-center justify-center bg-gray-100">
-          <div class="custom-loader"></div>
-        </div>
+      <div class="flex h-screen w-full items-center justify-center bg-gray-100">
+        <div class="custom-loader"></div>
       </div>
-    </template>
+    </div>
+  </template>
   <!-- Multi Columns Form -->
-  <form method="POST" action="{{route('lembaga')}}">
+  <form method="POST" action="{{route('lembaga')}}" enctype="multipart/form-data">
     @csrf
     <div class="row g-3">
       <div class="col-md-6">
@@ -26,25 +26,25 @@
           Alamat MWCNU
           <sup class="text-danger">*</sup>
         </label>
-        <textarea type="text" class="form-control" value="{{$kecamatan->nama}}" id="input-alamat" name="alamat_lembaga" required></textarea>
+        <textarea type="text" class="form-control" value="{{$kecamatan->nama}}" id="input-alamat" name="alamat_lembaga" required>{{$lembaga->alamat_lembaga ?? ''}}</textarea>
       </div>
     </div>
 
-        <div class="row g-3 pt-4">
-        <div class="col-md-6">
-            <label for="no_telp" class="form-label">
-            No tlp / Handphone
-            <sup class="text-danger">*</sup>
-            </label>
-            <input type="text" name="no_telp" class="form-control" id="input-tlp" />
-        </div>
+    <div class="row g-3 pt-4">
+      <div class="col-md-6">
+        <label for="no_telp" class="form-label">
+          No tlp / Handphone
+          <sup class="text-danger">*</sup>
+        </label>
+        <input type="text" name="no_telp" value="{{$lembaga->no_telp ?? ''}}" class="form-control" id="input-tlp" />
+      </div>
 
       <div class="col-md-6">
         <label for="input-email" class="form-label">
           Email MWCNU
           <sup class="text-danger">*</sup>
         </label>
-        <input type="email" name="email_lembaga" class="form-control" id="input-email" />
+        <input type="email" name="email_lembaga" value="{{$lembaga->email_lembaga ?? ''}}" class="form-control" id="input-email" />
       </div>
     </div>
     <div class="row g-3 pt-4">
@@ -66,52 +66,61 @@
         <input type="hidden" name="kecamatan" value="{{$kecamatan->kode}}" />
       </div>
 
-        <div class="col-md-4">
-            <label for="input-desa" class="form-label">
-            Desa
-            <sup class="text-danger">*</sup>
-            </label>
-            <select name="desa" class="form-control" id="input-desa">
-            <option value="0">--Pilih Desa--</option>
-            @foreach ($desa as $item)
-            <option value="{{ $item->kode }}">{{ $item->nama }}</option>
-            @endforeach
-            </select>
-        </div>
-        </div>
-        <div class="row g-3 pt-4">
-        <div class="col-md-6">
-            <label for="input-kabupaten" class="form-label">
-            Kop surat MWCNU
-            <sup class="text-danger">*</sup>
-            </label>
-            <input type="file" name="kop_surat" class="form-control" id="input-kabupaten" />
-            <span class="badge bg-success">
-            File harus berupa JPG/PNG
-            </span>
-        </div>
+      <div class="col-md-4">
+        <label for="input-desa" class="form-label">
+          Desa
+          <sup class="text-danger">*</sup>
+        </label>
+        <select name="desa" class="form-control" id="input-desa">
+          <option value="0">--Pilih Desa--</option>
+          @foreach ($desa as $item)
+          <option value="{{ $item->kode }}">{{ $item->nama }}</option>
+          @endforeach
+        </select>
+      </div>
+    </div>
+    <div class="row g-3 pt-4">
+      <div class="col-md-6">
+        <label for="kop_surat" class="form-label">
+          Kop surat MWCNU
+          <sup class="text-danger">*</sup>
+        </label>
+        <input type="file" name="kop_surat" class="form-control" id="kop_surat" value="{{$lembaga->kop_surat ?? ''}}" />
+        <span class="badge bg-success">
+          File harus berupa JPG/PNG
+        </span>
+      </div>
 
-        <div class="col-md-6">
-            <label for="input-kecamatan" class="form-label">
-            Domisili MWCNU
-            <sup class="text-danger">*</sup>
-            </label>
-            <input type="file" class="form-control" id="input-kecamatan" name="domisili" accept="application/pdf" />
-            <span class="badge bg-success">
-            File harus berupa PDF
-            </span>
-        </div>
-        </div>
-        <div class="row g-3 pt-4 mt-4 mb-4">
-        <div class="text-end">
-            <button type="submit" class="bg-green-800 p-2 rounded-md text-white col-md-3">
-            <i class="ri-file-edit-line"></i>
-            Perbaharui data MWCNU
-            </button>
-        </div>
-        </div>
-    </form>
+      <div class="col-md-6">
+        <label for="domisili" class="form-label">
+          Domisili MWCNU
+          <sup class="text-danger">*</sup>
+        </label>
+        <input type="file" class="form-control" id="domisili" name="domisili" value="{{$lembaga->domisili ?? ''}}" accept="application/pdf" />
+        <span class="badge bg-success">
+          File harus berupa PDF
+        </span>
+      </div>
+    </div>
+    <div class="row g-3 pt-4 mt-4 mb-4">
+      <div class="text-end">
+        <button type="submit" class="bg-green-800 p-2 rounded-md text-white col-md-3">
+          <i class="ri-file-edit-line"></i>
+          Perbaharui data MWCNU
+        </button>
+      </div>
+    </div>
+  </form>
   </template>
   <!-- End Multi Columns Form -->
 </div>
 @include('SibahNU.template.footer')
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script>
+  let desa = "{{$lembaga->desa ?? ''}}";
+  $(document).ready(function () {
+    if (desa) {
+      $("#input-desa").val(desa).trigger('change');
+    }
+  })
+</script>
