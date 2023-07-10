@@ -89,6 +89,10 @@
         <span class="badge bg-success">
           File harus berupa JPG/PNG
         </span>
+        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#display-kop_surat">
+          <i class="bi-image"></i>
+          Lihat file
+        </button>
       </div>
 
       <div class="col-md-6">
@@ -100,6 +104,10 @@
         <span class="badge bg-success">
           File harus berupa PDF
         </span>
+        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#display-domisili">
+          <i class="uiw-file-pdf"></i>
+          Lihat file
+        </button>
       </div>
     </div>
     <div class="row g-3 pt-4 mt-4 mb-4">
@@ -111,14 +119,39 @@
       </div>
     </div>
   </form>
-  </template>
-  <!-- End Multi Columns Form -->
+  <div class="modal fade" id="display-domisili" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body">
+          <embed src="{{ $lembaga->domisili ?? '' }}" type="application/pdf" width="100%" height="600px" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="display-kop_surat" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body">
+          <embed src="{{ $lembaga->kop_surat ? asset('storage/'.$lembaga->kop_surat) : '' }}" type="application/pdf" width="100%" height="600px" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Vertically centered Modal-->
+</template>
+<!-- End Multi Columns Form -->
 </div>
 @include('SibahNU.template.footer')
-<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 <script>
   let desa = "{{$lembaga->desa ?? ''}}";
-  $(document).ready(function () {
+  $(document).ready(function() {
     if (desa) {
       $("#input-desa").val(desa).trigger('change');
     }
