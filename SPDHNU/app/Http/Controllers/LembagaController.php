@@ -27,11 +27,6 @@ class LembagaController extends Controller
     public function index(){
         $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
         $lembaga = UserLembaga::join('lembaga', 'user_lembaga.id_lembaga', '=', 'lembaga.id_lembaga')->first(['alamat_lembaga', 'no_telp', 'email_lembaga','desa', 'kop_surat', 'domisili']);
-        $kop_surat = storage_path('app/public/'.$lembaga->kop_surat);
-        $domisili = storage_path('app/public/'.$lembaga->domisili);
-        // dd($kop_surat, $domisili);
-        $lembaga->kop_surat = $kop_surat;
-        $lembaga->domisili = $domisili;
         $data = [
             'user' => $user,
             'kabupaten' => Wilayah::query()->where('kode', "32.06")->first(['kode', 'nama']),

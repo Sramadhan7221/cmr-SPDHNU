@@ -1,5 +1,50 @@
-@include('SibahNU.template.sidebar')
-<main id="main" class="main">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>Components / Tabs - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon" />
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
+  <!-- Option 1: Include in HTML -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <!-- Template Main CSS File -->
+  <link href="{{asset('css/style.css')}}" rel="stylesheet" />
+  @vite('resources/css/app.css')
+</head>
+<body>
+    <main id="main" class="main">
+        <template x-if="isLoading">
+        <div class="fixed inset-0 z-[100] bg-white">
+            <div class="flex h-screen w-full items-center justify-center bg-gray-100">
+              <div class="custom-loader"></div>
+            </div>
+          </div>
+        </template>
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+          <a href="index.html" class="logo d-flex align-items-center">
+              <img src="{{asset('aseets/logo.png')}}" alt="" />
+              <span class="d-none text-green-800 d-lg-block">PCNU Tasikmalaya</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn "></i>
+        </div>
+        <!-- End Logo -->
+    </header>
+    @include('SibahNU.template.sidebar')
     <div class="pagetitle">
       <h1>Detail Data Hibah</h1>
       <nav>
@@ -643,3 +688,4 @@
     </section>
   </main>
 @include('SibahNU.template.footer')
+</body>

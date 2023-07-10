@@ -17,8 +17,15 @@
         </a>
       </li>
       <!-- End Hibah Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('generateFile')}}">
+          <i class="bi bi-printer-fill"></i>
+          <span>Cetak file</span>
+        </a>
+      </li>
     </ul>
-    <button class="px-4 py-2 w-full mx-auto hover:bg-cyan-400/10 text-cyan-900 font-bold mt-96">
+    <button class="px-4 py-2 w-full mx-auto hover:bg-cyan-400/10 text-cyan-900 font-bold mt-80">
         <a class="" href="{{route('logout')}}" data-confirm-delete=" true ">
           <i class="ri-file-copy-2-line"></i>
           <span>Log Out</span>

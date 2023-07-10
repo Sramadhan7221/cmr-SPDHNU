@@ -85,7 +85,7 @@
           Kop surat MWCNU
           <sup class="text-danger">*</sup>
         </label>
-        <input type="file" name="kop_surat" class="form-control" id="kop_surat" value="{{$lembaga->kop_surat ?? ''}}" />
+        <input type="file" name="kop_surat" class="form-control" id="kop_surat" value="{{asset('storage/'.$lembaga->kop_surat)}}" />
         <span class="badge bg-success">
           File harus berupa JPG/PNG
         </span>
@@ -100,7 +100,7 @@
           Domisili MWCNU
           <sup class="text-danger">*</sup>
         </label>
-        <input type="file" class="form-control" id="domisili" name="domisili" value="{{$lembaga->domisili ?? ''}}" accept="application/pdf" />
+        <input type="file" class="form-control" id="domisili" name="domisili" value="{{asset('storage/'.$lembaga->domisili)}}" accept="application/pdf" />
         <span class="badge bg-success">
           File harus berupa PDF
         </span>
@@ -126,7 +126,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
         </div>
         <div class="modal-body">
-          <embed src="{{ $lembaga->domisili ?? '' }}" type="application/pdf" width="100%" height="600px" />
+          <embed src="{{ asset('storage/'.$lembaga->domisili) }}" type="application/pdf" width="100%" height="600px" />
         </div>
       </div>
     </div>
@@ -138,7 +138,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
         </div>
         <div class="modal-body">
-          <embed src="{{ $lembaga->kop_surat ? asset('storage/'.$lembaga->kop_surat) : '' }}" type="application/pdf" width="100%" height="600px" />
+          <img src="{{ asset('storage/'.$lembaga->kop_surat) }}" type="application/pdf" width="100%" height="600px" />
         </div>
       </div>
     </div>

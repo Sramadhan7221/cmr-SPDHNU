@@ -9,4 +9,8 @@ class DaftarHibahController extends Controller
     public function index(){
         return view('SibahNU.daftarhibah');
     }
+
+    public function detailHibah(){
+        return view('SibahNU.detailHibah');
+    }
 }

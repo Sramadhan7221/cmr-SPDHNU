@@ -7,6 +7,7 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PimpinanController;
 use App\Http\Controllers\PersyaratanController;
 use App\Http\Controllers\DaftarHibahController;
+use App\Http\Controllers\GenerateFileController;
 
 
 /*
@@ -37,3 +38,8 @@ Route::get('/persyaratan', [PersyaratanController::class, 'index'])->name('persy
 Route::any('/addPersyaratan', [PersyaratanController::class, 'addPersyaratan'])->name('addPersyaratan');
 
 Route::get('/daftarhibah', [DaftarHibahController::class, 'index'])->name('daftarHibah');
+Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name('detailhibah');
+
+Route::get('/generateFile', [GenerateFileController::class, 'index'])->name('generateFile');
+
+

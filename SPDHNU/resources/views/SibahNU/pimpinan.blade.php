@@ -10,7 +10,7 @@
       </div>
     </template>
    <!-- Multi Columns Form -->
-    <form method="POST" action="{{route('addpimpinan')}}">
+    <form method="POST" action="{{route('addpimpinan')}}"  enctype="multipart/form-data">
         @csrf
         <div class="row g-3 mt-4">
             <div class="col-md-4">
@@ -49,10 +49,14 @@
                 File KTP Ketua
                 <sup class="text-danger">*</sup>
                 </label>
-                <input type="file" name="file_ktp" class="form-control" id="input-ktp" required accept="application/pdf" />
+                <input type="file" name="file_ktp" class="form-control" id="file_ktp" required accept="application/pdf" />
                 <span class="badge bg-success">
                 File harus berupa PDF
                 </span>
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#display-file_ktp">
+                    <i class="uiw-file-pdf"></i>
+                    Lihat file
+                </button>
             </div>
         </div>
 
@@ -76,6 +80,18 @@
             </div>
         </div>
     </form>
+    <div class="modal fade" id="display-file_ktp" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+              <embed src="{{asset('storage/'.$pimpinan->file_ktp)}}" type="application/pdf" width="100%" height="600px" />
+            </div>
+          </div>
+        </div>
+      </div>
    <!-- End Multi Columns Form -->
 </div>
 @include('SibahNU.template.footer')

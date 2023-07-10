@@ -62,37 +62,170 @@
     <!-- End Page Title -->
 
     <section class="section">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Filter Daftar Hibah</h5>
-            <div class="row">
-              <div class="col-lg-3">
-                <label
-                  for="filter-by-years"
-                  class="form-label d-flex justify-content-start">
-                  Berdasarkan Tahun Anggaran
-                </label>
-                <select id="filter-by-years" class="form-select">
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select>
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Filter Daftar Hibah</h5>
+              <div class="row">
+                <div class="col-lg-3">
+                  <label
+                    for="filter-by-years"
+                    class="form-label d-flex justify-content-start">
+                    Berdasarkan Tahun Anggaran
+                  </label>
+                  <select id="filter-by-years" class="form-select">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                  </select>
+                </div>
               </div>
-              <div class="col-lg-3">
-                <label
-                  for="filter-by-status"
-                  class="form-label d-flex justify-content-start">
-                  Berdasarkan Status
-                </label>
-                <select id="filter-by-status" class="form-select">
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select>
+              <div class="text-end">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#mohon-hibah">
+                  <i class="ri-file-edit-line"></i>
+                  Daftar Hibah
+                </button>
+              </div>
+
+              <div class="modal fade" id="mohon-hibah" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Tambah Permohonan Hibah</h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="row g-3">
+                          <div class="col-md-12">
+                            <label
+                              for="no-pjbr"
+                              class="form-label d-flex justify-content-start">
+                              NO PJBR
+                              <sup class="text-danger">*</sup>
+                            </label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="no-pjbr"
+                              required />
+                          </div>
+                        </div>
+                        <div class="row mt-3">
+                          <div class="col-md-12">
+                            <label
+                              for="sub-kegiatan"
+                              class="form-label d-flex justify-content-start">
+                              Sub Kegiatan
+                              <sup class="text-danger">*</sup>
+                            </label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="sub-kegiatan"
+                              required />
+                          </div>
+                        </div>
+                        <div class="row mt-3">
+                          <div class="col-md-12">
+                            <label
+                              for="lembaga"
+                              class="form-label d-flex justify-content-start">
+                              Lembaga
+                              <sup class="text-danger">*</sup>
+                            </label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="lembaga"
+                              required />
+                          </div>
+                        </div>
+                        <div class="row mt-3">
+                          <div class="col-md-12">
+                            <label
+                              for="alamat-lembaga"
+                              class="form-label d-flex justify-content-start">
+                              Alamat Lembaga
+                              <sup class="text-danger">*</sup>
+                            </label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="alamat-lembaga"
+                              required />
+                          </div>
+                        </div>
+                        <div class="row mt-3">
+                          <div class="col-md-12">
+                            <label
+                              for="peruntukan"
+                              class="form-label d-flex justify-content-start">
+                              Peruntukan
+                              <sup class="text-danger">*</sup>
+                            </label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="peruntukan"
+                              required />
+                          </div>
+
+                        </div>
+                        <div class="row mt-3">
+                          <div class="col-md-12">
+                            <label
+                              for="tahun"
+                              class="form-label d-flex justify-content-start">
+                              Tahun
+                              <sup class="text-danger">*</sup>
+                            </label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="tahun"
+                              required />
+                          </div>
+                        </div>
+                        <div class="row mt-3">
+                          <div class="col-md-12">
+                            <label
+                              for="Jumlah"
+                              class="form-label d-flex justify-content-start">
+                              Jumlah
+                              <sup class="text-danger">*</sup>
+                            </label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="Jumlah"
+                              required />
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        data-bs-dismiss="modal">
+                        <i class="ri-file-edit-line"></i>
+                        Simpan data
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
       <div class="col-lg-12">
         <!-- Card with header and footer -->
@@ -131,7 +264,7 @@
                     </button>
                   </td>
                   <td>
-                    <a class="btn btn-primary" href="detail-hibah.html">
+                    <a class="btn btn-primary" href="{{route('detailhibah')}}">
                       Detail
                     </a>
                   </td>
