@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id');
             $table->uuid('lembaga');
             $table->uuid('pengurus')->nullable();
-            $table->uuid('persyaratan')->nullable();
+            // $table->uuid('persyaratan')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
