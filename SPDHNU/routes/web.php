@@ -22,6 +22,7 @@ use App\Http\Controllers\DaftarHibahController;
 
 Route::any('/', [LoginController::class, 'login'])->name('login');
 Route::any('/register', [LoginController::class, 'register'])->name('register');
+Route::any('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/home', [LembagaController::class, 'index'])->name('home');
 Route::post('/lembaga', [PimpinanController::class, 'addDataLembaga'])->name('lembaga');

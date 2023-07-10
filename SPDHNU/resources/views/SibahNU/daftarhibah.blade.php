@@ -46,32 +46,7 @@
       <!-- End Header -->
 
       <!-- ======= Sidebar ======= -->
-      <aside id="sidebar" class="sidebar">
-        <ul class="sidebar-nav" id="sidebar-nav">
-          <li class="nav-item">
-            <a class="nav-link collapsed" href="">
-              <i class="bi bi-grid"></i>
-              <span>Dashboard</span>
-            </a>
-          </li>
-          <!-- End Dashboard Nav -->
-
-          <li class="nav-heading">Permohonan</li>
-          <li class="nav-item">
-            <a class="nav-link collapsed" href="">
-              <i class="ri-file-copy-2-line"></i>
-              <span>Daftar Hibah</span>
-            </a>
-          </li>
-          <!-- End Hibah Nav -->
-          <li class="nav-item mt-14">
-            <a class="btn nav-link collapsed" href="hibah.html">
-              <i class="bi bi-grid"></i>
-              <span>LOGOUT</span>
-            </a>
-          </li>
-        </ul>
-      </aside>
+      @include('SibahNU.template.sidebar')
       <!-- End Sidebar-->
 <main id="main" class="main">
     <div class="pagetitle">

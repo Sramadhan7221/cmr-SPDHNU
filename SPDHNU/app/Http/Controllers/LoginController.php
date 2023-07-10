@@ -83,6 +83,9 @@ class LoginController extends Controller
     }
 
     public function logout(){
+        $title = 'Log Out!';
+        $text = 'Anda Yakin Ingin Keluar?';
+        confirmDelete($title,$text);
         session()->flush();
         return redirect(route('login'));
     }

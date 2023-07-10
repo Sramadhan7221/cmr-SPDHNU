@@ -164,7 +164,7 @@
                 <td>{{$syarat->nama_persyaratan}}</td>
                 <td>{{$syarat->nomor_surat}}</td>
                 <td>{{$syarat->yang_mengeluarkan}}</td>
-                <td><a href="#">Persyaratan.pdf</a></td>
+                <td><img src="{{Storage::url($syarat->file)}}"/></td>
                 <td></td>
             </tr>
             @endforeach
