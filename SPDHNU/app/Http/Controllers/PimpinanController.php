@@ -80,9 +80,4 @@ class PimpinanController extends Controller
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 
-
-    public function save(Request $request)
-    {
-
-    }
 }

@@ -16,6 +16,7 @@ class Persyaratan extends Model
      */
     protected $table = 'persyaratan';
     protected $primaryKey = 'id_persyaratan';
+    protected $keyType = 'string';
     protected $guarded = 'id_persyaratan';
     protected $fillable = [
         'nama_persyaratan',

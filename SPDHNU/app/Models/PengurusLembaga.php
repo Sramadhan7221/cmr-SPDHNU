@@ -17,6 +17,7 @@ class PengurusLembaga extends Model
      */
     protected $table = 'pengurus_lembaga';
     protected $primaryKey = 'id';
+    protected $keyType = 'string';
     protected $guarded = 'id';
     protected $fillable = [
         'lembaga',

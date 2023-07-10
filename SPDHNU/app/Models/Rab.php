@@ -15,6 +15,7 @@ class Rab extends Model
      */
     protected $table = 'rab';
     protected $primaryKey = 'id_rab';
+    protected $keyType = 'string';
     protected $guarded = 'id_rab';
     protected $fillable = [
         'proposal',

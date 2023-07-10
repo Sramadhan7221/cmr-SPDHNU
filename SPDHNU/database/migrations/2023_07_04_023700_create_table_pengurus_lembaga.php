@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pengurus_lembaga', function (Blueprint $table) {
             $table->uuid('id');
             $table->uuid('lembaga');
-            $table->uuid('pengurus');
+            $table->uuid('pengurus')->nullable();
             $table->uuid('persyaratan')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -15,6 +15,7 @@ class Proposal extends Model
      */
     protected $table = 'proposal';
     protected $primaryKey = 'id_proposal';
+    protected $keyType = 'string';
     protected $guarded = 'id_proposal';
     protected $fillable = [
         'lembaga',
