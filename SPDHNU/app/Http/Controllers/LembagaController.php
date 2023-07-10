@@ -8,6 +8,7 @@ use App\Models\RegisterUser;
 use App\Models\lembaga;
 use App\Models\kepengurusan;
 use App\Models\UserLembaga;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class LembagaController extends Controller
@@ -25,12 +26,19 @@ class LembagaController extends Controller
 
     public function index(){
         $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
+        $lembaga = UserLembaga::join('lembaga', 'user_lembaga.id_lembaga', '=', 'lembaga.id_lembaga')->first(['alamat_lembaga', 'no_telp', 'email_lembaga','desa', 'kop_surat', 'domisili']);
+        $kop_surat = storage_path('app/public/'.$lembaga->kop_surat);
+        $domisili = storage_path('app/public/'.$lembaga->domisili);
+        // dd($kop_surat, $domisili);
+        $lembaga->kop_surat = $kop_surat;
+        $lembaga->domisili = $domisili;
         $data = [
             'user' => $user,
             'kabupaten' => Wilayah::query()->where('kode', "32.06")->first(['kode', 'nama']),
             'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'desa' => Wilayah::getDesa($user->kecamatan),
-            'display_menus' => $this->display_menus
+            'display_menus' => $this->display_menus,
+            'lembaga' => $lembaga
         ];
         return view('SibahNU.home',$data);
     }
@@ -73,17 +81,17 @@ class LembagaController extends Controller
         }
         $data = $validated->validate();
         //upload image
-        // $kop_surat = $request->file('kop_surat');
-        // $kop_surat_filename = $kop_surat->getClientOriginalName();
-        // $kop_surat_path = Storage::putFileAs($kop_surat, $kop_surat_filename);
-        // $domisili = $request->file('domisili');
-        // $domisili_filename = $domisili->getClientOriginalName();
-        // $domisili_path = Storage::putFileAs($domisili, $domisili_filename);
+        $kop_surat = $request->file('kop_surat');
+        $kop_surat_filename = $kop_surat->getClientOriginalName();
+        $kop_surat_path = Storage::putFileAs($kop_surat, $kop_surat_filename);
+        $domisili = $request->file('domisili');
+        $domisili_filename = $domisili->getClientOriginalName();
+        $domisili_path = Storage::putFileAs($domisili, $domisili_filename);
 
         // $data['nama_lembaga'] = $user->nama_mwc;
         // $data['alamat_lembaga'] = $user->kecamatan;
-        // $data['kop_surat'] = $kop_surat_path;
-        // $data['domisili'] = $domisili_path;
+        $data['kop_surat'] = $kop_surat_path;
+        $data['domisili'] = $domisili_path;
         $lembaga = Lembaga::create($data);
         UserLembaga::where('user_nik', $user->nik)
             ->update(['id_lembaga' => $lembaga->id_lembaga]);

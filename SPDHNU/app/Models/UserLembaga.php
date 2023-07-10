@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
 
 class UserLembaga extends Model
@@ -16,6 +17,7 @@ class UserLembaga extends Model
      */
     protected $table = 'user_lembaga';
     protected $primaryKey = 'id_user_lembaga';
+    protected $keyType = 'string';
     protected $guarded = 'id_user_lembaga';
     protected $fillable = [
         'user_nik',

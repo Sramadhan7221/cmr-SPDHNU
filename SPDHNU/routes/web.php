@@ -25,7 +25,7 @@ Route::any('/register', [LoginController::class, 'register'])->name('register');
 Route::any('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/home', [LembagaController::class, 'index'])->name('home');
-Route::post('/lembaga', [PimpinanController::class, 'addDataLembaga'])->name('lembaga');
+Route::post('/lembaga', [LembagaController::class, 'addDataLembaga'])->name('lembaga');
 
 Route::get('/pimpinan', [PimpinanController::class, 'index'])->name('pimpinan');
 Route::post('/addpimpinan', [PimpinanController::class, 'AddDataPimpinan'])->name('addpimpinan');
