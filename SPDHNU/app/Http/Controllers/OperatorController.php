@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\RegisterUser;
 use App\Models\kepengurusan;
 use App\Models\Wilayah;
+use App\Models\PengurusLembaga;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 class OperatorController extends Controller
 {
@@ -22,13 +25,17 @@ class OperatorController extends Controller
 
     public function index()
     {
+        if(!session()->get('id_lembaga')){
+            Alert::error('Oops!','Data Lembaga Belum Lengkap!');
+            return redirect()->back();
+        }
+
+        $operator = $this->isOperatorExsist();
         $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
         $data = [
             'user' => $user,
-            'kabupaten' => Wilayah::query()->where('kode', "32.06")->first(['kode', 'nama']),
-            'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
-            'desa' => Wilayah::getDesa($user->kecamatan),
-            'display_menus' => $this->display_menus
+            'display_menus' => $this->display_menus,
+            'operator' => $operator ?? new Kepengurusan()
         ];
         return view('SibahNU.operator', $data);
     }
@@ -56,7 +63,20 @@ class OperatorController extends Controller
             return redirect()->back()->withErrors($validated)->withInput();
         }
         $data = $validated->validate();
-        kepengurusan::create($data);
+        $kepengurusan = kepengurusan::create($data);
+        $id_is_exsist = $this->isOperatorExsist();
+        if($id_is_exsist){
+            PengurusLembaga::where('pengurus', $id_is_exsist->id_pengurus)
+                           ->update(['pengurus' => $kepengurusan->id_pengurus]);
+        }
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
+    }
+
+    protected function isOperatorExsist(){
+        $idLembaga = Session::get('id_lembaga');
+        return PengurusLembaga::join('kepengurusan', 'pengurus_lembaga.pengurus', '=', 'kepengurusan.id_pengurus')
+                                ->where('lembaga',$idLembaga)
+                                ->where('kepengurusa.role', "OPERATOR")
+                                ->first();
     }
 }

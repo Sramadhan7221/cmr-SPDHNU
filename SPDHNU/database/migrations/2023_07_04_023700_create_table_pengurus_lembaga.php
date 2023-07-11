@@ -15,13 +15,11 @@ return new class extends Migration
             $table->uuid('id');
             $table->uuid('lembaga');
             $table->uuid('pengurus')->nullable();
-            // $table->uuid('persyaratan')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('lembaga')->references('id_lembaga')->on('lembaga');
             $table->foreign('pengurus')->references('id_pengurus')->on('kepengurusan');
-            $table->foreign('persyaratan')->references('id_persyaratan')->on('persyaratan');
         });
     }
 

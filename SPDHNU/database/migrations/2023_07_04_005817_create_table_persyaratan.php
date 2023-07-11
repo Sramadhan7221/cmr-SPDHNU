@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('lembaga')->references('id_lembaga')->on('lembaga');
+            $table->foreign('id_lembaga')->references('id_lembaga')->on('lembaga');
         });
     }
 

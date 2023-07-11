@@ -35,7 +35,6 @@ class PimpinanController extends Controller
 
         $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
         $pimpinan = $this->isPimpinanExist();
-
         $data = [
             'user' => $user,
             'display_menus' => $this->display_menus,

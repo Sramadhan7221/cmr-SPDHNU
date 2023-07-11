@@ -20,7 +20,7 @@
             Nama Lengkap
             <sup class="text-danger">*</sup>
             </label>
-            <input type="text" name="nama_pengurus" class="form-control" id="inputName5" required/>
+            <input type="text" name="nama_pengurus" class="form-control" id="inputName5" value="{{$operator->nama_pengurus}}" required/>
         </div>
 
         <div class="col-md-4">
@@ -28,7 +28,7 @@
             No KTP Operator MWCNU
             <sup class="text-danger">*</sup>
             </label>
-            <input type="text" class="form-control" name="no_ktp" id="input-nik" required/>
+            <input type="text" class="form-control" name="no_ktp" id="input-nik" value="{{$operator->no_ktp}}" required/>
         </div>
 
         <div class="col-md-4">
@@ -36,7 +36,7 @@
             No HP Operator MWC
             <sup class="text-danger">*</sup>
             </label>
-            <input type="text" class="form-control" name="no_telp" id="input-tlp" required/>
+            <input type="text" class="form-control" name="no_telp" id="input-tlp" value="{{$operator->no_telp}}" required/>
         </div>
         </div>
 
