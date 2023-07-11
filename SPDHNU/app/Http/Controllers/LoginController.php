@@ -74,11 +74,16 @@ class LoginController extends Controller
             Alert::error('Oops!', 'Password Tidak Cocok');
             return redirect()->back();
         }
+        // dd($user->nik);
+        $lembaga = UserLembaga::where('user_nik', $user->nik)->first();
 
         if(!session()->isStarted())
             session()->start();
             session()->put('logged','yes',true);
             session()->put('id_user',$user->nik);
+            session()->put('id_lembaga');
+            if ($lembaga)
+                session()->put('id_lembaga',$lembaga->id_lembaga);
             return redirect('home');
     }
 

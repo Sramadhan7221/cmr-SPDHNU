@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 
 class PengurusLembaga extends Model
 {
@@ -17,12 +18,22 @@ class PengurusLembaga extends Model
      */
     protected $table = 'pengurus_lembaga';
     protected $primaryKey = 'id';
+    protected $keyType = 'string';
     protected $guarded = 'id';
     protected $fillable = [
         'lembaga',
         'pengurus',
-        'persyaratan',
+        // 'persyaratan',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = Str::uuid()->toString();
+        });
+    }
 
     public function lembaga() : HasOne 
     {
@@ -34,8 +45,4 @@ class PengurusLembaga extends Model
         return $this->hasMany(Kepengurusan::class);
     }
 
-    public function persyaratan() : HasMany 
-    {
-        return $this->hasMany(Persyaratan::class);
-    }
 }

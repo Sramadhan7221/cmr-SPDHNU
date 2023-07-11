@@ -26,7 +26,16 @@ class LembagaController extends Controller
 
     public function index(){
         $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
-        $lembaga = UserLembaga::join('lembaga', 'user_lembaga.id_lembaga', '=', 'lembaga.id_lembaga')->first(['alamat_lembaga', 'no_telp', 'email_lembaga','desa', 'kop_surat', 'domisili']);
+        $lembaga = UserLembaga::join('lembaga', 'user_lembaga.id_lembaga', '=', 'lembaga.id_lembaga')
+            ->where('user_nik', $user->nik)
+            ->first(['alamat_lembaga', 'no_telp', 'email_lembaga','desa', 'kop_surat', 'domisili']);
+        
+        if (empty($lembaga)) {
+            $lembaga = new Lembaga();
+            $lembaga->kop_surat = '';
+            $lembaga->domisili = '';
+        }
+
         $data = [
             'user' => $user,
             'kabupaten' => Wilayah::query()->where('kode', "32.06")->first(['kode', 'nama']),
@@ -90,41 +99,7 @@ class LembagaController extends Controller
         $lembaga = Lembaga::create($data);
         UserLembaga::where('user_nik', $user->nik)
             ->update(['id_lembaga' => $lembaga->id_lembaga]);
-        return redirect()->back()->withSuccess('Data Berhasil Disimpan');
-    }
-
-    public function AddDataPimpinan(Request $request){
-        $rules = [
-            'nama_pengurus' => 'required|regex:/^[\pL\s]+$/u',
-            'jabatan' => 'required|regex:/^[\pL\s]+$/u',
-            'no_ktp' => 'required|unique:kepengurusan,no_ktp',
-            'no_telp' => 'required|unique:kepengurusan,no_telp',
-            'file_ktp' => 'required|max:2048',
-            'alamat_ktp' => 'required'
-        ];
-
-        $message = [
-            'nama_pengurus.required' => 'Nama Pimpinan Harus Diisi',
-            'nama_pengurus.regex' => 'Format Nama Harus Abjad',
-            'jabatan.required' => 'Jabatan Harus Diisi',
-            'jabatan.regex' => 'Format Jabatan Harus Abjad',
-            'no_ktp.required' => 'No KTP Harus Diisi',
-            'no_ktp.unique' => 'No KTP Sudah Terdaftar',
-            'no_telp.required' => 'No Telephone Harus Diisi',
-            'no_telp.unique' => 'No Telephone Sudah Terdaftar',
-            'file_ktp.required' => 'No KTP Harus Diisi',
-            'file_ktp.max' => 'File KTP Harus 2MB',
-            'alamat_ktp.required' => 'Alamat Harus Diisi'
-        ];
-
-        $validated = Validator::make($request->all(),$rules,$message);
-        if($validated->fails()){
-            return redirect()->back()->withErrors($validated)->withInput();
-        }
-
-        $data = $validated->validate();
-        $data['role'] = 'PIMPINAN';
-        kepengurusan::create($data);
+        session()->put('id_lembaga', $lembaga->id_lembaga);
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 
