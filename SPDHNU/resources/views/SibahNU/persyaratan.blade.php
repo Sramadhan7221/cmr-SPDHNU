@@ -39,7 +39,7 @@
                     aria-label="Close">X</button>
                 </div>
                 <div class="modal-body">
-                  <form method="POST" action="{{route('addPersyaratan')}}">
+                  <form method="POST" action="{{route('addPersyaratan')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
                       <div class="col-md-12">
@@ -164,7 +164,7 @@
                 <td>{{$syarat->nama_persyaratan}}</td>
                 <td>{{$syarat->nomor_surat}}</td>
                 <td>{{$syarat->yang_mengeluarkan}}</td>
-                <td><img src="{{Storage::url($syarat->file)}}"/></td>
+                <td><a href="{{asset('storage/'.$syarat->file)}}" class="bg-green-800 p-2 rounded-md text-white">Lihat File</a></td>
                 <td></td>
             </tr>
             @endforeach
