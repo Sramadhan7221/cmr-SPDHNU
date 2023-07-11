@@ -62,13 +62,16 @@ class OperatorController extends Controller
         if($validated->fails()){
             return redirect()->back()->withErrors($validated)->withInput();
         }
+        $id_lembaga = Session::get('id_lembaga');
         $data = $validated->validate();
-        $kepengurusan = kepengurusan::create($data);
-        $id_is_exsist = $this->isOperatorExsist();
-        if($id_is_exsist){
-            PengurusLembaga::where('pengurus', $id_is_exsist->id_pengurus)
-                           ->update(['pengurus' => $kepengurusan->id_pengurus]);
+        $is_exist = $this->isOperatorExsist();
+        if ($is_exist) {
+            kepengurusan::where('id_pengurus', $is_exist->id_pengurus)
+                ->update($data);
+            return redirect()->back()->withSuccess('Data Berhasil Diupdate');
         }
+        $operator = kepengurusan::create($data);
+        PengurusLembaga::create(['lembaga'=> $id_lembaga, 'pengurus' => $operator->id_pengurus]);
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 
@@ -76,7 +79,7 @@ class OperatorController extends Controller
         $idLembaga = Session::get('id_lembaga');
         return PengurusLembaga::join('kepengurusan', 'pengurus_lembaga.pengurus', '=', 'kepengurusan.id_pengurus')
                                 ->where('lembaga',$idLembaga)
-                                ->where('kepengurusa.role', "OPERATOR")
+                                ->where('kepengurusan.role', "OPERATOR")
                                 ->first();
     }
 }

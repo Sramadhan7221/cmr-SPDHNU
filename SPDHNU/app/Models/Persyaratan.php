@@ -19,6 +19,7 @@ class Persyaratan extends Model
     protected $keyType = 'string';
     protected $guarded = 'id_persyaratan';
     protected $fillable = [
+        'id_lembaga',
         'nama_persyaratan',
         'nomor_surat',
         'yang_mengeluarkan',
