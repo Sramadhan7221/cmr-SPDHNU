@@ -29,7 +29,7 @@ Route::get('/home', [LembagaController::class, 'index'])->name('home');
 Route::post('/lembaga', [LembagaController::class, 'addDataLembaga'])->name('lembaga');
 
 Route::get('/pimpinan', [PimpinanController::class, 'index'])->name('pimpinan');
-Route::post('/addpimpinan', [PimpinanController::class, 'AddDataPimpinan'])->name('addpimpinan');
+Route::post('/addpimpinan', [PimpinanController::class, 'addDataPimpinan'])->name('addpimpinan');
 
 Route::get('/operator', [OperatorController::class, 'index'])->name('operator');
 Route::post('/addoperator', [OperatorController::class, 'AdddataOperator'])->name('addoperator');

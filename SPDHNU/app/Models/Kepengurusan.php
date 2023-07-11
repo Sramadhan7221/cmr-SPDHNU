@@ -20,6 +20,7 @@ class Kepengurusan extends Model
     protected $guarded = 'id_pengurus';
     protected $fillable = [
         'nama_pengurus',
+        'jabatan',
         'alamat_pengurus',
         'no_ktp',
         'no_telp',
