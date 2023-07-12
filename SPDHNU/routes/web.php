@@ -36,9 +36,13 @@ Route::post('/addoperator', [OperatorController::class, 'AdddataOperator'])->nam
 
 Route::get('/persyaratan', [PersyaratanController::class, 'index'])->name('persyaratan')->middleware('isMWC');
 Route::any('/addPersyaratan', [PersyaratanController::class, 'addPersyaratan'])->name('addPersyaratan')->middleware('isMWC');
+Route::put('/updatePersyaratan/{id_persyaratan}', [PersyaratanController::class, 'editPersyaratan'])->name('editPersyaratan')->middleware('isMWC');
+Route::get('/deletePersyaratan/{id_persyaratan}', [PersyaratanController::class, 'deletePersyaratan'])->name('deletePersyaratan')->middleware('isMWC');
 
 Route::get('/daftarhibah', [DaftarHibahController::class, 'index'])->name('daftarHibah')->middleware('isMWC');
 Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name('detailhibah')->middleware('isMWC');
+Route::post('/addDataBank', [DaftarHibahController::class, 'AddDataBank'])->name('addDataBank');
+Route::post('/addDataProposal', [DaftarHibahController::class, 'addProposal'])->name('addProposal');
 
 Route::get('/generateFile', [GenerateFileController::class, 'index'])->name('generateFile')->middleware('isMWC');
 

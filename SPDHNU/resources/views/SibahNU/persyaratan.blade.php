@@ -113,9 +113,13 @@
       <td>
         <div class="row">
           <div class="col-sm-12">
-            <button type="button" class="edit col-sm-5 bg-yellow-400 p-1 rounded-md" data-syarat="{{$syarat->id_persyaratan}}"><x-heroicon-o-pencil-square /></button>
-            <button type="button" class="delete col-sm-5 bg-red-600 p-1 rounded-md" data-syarat="{{$syarat->id_persyaratan}}"><x-heroicon-o-backspace /></button>
-          </div>
+            <button type="button" class="edit col-sm-5 bg-yellow-400 p-1 rounded-md" data-syarat="{{$syarat->id_persyaratan}}" data-bs-toggle="modal" data-bs-target="#updateData">
+                <x-heroicon-o-pencil-square />
+              </button>
+            <a href="{{route('deletePersyaratan', ['id_persyaratan' => $syarat->id_persyaratan])}}">
+                <button type="button" class="delete col-sm-5 bg-red-600 p-1 rounded-md" data-syarat="{{$syarat->id_persyaratan}}"><x-heroicon-o-backspace /></button>
+            </a>
+        </div>
         </div>
       </td>
     </tr>
@@ -123,6 +127,74 @@
   </tbody>
 </table>
 <!-- End Table with stripped rows -->
+<div class="modal fade" id="updateData" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            Tambah Persyaratan Lembaga
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body">
+          <form id="persyaratan_form" method="POST" action="" enctype="multipart/form-data">
+            @csrf
+            <div class="row g-3">
+              <input type="hidden" name="id_persyaratan"/>
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label for="input-nama-surat" class="form-label d-flex justify-content-start">
+                    Nama Surat
+                    <sup class="text-danger">*</sup>
+                  </label>
+                  <input type="text" name="nama_persyaratan" class="form-control" id="input-nama-surat" required />
+                </div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label for="input-no-surat" class="form-label d-flex justify-content-start">
+                    Nomor Surat
+                    <sup class="text-danger">*</sup>
+                  </label>
+                  <input type="text" name="nomor_surat" class="form-control" id="input-no-surat" required />
+                </div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label for="input-keluarkan" class="form-label d-flex justify-content-start">
+                    Mengeluarkan
+                    <sup class="text-danger">*</sup>
+                  </label>
+                  <input type="text" name="yang_mengeluarkan" class="form-control" id="input-keluarkan" required />
+                </div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label for="input-file-surat" class="form-label d-flex justify-content-start">
+                    File Surat
+                    <sup class="text-danger">*</sup>
+                  </label>
+                  <input type="file" class="form-control" name="file" id="input-file-surat" required />
+                  <span class="badge bg-success d-flex justify-content-start">
+                    File harus berupa PDF
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success">
+                <i class="ri-file-edit-line"></i>
+                Simpan data
+              </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 
 <div class="row g-3 pt-4 mt-4 mb-4">
   <div class="text-end">
