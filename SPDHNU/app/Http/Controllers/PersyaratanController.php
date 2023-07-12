@@ -39,6 +39,9 @@ class PersyaratanController extends Controller
     }
 
     public function addPersyaratan(Request $request){
+        if ($request->id_persyaratan)
+            $this->editPersyaratan($request);
+
         $rules = [
             'nama_persyaratan' => 'required',
             'nomor_surat' => 'required',
@@ -66,6 +69,19 @@ class PersyaratanController extends Controller
         $data['id_lembaga'] = session('id_lembaga');
         Persyaratan::create($data);
         return redirect(route('persyaratan'))->withSuccess('Data Berhasil Disimpan');
+    }
+
+    public function getPersyaratan(Request $request) {
+        $id = $request->get('id');
+        $persyaratan = Persyaratan::where('id_persyaratan', $id)
+            ->where('deleted_at',null)
+            ->first();
+        
+        if ($persyaratan)
+            return response()->json($persyaratan,200);
+        else
+            return response()->json([], 404);
+
     }
 
     public function editPersyaratan(Request $request) {

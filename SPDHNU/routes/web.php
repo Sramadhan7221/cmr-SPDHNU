@@ -8,7 +8,7 @@ use App\Http\Controllers\PimpinanController;
 use App\Http\Controllers\PersyaratanController;
 use App\Http\Controllers\DaftarHibahController;
 use App\Http\Controllers\GenerateFileController;
-
+use App\Http\Controllers\RabController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,11 +36,17 @@ Route::post('/addoperator', [OperatorController::class, 'AdddataOperator'])->nam
 
 Route::get('/persyaratan', [PersyaratanController::class, 'index'])->name('persyaratan')->middleware('isMWC');
 Route::any('/addPersyaratan', [PersyaratanController::class, 'addPersyaratan'])->name('addPersyaratan')->middleware('isMWC');
+Route::get('/getPersyaratan', [PersyaratanController::class, 'getPersyaratan'],)->name('getPersyaratan')->middleware('isMWC');
+Route::delete('/deletePersyaratan', [PersyaratanController::class, 'deletePersyaratan'],)->name('deletePersyaratan')->middleware('isMWC');
 
 Route::get('/daftarhibah', [DaftarHibahController::class, 'index'])->name('daftarHibah')->middleware('isMWC');
 Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name('detailhibah')->middleware('isMWC');
 Route::post('/addDataBank', [DaftarHibahController::class, 'AddDataBank'])->name('addDataBank');
 Route::post('/addDataProposal', [DaftarHibahController::class, 'addProposal'])->name('addProposal');
+
+Route::get('/rab-detail', [RabController::class, 'getRabDetail'])->name('rab-detail');
+Route::post('/rab-add', [RabController::class, 'addRab'])->name('rab-add');
+Route::delete('/rab-del', [RabController::class, 'deletePersyaratan'])->name('rab-del');
 
 Route::get('/generateFile', [GenerateFileController::class, 'index'])->name('generateFile')->middleware('isMWC');
 
