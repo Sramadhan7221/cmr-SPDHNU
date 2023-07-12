@@ -12,7 +12,7 @@
       <li class="nav-heading">Permohonan</li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('daftarHibah')}}">
-          <i class="ri-file-copy-2-line"></i>
+            <i class="fa-solid fa-paste"></i>
           <span>Daftar Hibah</span>
         </a>
       </li>

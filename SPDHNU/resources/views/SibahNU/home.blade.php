@@ -105,7 +105,7 @@
           File harus berupa PDF
         </span>
         <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#display-domisili">
-          <i class="uiw-file-pdf"></i>
+            <i class="fa-solid fa-file-pdf"></i>
           Lihat file
         </button>
       </div>
