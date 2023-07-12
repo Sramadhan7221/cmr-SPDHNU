@@ -318,6 +318,7 @@
                       </div>
                       <div class="modal-body">
                         <form method="POST" action="{{ route('rab-add') }}">
+                            @csrf
                           <div class="row g-3 mb-4">
                             <div class="col-md-12">
                               <label for="uraian" class="form-label d-flex justify-content-start">
@@ -331,7 +332,7 @@
                           <div class="row g-3 mb-4">
                             <div class="col-md-6">
                               <label for="satuan" class="form-label d-flex justify-content-start">
-                                Satuan
+                                Volume / Satuan
                                 <sup class="text-danger">*</sup>
                               </label>
                               <input type="text" class="form-control" name="satuan" />
@@ -341,7 +342,7 @@
                                 Jumlah
                                 <sup class="text-danger">*</sup>
                               </label>
-                              <input type="number" class="form-control" name="qty" min="1" />
+                              <input type="text" class="form-control" name="qty" />
                             </div>
                           </div>
                           <div class="row g-3 mb-4">
@@ -353,13 +354,13 @@
                               <input type="text" class="form-control" name="harga" />
                             </div>
                           </div>
+                          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                            <i class="ri-file-edit-line"></i>
+                            Simpan data
+                          </button>
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
-                          <i class="ri-file-edit-line"></i>
-                          Simpan data
-                        </button>
                       </div>
                     </div>
                   </div>
@@ -377,39 +378,23 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($dataRab as $rab)
                     <tr>
-                      <th scope="row">1</th>
-                      <td><strong>Peralatan</strong></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td>
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#add-sub-kegiatan">
-                          <i class="bi bi-plus-lg"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#edit-sub-kegiatan">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger">
-                          <i class="bi bi-trash"></i>
-                        </button>
-                      </td>
+                        <td>{{$no++}}</td>
+                        <td>{{$rab->uraian}}</td>
+                        <td>{{$rab->satuan}}</td>
+                        <td>Rp.{{$rab->harga}}</td>
+                        <td>Rp.{{$rab->total}}</td>
+                        <td>
+                          <button type="button" class="btn btn-outline-primary">
+                            <i class="bi bi-pencil-square"></i>
+                          </button>
+                          <button type="button" class="btn btn-outline-danger">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                        </td>
                     </tr>
-                    <tr>
-                      <td>1.1</td>
-                      <td>PC CPU</td>
-                      <td>1 Unit</td>
-                      <td>Rp. 13.000.000.-</td>
-                      <td>Rp. 13.000.000.-</td>
-                      <td>
-                        <button type="button" class="btn btn-outline-primary">
-                          <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button type="button" class="btn btn-outline-danger">
-                          <i class="bi bi-trash"></i>
-                        </button>
-                      </td>
-                    </tr>
+                    @endforeach
                   </tbody>
                 </table>
 
@@ -569,12 +554,12 @@
           </div>
         </div>
         <!-- End Card with header and footer -->
-        <div class="d-grid">
+        {{-- <div class="d-grid">
           <button type="button" class="btn btn-warning mt-2">
             <i class="ri-send-plane-fill"></i>
             Submit Data Untuk Dilakukan Verifikasi !
           </button>
-        </div>
+        </div> --}}
       </div>
     </section>
   </main>

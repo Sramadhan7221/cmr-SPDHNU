@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Lembaga;
 use App\Models\Proposal;
+use App\Models\Rab;
 
 class DaftarHibahController extends Controller
 {
@@ -22,9 +23,12 @@ class DaftarHibahController extends Controller
         }
         $DataBank = Lembaga::query()->where('id_lembaga',Session::get('id_lembaga'))->first();
         $dataProposal = Proposal::query()->where('lembaga', Session::get('id_lembaga'))->first();
+        $dataRab = Rab::query()->where('proposal',$dataProposal->id_proposal)->get() ?? new Rab;
         $data = [
             'dataBank' => $DataBank ?? new Lembaga,
-            'dataProposal' => $dataProposal ?? new Proposal
+            'dataProposal' => $dataProposal ?? new Proposal,
+            'dataRab' => $dataRab,
+            'no' => $count = 1
         ];
         return view('SibahNU.detailHibah',$data);
     }
@@ -84,9 +88,45 @@ class DaftarHibahController extends Controller
         $file_proposal = $request->file('file_proposal');
         $file_proposal_name = $file_proposal->getClientOriginalName();
         $file_proposal_path = Storage::putFileAs($file_proposal, $file_proposal_name);
-        $dataProposal['file_propsal'] = $file_proposal_path;
+        $dataProposal['file_proposal'] = $file_proposal_path;
         $dataProposal['lembaga'] = Session::get('id_lembaga');
         Proposal::query()->create($dataProposal);
+        return redirect()->back()->withSuccess('Data Berhasil Disimpan');
+    }
+
+    function addRab(Request $request) {
+        $proposal = Proposal::query()->where('lembaga', session()->get('id_lembaga'))->first();
+        $rules = [
+            'uraian'=> 'required|regex:/^[a-zA-Z\s.-]+$/',
+            'satuan'=> 'required|regex:/^[a-zA-Z\s.-]+$/',
+            'qty'=> 'required',
+            'harga' => 'required'
+        ];
+
+        $message = [
+            'uraian.required' => 'Uraian harus Diisi',
+            'uraian.regex' => 'Format Uraian Harus Abjad',
+            'satuan.required' => 'Satuan harus Diisi',
+            'satuan.regex' => 'Format Satuan Harus Abjad',
+            'qty.required' => 'Jumlah minimal 1',
+            'harga.required' => 'Harga harus Diisi'
+        ];
+
+        $validated = Validator::make($request->all(), $rules, $message);
+        if ($validated->fails()) {
+            return redirect()->back()->withErrors($validated)->withInput($request->all());
+        }
+
+        $data = $validated->validate();
+        if($request->id_rab) {
+            Rab::where('id_rab', $request->id_rab)
+                ->update($data);
+            return redirect()->back()->withSuccess('Data Berhasil Diupdate');
+        }
+        $total = (int)$data['qty'] * (int)$data['harga'];
+        $data['total'] = $total;
+        $data['proposal'] = $proposal->id_proposal;
+        Rab::create($data);
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 }

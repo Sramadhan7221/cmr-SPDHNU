@@ -16,8 +16,9 @@ return new class extends Migration
             $table->uuid('proposal')->nullable();
             $table->string('uraian', 150);
             $table->string('satuan', 100);
-            $table->integer('qty')->default(0);
+            $table->integer('qty');
             $table->decimal('harga');
+            $table->decimal('total');
             $table->timestamps();
             $table->softDeletes();
 

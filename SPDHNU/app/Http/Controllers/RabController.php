@@ -3,16 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rab;
+use App\Models\Proposal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RabController extends Controller
 {
     function index() {
-        return false;
+        $proposal = Proposal::query()->where('lembaga', session()->get('id_lembaga'))->first();
+        $dataRab = Rab::query()->where('proposal',$proposal->id_proposal);
+        // dd($dataRab);
+        $count = 1;
+        // $data = [
+        //     'dataRab' => $dataRab,
+        //     'no' => $count
+        // ];
+        return view('SibahNU.detailHibah', [
+            'dataRab' => $dataRab,
+            'no' => $count
+        ]);
     }
 
     function addRab(Request $request) {
+        $proposal = Proposal::query()->where('lembaga', session()->get('id_lembaga'))->first();
         $rules = [
             'uraian'=> 'required|regex:/^[a-zA-Z\s.-]+$/',
             'satuan'=> 'required|regex:/^[a-zA-Z\s.-]+$/',
@@ -40,6 +53,9 @@ class RabController extends Controller
                 ->update($data);
             return redirect()->back()->withSuccess('Data Berhasil Diupdate');
         }
+        $total = (int)$data['qty'] * (int)$data['harga'];
+        $data['total'] = $total;
+        $data['proposal'] = $proposal->id_proposal;
         Rab::create($data);
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
