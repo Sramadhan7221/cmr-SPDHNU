@@ -41,15 +41,17 @@ class OperatorController extends Controller
     }
 
     public function AddDataOperator(Request $request){
-        $rulse = [
-            'nama_pengurus' => 'required|regex:/^[\pL\s]+$/u',
+        //cek if pengurus is exist by nik
+        $is_exist = Kepengurusan::where('no_ktp', $request->no_ktp)->first();
+        $rules = [
+            'nama_pengurus' => 'required|regex:/^[a-zA-Z\s.-]+$/',
             'no_ktp' => 'required|unique:kepengurusan,no_ktp',
-            'no_telp' => 'required|unique:kepengurusan,no_telp',
+            'no_telp' => 'required',
             'alamat_ktp' => 'required'
         ];
 
         $message = [
-            'nama_pengurus.required' => 'Nama Harud Diisi',
+            'nama_pengurus.required' => 'Nama Harus Diisi',
             'nama_pengurus.regex' => 'Format Penulisan Harus Abjad',
             'no_ktp.required' => 'No KTP Harus Diisi',
             'no_ktp.unique' => 'No KTP Sudah Terdaftar',
@@ -57,12 +59,15 @@ class OperatorController extends Controller
             'no_telp.unique' => 'No Telephone Sudah Terdaftar',
             'alamat_ktp' => 'Alamat Harus Diisi'
         ];
+        
+        if($is_exist) 
+            $rules['no_ktp'] = 'required';
 
-        $validated = Validator::make($request->all(),$rulse,$message);
+        $validated = Validator::make($request->all(),$rules,$message);
         if($validated->fails()){
             return redirect()->back()->withErrors($validated)->withInput();
         }
-        $id_lembaga = Session::get('id_lembaga');
+        $id_lembaga = session('id_lembaga');
         $data = $validated->validate();
         $is_exist = $this->isOperatorExsist();
         if ($is_exist) {
@@ -76,9 +81,9 @@ class OperatorController extends Controller
     }
 
     protected function isOperatorExsist(){
-        $idLembaga = Session::get('id_lembaga');
+        $id_lembaga = session('id_lembaga');
         return PengurusLembaga::join('kepengurusan', 'pengurus_lembaga.pengurus', '=', 'kepengurusan.id_pengurus')
-                                ->where('lembaga',$idLembaga)
+                                ->where('lembaga', $id_lembaga)
                                 ->where('kepengurusan.role', "OPERATOR")
                                 ->first();
     }

@@ -49,7 +49,7 @@
                     File KTP Ketua
                     <sup class="text-danger">*</sup>
                 </label>
-                <input type="file" name="file_ktp" class="form-control" id="file_ktp" required accept="application/pdf" />
+                <input type="file" name="file_ktp" class="form-control" id="file_ktp" accept="application/pdf" />
                 <span class="badge bg-success">
                     File harus berupa PDF
                 </span>

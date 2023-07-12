@@ -18,9 +18,9 @@ class isMWC
     {
         if(!session()->start())
             session()->start();
-        if(!session()->has('logged','id_user'))
+        if(!session()->has('logged','id_user')){
             Alert::error('Oops','Silahkan Login Terlebih Dahulu');
-            return redirect()->back();
+            return redirect()->back();}
         return $next($request);
     }
 }
