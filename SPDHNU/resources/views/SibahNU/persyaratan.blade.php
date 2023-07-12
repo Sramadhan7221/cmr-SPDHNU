@@ -14,7 +14,7 @@
 
   <div class="row mt-2 mb-3">
     <div class="text-end">
-      <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+      <button type="button" id="tambah" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#verticalycentered">
         <i class="ri-file-edit-line"></i>
         Tambah Persyaratan Lembaga
       </button>
@@ -31,7 +31,7 @@
               <form id="persyaratan_form" method="POST" action="{{route('addPersyaratan')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="row g-3">
-                  <input type="hidden" name="id_persyaratan"/>
+                  <input type="hidden" name="id_persyaratan" value="" />
                   <div class="row g-3">
                     <div class="col-md-12">
                       <label for="input-nama-surat" class="form-label d-flex justify-content-start">
@@ -68,7 +68,7 @@
                         File Surat
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input type="file" class="form-control" name="file" id="input-file-surat" required />
+                      <input type="file" class="form-control" name="file" id="input-file-surat" />
                       <span class="badge bg-success d-flex justify-content-start">
                         File harus berupa PDF
                       </span>
@@ -114,7 +114,7 @@
         <div class="row">
           <div class="col-sm-12">
             <button type="button" class="edit col-sm-5 bg-yellow-400 p-1 rounded-md" data-syarat="{{$syarat->id_persyaratan}}"><x-heroicon-o-pencil-square /></button>
-            <button type="button" class="delete col-sm-5 bg-red-600 p-1 rounded-md" data-syarat="{{$syarat->id_persyaratan}}"><x-heroicon-o-backspace /></button>
+            <button type="button" class="delete col-sm-5 bg-red-600 p-1 rounded-md" data-syarat="{{route('deletePersyaratan',$syarat->id_persyaratan)}}"><x-heroicon-o-backspace /></button>
           </div>
         </div>
       </td>
@@ -135,5 +135,37 @@
 </div>
 @include('SibahNU.template.footer')
 <script>
+  $(document).on('click', '.edit', function(o) {
+    let id = $(this).attr('data-syarat');
+    getData(id);
+  })
 
+  $(document).on('click', '.delete', function () {
+    let url = $(this).attr('data-syarat');
+    
+  })
+
+  $("#tambah").click(function() {
+    $("input").val("");
+  })
+
+  function getData(id) {
+    $.get("{{route('getPersyaratan')}}?id=" + id, function(o) {
+      $("input[name='id_persyaratan']").val(o.id_persyaratan);
+      $("input[name='nama_persyaratan']").val(o.nama_persyaratan);
+      $("input[name='nomor_surat']").val(o.nomor_surat);
+      $("input[name='yang_mengeluarkan']").val(o.yang_mengeluarkan);
+      $("#verticalycentered").modal('show');
+    })
+  }
+
+  function deleteData(url) {
+    $.ajax({
+      method: 'DELETE',
+      url: url,
+      headers: {
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+      }
+    });
+  }
 </script>
