@@ -93,7 +93,8 @@ h6 {
     font-size: 24px;
     margin-bottom: 0;
     font-weight: 600;
-    color: #012970;
+    --tw-text-opacity: 1;
+    color: rgb(22 101 52 / var(--tw-text-opacity));
 }
 
 /*--------------------------------------------------------------
@@ -265,7 +266,8 @@ h6 {
     padding: 20px 0 15px 0;
     font-size: 18px;
     font-weight: 500;
-    color: #012970;
+    --tw-text-opacity: 1;
+    color: rgb(22 101 52 / var(--tw-text-opacity));
     font-family: "Poppins", sans-serif;
 }
 
@@ -341,7 +343,8 @@ h6 {
 }
 
 .breadcrumb a {
-    color: #899bbd;
+    --tw-text-opacity: 1;
+    color: rgb(22 163 74 / var(--tw-text-opacity));
     transition: 0.3s;
 }
 
@@ -354,7 +357,8 @@ h6 {
 }
 
 .breadcrumb .active {
-    color: #51678f;
+    --tw-text-opacity: 1;
+    color: rgb(21 128 61 / var(--tw-text-opacity));
     font-weight: 600;
 }
 
@@ -700,7 +704,8 @@ h6 {
 .sidebar-nav .nav-heading {
     font-size: 11px;
     text-transform: uppercase;
-    color: #899bbd;
+    --tw-text-opacity: 1;
+    color: rgb(74 222 128 / var(--tw-text-opacity));
     font-weight: 600;
     margin: 10px 0 5px 15px;
 }
@@ -724,21 +729,25 @@ h6 {
 }
 
 .sidebar-nav .nav-link.collapsed {
-    color: #012970;
+    --tw-text-opacity: 1;
+    color: rgb(22 101 52 / var(--tw-text-opacity));
     background: #fff;
 }
 
 .sidebar-nav .nav-link.collapsed i {
-    color: #899bbd;
+    --tw-text-opacity: 1;
+    color: rgb(22 101 52 / var(--tw-text-opacity));
 }
 
 .sidebar-nav .nav-link:hover {
-    color: #4154f1;
+    --tw-text-opacity: 1;
+    color: rgb(22 101 52 / var(--tw-text-opacity));
     background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover i {
-    color: #4154f1;
+    --tw-text-opacity: 1;
+    color: rgb(22 101 52 / var(--tw-text-opacity));
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {

@@ -1,7 +1,7 @@
 <!-- Card with header and footer -->
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">Kelengkapan Identitas MWCNU</h5>
+    <h5 class="card-title text-success">Kelengkapan Identitas MWCNU</h5>
 
     <!-- Pills Tabs -->
     <ul class="nav nav-pills mb-3 mt-4 gap-3" id="pills-tab" role="tablist">
