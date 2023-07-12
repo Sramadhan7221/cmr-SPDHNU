@@ -8,7 +8,7 @@ use App\Http\Controllers\PimpinanController;
 use App\Http\Controllers\PersyaratanController;
 use App\Http\Controllers\DaftarHibahController;
 use App\Http\Controllers\GenerateFileController;
-
+use App\Http\Controllers\RabController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +43,10 @@ Route::get('/daftarhibah', [DaftarHibahController::class, 'index'])->name('dafta
 Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name('detailhibah')->middleware('isMWC');
 Route::post('/addDataBank', [DaftarHibahController::class, 'AddDataBank'])->name('addDataBank');
 Route::post('/addDataProposal', [DaftarHibahController::class, 'addProposal'])->name('addProposal');
+
+Route::get('/rab-detail', [RabController::class, 'getRabDetail'])->name('rab-detail');
+Route::post('/rab-add', [RabController::class, 'addRab'])->name('rab-add');
+Route::delete('/rab-del', [RabController::class, 'deletePersyaratan'])->name('rab-del');
 
 Route::get('/generateFile', [GenerateFileController::class, 'index'])->name('generateFile')->middleware('isMWC');
 

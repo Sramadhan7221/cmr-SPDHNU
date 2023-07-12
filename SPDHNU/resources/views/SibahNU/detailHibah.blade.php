@@ -25,25 +25,26 @@
   <link href="{{asset('css/style.css')}}" rel="stylesheet" />
   @vite('resources/css/app.css')
 </head>
+
 <body>
-    @include('sweetalert::alert')
-    <main id="main" class="main">
-        <template x-if="isLoading">
-        <div class="fixed inset-0 z-[100] bg-white">
-            <div class="flex h-screen w-full items-center justify-center bg-gray-100">
-              <div class="custom-loader"></div>
-            </div>
-          </div>
-        </template>
-    <header id="header" class="header fixed-top d-flex align-items-center">
-        <div class="d-flex align-items-center justify-content-between">
-          <a href="index.html" class="logo d-flex align-items-center">
-              <img src="{{asset('aseets/logo.png')}}" alt="" />
-              <span class="d-none text-green-800 d-lg-block">PCNU Tasikmalaya</span>
-            </a>
-            <i class="bi bi-list toggle-sidebar-btn "></i>
+  @include('sweetalert::alert')
+  <main id="main" class="main">
+    <template x-if="isLoading">
+      <div class="fixed inset-0 z-[100] bg-white">
+        <div class="flex h-screen w-full items-center justify-center bg-gray-100">
+          <div class="custom-loader"></div>
         </div>
-        <!-- End Logo -->
+      </div>
+    </template>
+    <header id="header" class="header fixed-top d-flex align-items-center">
+      <div class="d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <img src="{{asset('aseets/logo.png')}}" alt="" />
+          <span class="d-none text-green-800 d-lg-block">PCNU Tasikmalaya</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn "></i>
+      </div>
+      <!-- End Logo -->
     </header>
     @include('SibahNU.template.sidebar')
     <div class="pagetitle">
@@ -123,62 +124,27 @@
             <h5 class="card-title">Kelengkapan Identitas MWCNU</h5>
 
             <!-- Pills Tabs -->
-            <ul
-              class="nav nav-pills mb-3 mt-4 gap-3"
-              id="pills-tab"
-              role="tablist">
+            <ul class="nav nav-pills mb-3 mt-4 gap-3" id="pills-tab" role="tablist">
               <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link active"
-                  id="pills-pengkinian-data-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-pengkinian-data"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-pengkinian-data"
-                  aria-selected="true">
+                <button class="nav-link active" id="pills-pengkinian-data-tab" data-bs-toggle="pill" data-bs-target="#pills-pengkinian-data" type="button" role="tab" aria-controls="pills-pengkinian-data" aria-selected="true">
                   <i class="ri-file-copy-2-line"></i>
                   Pengkinian Data
                 </button>
               </li>
               <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="pills-proposal-awal-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-proposal-awal"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-proposal-awal"
-                  aria-selected="false">
+                <button class="nav-link" id="pills-proposal-awal-tab" data-bs-toggle="pill" data-bs-target="#pills-proposal-awal" type="button" role="tab" aria-controls="pills-proposal-awal" aria-selected="false">
                   <i class="ri-file-copy-2-line"></i>
                   Proposal Awal
                 </button>
               </li>
               <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="pills-rab-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-rab"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-rab"
-                  aria-selected="false">
+                <button class="nav-link" id="pills-rab-tab" data-bs-toggle="pill" data-bs-target="#pills-rab" type="button" role="tab" aria-controls="pills-rab" aria-selected="false">
                   <i class="ri-file-copy-2-line"></i>
                   RAB
                 </button>
               </li>
               <li class="nav-item" role="presentation">
-                <button
-                  class="nav-link"
-                  id="pills-history-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-history"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-history"
-                  aria-selected="false">
+                <button class="nav-link" id="pills-history-tab" data-bs-toggle="pill" data-bs-target="#pills-history" type="button" role="tab" aria-controls="pills-history" aria-selected="false">
                   <i class="ri-file-copy-2-line"></i>
                   History / Pelacakan
                 </button>
@@ -192,21 +158,17 @@
             </div>
 
             <div class="tab-content pt-2" id="myTabContent">
-              <div
-                class="tab-pane fade show active"
-                id="pills-pengkinian-data"
-                role="tabpanel"
-                aria-labelledby="pengkinian-data-tab">
+              <div class="tab-pane fade show active" id="pills-pengkinian-data" role="tabpanel" aria-labelledby="pengkinian-data-tab">
                 <!-- Multi Columns Form -->
                 <form method="POST" action="{{route('addDataBank')}}" enctype="multipart/form-data">
-                    @csrf
+                  @csrf
                   <div class="row g-3">
                     <div class="col-md-3">
                       <label for="input-bank" class="form-label">
                         Bank
                         <sup class="text-danger">*</sup>
                       </label>
-                      <select id="input-bank" class="form-select" name="bank" >
+                      <select id="input-bank" class="form-select" name="bank">
                         <option selected value="{{$dataBank->bank}}">Choose...</option>
                         <option value="BANK BNI">BNI</option>
                         <option value="BANK BRI">BRI</option>
@@ -219,39 +181,21 @@
                         No Rekening
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="input-rekening"
-                        name="no_rek"
-                        value="{{$dataBank->no_rek}}"
-                        required />
+                      <input type="text" class="form-control" id="input-rekening" name="no_rek" value="{{$dataBank->no_rek}}" required />
                     </div>
                     <div class="col-md-3">
                       <label for="input-nama-rekening" class="form-label">
                         Nama Lembaga di Rekening
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="input-nama-rekening"
-                        name="nama_rekening"
-                        value="{{$dataBank->nama_rekening}}"
-                        required />
+                      <input type="text" class="form-control" id="input-nama-rekening" name="nama_rekening" value="{{$dataBank->nama_rekening}}" required />
                     </div>
                     <div class="col-md-3">
                       <label for="input-cabang-bank" class="form-label">
                         Cabang Bank
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="input-cabang-bank"
-                        name="cabang_bank"
-                        value="{{$dataBank->cabang_bank}}"
-                        required />
+                      <input type="text" class="form-control" id="input-cabang-bank" name="cabang_bank" value="{{$dataBank->cabang_bank}}" required />
                     </div>
                   </div>
 
@@ -261,13 +205,7 @@
                         File Buku Tabungan
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input
-                        type="file"
-                        name="file_buku_tabungan"
-                        class="form-control"
-                        id="input-buku-tabungan"
-                        required
-                        accept="application/pdf" />
+                      <input type="file" name="file_buku_tabungan" class="form-control" id="input-buku-tabungan" required accept="application/pdf" />
                       <span class="badge bg-primary">
                         File harus berupa PDF
                       </span>
@@ -288,68 +226,45 @@
                   </div>
                 </form>
                 <div class="modal fade" id="display-file_tabungan" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-                        </div>
-                        <div class="modal-body">
-                          <embed src="{{ asset('storage/'.$dataBank->file_buku_tabungan) }}" type="application/pdf" width="100%" height="600px" />
-                        </div>
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                      </div>
+                      <div class="modal-body">
+                        <embed src="{{ asset('storage/'.$dataBank->file_buku_tabungan) }}" type="application/pdf" width="100%" height="600px" />
                       </div>
                     </div>
                   </div>
+                </div>
                 <!-- End Multi Columns Form -->
               </div>
 
-              <div
-                class="tab-pane fade"
-                id="pills-proposal-awal"
-                role="tabpanel"
-                aria-labelledby="proposal-awal-tab">
+              <div class="tab-pane fade" id="pills-proposal-awal" role="tabpanel" aria-labelledby="proposal-awal-tab">
                 <!-- Multi Columns Form -->
                 <form method="POST" action="{{route('addProposal')}}" enctype="multipart/form-data">
-                 @csrf
+                  @csrf
                   <div class="row g-3 mt-4">
                     <div class="col-md-4">
                       <label for="input-peruntukan-dana" class="form-label">
                         Peruntukan Dana
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="input-peruntukan-dana"
-                        name="peruntukan"
-                        value="{{$dataProposal->peruntukan}}"
-                        required />
+                      <input type="text" class="form-control" id="input-peruntukan-dana" name="peruntukan" value="{{$dataProposal->peruntukan}}" required />
                     </div>
                     <div class="col-md-4">
                       <label for="input-nphd" class="form-label">
                         No Surat NPHD dari MWCNU
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="input-nphd"
-                        name="no_NPHD"
-                        value="{{$dataProposal->no_NPHD}}"
-                        required />
+                      <input type="text" class="form-control" id="input-nphd" name="no_NPHD" value="{{$dataProposal->no_NPHD}}" required />
                     </div>
                     <div class="col-md-4">
                       <label for="input-nik" class="form-label">
                         File Proposal
                         <sup class="text-danger">*</sup>
                       </label>
-                      <input
-                        type="file"
-                        class="form-control"
-                        id="input-nik"
-                        name="file_proposal"
-                        value="{{$dataProposal->file_proposal}}"
-                        required
-                        accept="application/pdf" />
+                      <input type="file" class="form-control" id="input-nik" name="file_proposal" value="{{$dataProposal->file_proposal}}" required accept="application/pdf" />
                       <span class="badge bg-primary">
                         File harus berupa PDF
                       </span>
@@ -370,32 +285,24 @@
                   </div>
                 </form>
                 <div class="modal fade" id="display-file_proposal" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-                        </div>
-                        <div class="modal-body">
-                          <embed src="{{ asset('storage/'.$dataProposal->file_proposal) }}" type="application/pdf" width="100%" height="600px" />
-                        </div>
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                      </div>
+                      <div class="modal-body">
+                        <embed src="{{ asset('storage/'.$dataProposal->file_proposal) }}" type="application/pdf" width="100%" height="600px" />
                       </div>
                     </div>
                   </div>
+                </div>
                 <!-- End Multi Columns Form -->
               </div>
-              <div
-                class="tab-pane fade"
-                id="pills-rab"
-                role="tabpanel"
-                aria-labelledby="rab-tab">
+              <div class="tab-pane fade" id="pills-rab" role="tabpanel" aria-labelledby="rab-tab">
                 <!-- Multi Columns Form -->
 
                 <div class="text-end">
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#verticalycentered">
+                  <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
                     <i class="ri-file-edit-line"></i>
                     Tambah RAB
                   </button>
@@ -407,36 +314,49 @@
                         <h5 class="modal-title">
                           Tambah Persyaratan Lembaga
                         </h5>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <form>
-                          <div class="row g-3">
+                        <form method="POST" action="{{ route('rab-add') }}">
+                          <div class="row g-3 mb-4">
                             <div class="col-md-12">
-                              <label
-                                for="input-nama-surat"
-                                class="form-label d-flex justify-content-start">
-                                Nama Uraian Kegiatan
+                              <label for="uraian" class="form-label d-flex justify-content-start">
+                                Uraian
                                 <sup class="text-danger">*</sup>
                               </label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="input-nama-surat"
-                                required />
+                              <input type="text" class="form-control" name="uraian" />
+                              <input type="hidden" name="id_rab" />
+                            </div>
+                          </div>
+                          <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                              <label for="satuan" class="form-label d-flex justify-content-start">
+                                Satuan
+                                <sup class="text-danger">*</sup>
+                              </label>
+                              <input type="text" class="form-control" name="satuan" />
+                            </div>
+                            <div class="col-md-6">
+                              <label for="qty" class="form-label d-flex justify-content-start">
+                                Jumlah
+                                <sup class="text-danger">*</sup>
+                              </label>
+                              <input type="number" class="form-control" name="qty" min="1" />
+                            </div>
+                          </div>
+                          <div class="row g-3 mb-4">
+                            <div class="col-md-12">
+                              <label for="harga" class="form-label d-flex justify-content-start">
+                                Harga Satuan
+                                <sup class="text-danger">*</sup>
+                              </label>
+                              <input type="text" class="form-control" name="harga" />
                             </div>
                           </div>
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button
-                          type="submit"
-                          class="btn btn-primary"
-                          data-bs-dismiss="modal">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
                           <i class="ri-file-edit-line"></i>
                           Simpan data
                         </button>
@@ -464,18 +384,10 @@
                       <td></td>
                       <td></td>
                       <td>
-                        <button
-                          type="button"
-                          class="btn btn-outline-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#add-sub-kegiatan">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#add-sub-kegiatan">
                           <i class="bi bi-plus-lg"></i>
                         </button>
-                        <button
-                          type="button"
-                          class="btn btn-outline-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#edit-sub-kegiatan">
+                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#edit-sub-kegiatan">
                           <i class="bi bi-pencil-square"></i>
                         </button>
                         <button type="button" class="btn btn-outline-danger">
@@ -506,62 +418,37 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title">Tambah Sub Kegiatan</h5>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
                         <form>
                           <div class="row g-3">
                             <div class="col-md-12">
-                              <label
-                                for="input-uraian"
-                                class="form-label d-flex justify-content-start">
+                              <label for="input-uraian" class="form-label d-flex justify-content-start">
                                 Uraian Kegiatan / Pengelompokan Pengeluaran
                                 <sup class="text-danger">*</sup>
                               </label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="input-uraian"
-                                required
-                                disabled
-                                placeholder="Peralatan" />
+                              <input type="text" class="form-control" id="input-uraian" required disabled placeholder="Peralatan" />
                             </div>
                           </div>
                           <div class="row g-3 mt-2">
                             <div class="col-md-12">
-                              <label
-                                for="input-sub-uraian"
-                                class="form-label d-flex justify-content-start">
+                              <label for="input-sub-uraian" class="form-label d-flex justify-content-start">
                                 Nama Uraian Kegiatan
                                 <sup class="text-danger">*</sup>
                               </label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="input-sub-uraian"
-                                required />
+                              <input type="text" class="form-control" id="input-sub-uraian" required />
                             </div>
                           </div>
 
                           <div class="row g-3 mt-2">
                             <div class="col-md-8">
-                              <label
-                                for="input-sub-uraian"
-                                class="form-label d-flex justify-content-start">
+                              <label for="input-sub-uraian" class="form-label d-flex justify-content-start">
                                 Volume / Satuan
                                 <sup class="text-danger">*</sup>
                               </label>
-                              <div
-                                class="d-flex justify-content-start"
-                                id="input-sub-uraian">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  required />
+                              <div class="d-flex justify-content-start" id="input-sub-uraian">
+                                <input type="text" class="form-control" required />
                                 <select class="form-select">
                                   <option selected>Unit</option>
                                   <option>...</option>
@@ -571,26 +458,17 @@
                           </div>
                           <div class="row g-3 mt-2">
                             <div class="col-md-8">
-                              <label
-                                for="input-harga"
-                                class="form-label d-flex justify-content-start">
+                              <label for="input-harga" class="form-label d-flex justify-content-start">
                                 Harga
                                 <sup class="text-danger">*</sup>
                               </label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="input-harga"
-                                required />
+                              <input type="text" class="form-control" id="input-harga" required />
                             </div>
                           </div>
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button
-                          type="submit"
-                          class="btn btn-primary"
-                          data-bs-dismiss="modal">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
                           <i class="ri-file-edit-line"></i>
                           Simpan data
                         </button>
@@ -604,62 +482,37 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title">Edit Sub Kegiatan</h5>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
                         <form>
                           <div class="row g-3">
                             <div class="col-md-12">
-                              <label
-                                for="input-uraian"
-                                class="form-label d-flex justify-content-start">
+                              <label for="input-uraian" class="form-label d-flex justify-content-start">
                                 Uraian Kegiatan / Pengelompokan Pengeluaran
                                 <sup class="text-danger">*</sup>
                               </label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="input-uraian"
-                                required
-                                disabled
-                                placeholder="Peralatan" />
+                              <input type="text" class="form-control" id="input-uraian" required disabled placeholder="Peralatan" />
                             </div>
                           </div>
                           <div class="row g-3 mt-2">
                             <div class="col-md-12">
-                              <label
-                                for="input-sub-uraian"
-                                class="form-label d-flex justify-content-start">
+                              <label for="input-sub-uraian" class="form-label d-flex justify-content-start">
                                 Nama Uraian Kegiatan
                                 <sup class="text-danger">*</sup>
                               </label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="input-sub-uraian"
-                                required />
+                              <input type="text" class="form-control" id="input-sub-uraian" required />
                             </div>
                           </div>
 
                           <div class="row g-3 mt-2">
                             <div class="col-md-8">
-                              <label
-                                for="input-sub-uraian"
-                                class="form-label d-flex justify-content-start">
+                              <label for="input-sub-uraian" class="form-label d-flex justify-content-start">
                                 Volume / Satuan
                                 <sup class="text-danger">*</sup>
                               </label>
-                              <div
-                                class="d-flex justify-content-start"
-                                id="input-sub-uraian">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  required />
+                              <div class="d-flex justify-content-start" id="input-sub-uraian">
+                                <input type="text" class="form-control" required />
                                 <select class="form-select">
                                   <option selected>Unit</option>
                                   <option>...</option>
@@ -669,26 +522,17 @@
                           </div>
                           <div class="row g-3 mt-2">
                             <div class="col-md-8">
-                              <label
-                                for="input-harga"
-                                class="form-label d-flex justify-content-start">
+                              <label for="input-harga" class="form-label d-flex justify-content-start">
                                 Harga
                                 <sup class="text-danger">*</sup>
                               </label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="input-harga"
-                                required />
+                              <input type="text" class="form-control" id="input-harga" required />
                             </div>
                           </div>
                         </form>
                       </div>
                       <div class="modal-footer">
-                        <button
-                          type="submit"
-                          class="btn btn-primary"
-                          data-bs-dismiss="modal">
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
                           <i class="ri-file-edit-line"></i>
                           Simpan data
                         </button>
@@ -697,11 +541,7 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="tab-pane fade"
-                id="pills-history"
-                role="tabpanel"
-                aria-labelledby="history-tab">
+              <div class="tab-pane fade" id="pills-history" role="tabpanel" aria-labelledby="history-tab">
                 <!-- Table with stripped rows -->
 
                 <table class="table">
@@ -738,5 +578,5 @@
       </div>
     </section>
   </main>
-@include('SibahNU.template.footer')
+  @include('SibahNU.template.footer')
 </body>
