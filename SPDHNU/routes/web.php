@@ -41,6 +41,8 @@ Route::delete('/deletePersyaratan', [PersyaratanController::class, 'deletePersya
 
 Route::get('/daftarhibah', [DaftarHibahController::class, 'index'])->name('daftarHibah')->middleware('isMWC');
 Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name('detailhibah')->middleware('isMWC');
+Route::post('/addDataBank', [DaftarHibahController::class, 'AddDataBank'])->name('addDataBank');
+Route::post('/addDataProposal', [DaftarHibahController::class, 'addProposal'])->name('addProposal');
 
 Route::get('/generateFile', [GenerateFileController::class, 'index'])->name('generateFile')->middleware('isMWC');
 
