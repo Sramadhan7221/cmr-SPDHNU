@@ -41,7 +41,7 @@
   <!-- End Header -->
   @include('SibahNU.template.sidebar')
   <main id="main" class="main">
-    <div class="pagetitle">
+    <div class="pagetitle text-success">
       <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">

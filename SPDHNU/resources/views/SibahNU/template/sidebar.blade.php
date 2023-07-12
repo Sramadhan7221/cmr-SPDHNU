@@ -25,11 +25,11 @@
         </a>
       </li>
     </ul>
-    <button class="px-4 py-2 w-full mx-auto hover:bg-cyan-400/10 text-cyan-900 font-bold mt-80">
-        <a class="" href="{{route('logout')}}" data-confirm-delete=" true ">
+    <a class="" href="{{route('logout')}}" data-confirm-delete=" true ">
+    <button class="px-4 py-2 w-full mx-aut mt-80  btn btn-outline-success">
           <i class="ri-file-copy-2-line"></i>
           <span>Log Out</span>
-        </a>
-    </button>
+        </button>
+    </a>
   </aside>
   <!-- End Sidebar-->

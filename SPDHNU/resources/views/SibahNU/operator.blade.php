@@ -53,7 +53,7 @@
       </div>
       <div class="row g-3 pt-4 mt-4 mb-4">
         <div class="text-end">
-          <button type="submit" class="bg-green-800 p-2 rounded-md text-white col-md-3">
+            <button type="submit" class="btn btn-outline-success">
             <i class="ri-file-edit-line"></i>
             Perbaharui data MWCNU
           </button>

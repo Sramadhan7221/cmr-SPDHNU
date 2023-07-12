@@ -54,7 +54,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Permohonan</li>
+          <li class="breadcrumb-item text-success">Permohonan</li>
           <li class="breadcrumb-item active">Daftar Hibah</li>
         </ol>
       </nav>
