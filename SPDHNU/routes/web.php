@@ -47,7 +47,7 @@ Route::post('/addDataProposal', [DaftarHibahController::class, 'addProposal'])->
 Route::get('/dataRab', [RabController::class, 'index'])->name('dataRab');
 Route::get('/rab-detail', [RabController::class, 'getRabDetail'])->name('rab-detail');
 Route::post('/rab-add', [RabController::class, 'addRab'])->name('rab-add');
-Route::delete('/rab-del', [RabController::class, 'deletePersyaratan'])->name('rab-del');
+Route::get('/rab-del/{id_rab}', [RabController::class, 'deletePersyaratan'])->name('rab-del');
 
 Route::get('/generateFile', [GenerateFileController::class, 'index'])->name('generateFile')->middleware('isMWC');
 

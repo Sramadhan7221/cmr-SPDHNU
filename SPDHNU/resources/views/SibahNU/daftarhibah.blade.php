@@ -104,7 +104,7 @@
                     <div class="modal-body">
                       <form>
                         <div class="row g-3">
-                          <div class="col-md-12">
+                          {{-- <div class="col-md-12">
                             <label
                               for="no-pjbr"
                               class="form-label d-flex justify-content-start">
@@ -116,7 +116,7 @@
                               class="form-control"
                               id="no-pjbr"
                               required />
-                          </div>
+                          </div> --}}
                         </div>
                         <div class="row mt-3">
                           <div class="col-md-12">
@@ -236,32 +236,32 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">NO PJBR</th>
-                  <th scope="col">Sub Kegiatan</th>
+                  {{-- <th scope="col">NO PJBR</th> --}}
+                  <th scope="col">Sumber Dana Hibah</th>
                   <th scope="col">Lembaga</th>
                   <th scope="col">Alamat Lembaga</th>
                   <th scope="col">Peruntukan</th>
                   <th scope="col">Tahun</th>
                   <th scope="col">Jumlah</th>
-                  <th scope="col">Status</th>
+                  {{-- <th scope="col">Status</th> --}}
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>150</td>
+                  {{-- <td>150</td> --}}
+                  <td>DPC PKB</td>
+                  <td>MWC Singaparna</td>
+                  <td>Jl. Raya Singaparna</td>
                   <td>Pengelolaan Sarana dan Prasarana Spiritual</td>
-                  <td>PST Cipasung</td>
-                  <td>Jl. KH.Ruhiat no 1 Cipasung</td>
-                  <td></td>
                   <td>2023</td>
-                  <td>Rp. 10.000.000.-</td>
+                  <td>Rp. 5.000.000.-</td>
                   <td>
-                    <button type="button" class="btn btn-light">
+                    {{-- <button type="button" class="btn btn-light">
                       <span class="badge text-primary">
                         Menunggu Pengisian
                       </span>
-                    </button>
+                    </button> --}}
                   </td>
                   <td>
                     <a class="btn btn-primary" href="{{route('detailhibah')}}">

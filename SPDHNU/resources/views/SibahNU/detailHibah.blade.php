@@ -67,28 +67,28 @@
             <h5 class="card-title">informasi Data Hibah #150</h5>
             <table class="table">
               <thead>
-                <tr>
+                {{-- <tr>
                   <td scope="col">NO PJBR</td>
                   <td>150</td>
-                </tr>
+                </tr> --}}
               </thead>
               <tbody>
                 <tr>
-                  <td scope="col">Sub Kegiatan</td>
-                  <td>Pengelolaan Sarana dan Prasarana Spiritual</td>
+                  <td scope="col">Sumber Dana Hibah</td>
+                  <td>DPC PKB</td>
                 </tr>
                 <tr>
                   <td scope="col">Lembaga</td>
-                  <td>PST Cipasung</td>
+                  <td>MWC Singaparna</td>
                 </tr>
                 <tr>
                   <td scope="col">Alamat Lembaga</td>
-                  <td>Jl. KH.Ruhiat no 1 Cipasung</td>
+                  <td>Jl. Raya Singaparna</td>
                 </tr>
 
                 <tr>
                   <td scope="col">Peruntukan</td>
-                  <td></td>
+                  <td>Pengelolaan Sarana dan Prasarana Spiritual</td>
                 </tr>
                 <tr>
                   <td scope="col">Tahun</td>
@@ -97,17 +97,17 @@
 
                 <tr>
                   <td scope="col">Jumlah</td>
-                  <td>Rp. 10.000.000.-</td>
+                  <td>Rp. 5.000.000.-</td>
                 </tr>
                 <tr>
-                  <td scope="col">Status</td>
+                  {{-- <td scope="col">Status</td>
                   <td>
                     <button type="button" class="btn btn-light">
                       <span class="badge text-primary">
                         Menunggu Pengisian
                       </span>
                     </button>
-                  </td>
+                  </td> --}}
                 </tr>
               </tbody>
             </table>
@@ -174,7 +174,9 @@
                         <option value="BANK BRI">BRI</option>
                         <option value="BANK BSI">BSI</option>
                         <option value="BANK MANDIRI">MANDIRI</option>
-                      </select>
+                        <option value="BANK BJB">BJB</option>
+                        <option value="BANK BJB">BJB SYARIAH</option>
+                    </select>
                     </div>
                     <div class="col-md-3">
                       <label for="input-rekening" class="form-label">
@@ -372,6 +374,7 @@
                       <th scope="col">No</th>
                       <th scope="col">Uraian</th>
                       <th scope="col">Volume / Satuan</th>
+                      <th scope="col">QTY</th>
                       <th scope="col">Harga</th>
                       <th scope="col">Total</th>
                       <th scope="col">Aksi</th>
@@ -383,15 +386,18 @@
                         <td>{{$no++}}</td>
                         <td>{{$rab->uraian}}</td>
                         <td>{{$rab->satuan}}</td>
+                        <td>{{$rab->qty}}</td>
                         <td>Rp.{{$rab->harga}}</td>
                         <td>Rp.{{$rab->total}}</td>
                         <td>
                           <button type="button" class="btn btn-outline-primary">
                             <i class="bi bi-pencil-square"></i>
                           </button>
+                          <a href="{{route('rab-del',['id_rab' => $rab->id_rab])}}">
                           <button type="button" class="btn btn-outline-danger">
                             <i class="bi bi-trash"></i>
                           </button>
+                          </a>
                         </td>
                     </tr>
                     @endforeach

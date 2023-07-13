@@ -114,8 +114,10 @@
         <div class="row">
           <div class="col-sm-12">
             <button type="button" class="edit col-sm-5 bg-yellow-400 p-1 rounded-md" data-syarat="{{$syarat->id_persyaratan}}"><x-heroicon-o-pencil-square /></button>
+            <a href="{{route('deletePersyaratan',['id_persyaratan' => $syarat->id_persyaratan])}}">
             <button type="button" class="delete col-sm-5 bg-red-600 p-1 rounded-md" data-syarat="{{route('deletePersyaratan',$syarat->id_persyaratan)}}"><x-heroicon-o-backspace /></button>
-          </div>
+            </a>
+        </div>
         </div>
       </td>
     </tr>
@@ -123,7 +125,7 @@
   </tbody>
 </table>
 <!-- End Table with stripped rows -->
-<div class="modal fade" id="updateData" tabindex="-1">
+{{-- <div class="modal fade" id="updateData" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -190,7 +192,7 @@
       </div>
     </div>
   </div>
-  </div>
+  </div> --}}
 
 <div class="row g-3 pt-4 mt-4 mb-4">
   <div class="text-end">
@@ -202,7 +204,7 @@
 </div>
 </div>
 @include('SibahNU.template.footer')
-<script>
+{{-- <script>
   $(document).on('click', '.edit', function(o) {
     let id = $(this).attr('data-syarat');
     getData(id);
@@ -210,7 +212,7 @@
 
   $(document).on('click', '.delete', function () {
     let url = $(this).attr('data-syarat');
-    
+
   })
 
   $("#tambah").click(function() {
@@ -236,4 +238,4 @@
       }
     });
   }
-</script>
+</script> --}}

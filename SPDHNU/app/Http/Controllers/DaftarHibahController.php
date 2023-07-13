@@ -23,7 +23,7 @@ class DaftarHibahController extends Controller
         }
         $DataBank = Lembaga::query()->where('id_lembaga',Session::get('id_lembaga'))->first();
         $dataProposal = Proposal::query()->where('lembaga', Session::get('id_lembaga'))->first();
-        $dataRab = Rab::query()->where('proposal',$dataProposal->id_proposal)->get() ?? new Rab;
+        $dataRab = Rab::query()->wherey('proposal', $dataProposal->id_proposal)->get() ?? new Rab;
         $data = [
             'dataBank' => $DataBank ?? new Lembaga,
             'dataProposal' => $dataProposal ?? new Proposal,

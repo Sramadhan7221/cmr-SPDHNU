@@ -76,7 +76,7 @@ class PersyaratanController extends Controller
         $persyaratan = Persyaratan::where('id_persyaratan', $id)
             ->where('deleted_at',null)
             ->first();
-        
+
         if ($persyaratan)
             return response()->json($persyaratan,200);
         else
@@ -119,13 +119,13 @@ class PersyaratanController extends Controller
         return redirect(route('persyaratan'))->withSuccess('Data Berhasil Diupdate');
     }
 
-    public function deletePersyaratan (Request $request) {
-        $deleted = Persyaratan::where('id_persyaratan', $request->id_persyaratan)
+    public function deletePersyaratan (Request $request, $id_persyaratan) {
+        $deleted = Persyaratan::where('id_persyaratan', $id_persyaratan)
             ->delete();
-        
+
         if ($deleted > 0)
-            redirect(route('persyaratan'))->withSuccess('Data Berhasil Diupdate');
+            return redirect(route('persyaratan'))->withSuccess('Data Berhasil Diupdate');
         else
-            redirect(route('persyaratan'))->withErrors('Data Gagal Diupdate');
+           return redirect(route('persyaratan'))->withErrors('Data Gagal Diupdate');
     }
 }

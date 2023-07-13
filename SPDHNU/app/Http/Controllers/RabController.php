@@ -72,14 +72,14 @@ class RabController extends Controller
             return response()->json([], 404);
     }
 
-    public function deletePersyaratan(Request $request)
+    public function deletePersyaratan(Request $request, $id_rab)
     {
-        $deleted = Rab::where('id_rab', $request->id_rab)
+        $deleted = Rab::where('id_rab', $id_rab)
             ->delete();
 
         if ($deleted > 0)
-            redirect(route('persyaratan'))->withSuccess('Data Berhasil Diupdate');
+            return redirect()->back()->withSuccess('Data Berhasil Diupdate');
         else
-            redirect(route('persyaratan'))->withErrors('Data Gagal Diupdate');
+           return redirect(route('persyaratan'))->withErrors('Data Gagal Diupdate');
     }
 }
