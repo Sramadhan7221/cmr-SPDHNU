@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('proposal', function (Blueprint $table) {
             $table->uuid('id_proposal')->primary();
             $table->uuid('lembaga')->nullable();
+            $table->string('sumber_dana', 500)->nullable();
             $table->string('no_NPHD', 150)->unique();
             $table->string('peruntukan', 150);
             $table->string('file_proposal', 225);
             $table->decimal('nilai_pengajuan')->nullable();
             $table->decimal('total_rab')->nullable();
+            $table->string('tahun', 4);
             $table->timestamps();
             $table->softDeletes();
 
