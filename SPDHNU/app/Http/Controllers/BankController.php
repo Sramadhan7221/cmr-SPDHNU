@@ -11,15 +11,6 @@ use App\Models\Lembaga;
 
 class BankController extends Controller
 {
-    public function _construct(){
-        $this->display_menu = [
-            'rab' => false,
-            'propsal' => false,
-            'history' => false,
-            'bank' => true
-        ];
-    }
-
     public function index(){
         if(!session()->get('id_lembaga')){
             Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
