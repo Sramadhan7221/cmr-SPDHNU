@@ -42,6 +42,9 @@ Route::get('/getPersyaratan', [PersyaratanController::class, 'getPersyaratan'],)
 Route::get('/deletePersyaratan/{id_persyaratan}', [PersyaratanController::class, 'deletePersyaratan'],)->name('deletePersyaratan')->middleware('isMWC');
 
 Route::get('/daftarhibah', [DaftarHibahController::class, 'index'])->name('daftarHibah')->middleware('isMWC');
+Route::get('/detailProposal', [DaftarHibahController::class, 'detailProposal'])->name('detailProposal')->middleware('isMWC');
+Route::post('/addProposal', [DaftarHibahController::class, 'addProposal'])->name('addProposal')->middleware('isMWC');
+Route::get('/deleteProposal/{id_proposal}', [DaftarHibahController::class, 'deleteProposal'])->name('deleteProposal')->middleware('isMWC');
 Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name('detailhibah')->middleware('isMWC');
 
 Route::post('/addDataBank', [BankController::class, 'AddDataBank'])->name('addDataBank');

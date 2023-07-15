@@ -25,30 +25,31 @@
   <link href="{{asset('css/style.css')}}" rel="stylesheet" />
   @vite('resources/css/app.css')
 </head>
-<body>
-    <template x-if="isLoading">
-        <div class="fixed inset-0 z-[100] bg-white">
-            <div class="flex h-screen w-full items-center justify-center bg-gray-100">
-              <div class="custom-loader"></div>
-            </div>
-          </div>
-        </template>
-    <header id="header" class="header fixed-top d-flex align-items-center">
-        <div class="d-flex align-items-center justify-content-between">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <img src="{{asset('aseets/logo.png')}}" alt="" />
-            <span class="d-none text-green-800 d-lg-block">PCNU Tasikmalaya</span>
-          </a>
-          <i class="bi bi-list toggle-sidebar-btn "></i>
-        </div>
-        <!-- End Logo -->
-      </header>
-      <!-- End Header -->
 
-      <!-- ======= Sidebar ======= -->
-      @include('SibahNU.template.sidebar')
-      <!-- End Sidebar-->
-<main id="main" class="main">
+<body>
+  <template x-if="isLoading">
+    <div class="fixed inset-0 z-[100] bg-white">
+      <div class="flex h-screen w-full items-center justify-center bg-gray-100">
+        <div class="custom-loader"></div>
+      </div>
+    </div>
+  </template>
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="{{asset('aseets/logo.png')}}" alt="" />
+        <span class="d-none text-green-800 d-lg-block">PCNU Tasikmalaya</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn "></i>
+    </div>
+    <!-- End Logo -->
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  @include('SibahNU.template.sidebar')
+  <!-- End Sidebar-->
+  <main id="main" class="main">
     <div class="pagetitle">
       <h1>Permohonan Hibah</h1>
       <nav>
@@ -62,157 +63,140 @@
     <!-- End Page Title -->
 
     <section class="section">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Filter Daftar Hibah</h5>
-              <div class="row">
-                <div class="col-lg-3">
-                  <label
-                    for="filter-by-years"
-                    class="form-label d-flex justify-content-start">
-                    Berdasarkan Tahun Anggaran
-                  </label>
-                  <select id="filter-by-years" class="form-select">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select>
-                </div>
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Filter Daftar Hibah</h5>
+            <div class="row">
+              <div class="col-lg-3">
+                <label for="filter-by-years" class="form-label d-flex justify-content-start">
+                  Berdasarkan Tahun Anggaran
+                </label>
+                <select id="filter-by-years" class="form-select">
+                  @foreach($tahun as $item)
+                  @if($item == date('Y'))
+                  <option value="{{$item}}" selected>{{ $item }}</option>
+                  @else
+                  <option value="{{$item}}">{{ $item }}</option>
+                  @endif
+                  @endforeach
+                </select>
               </div>
-              <div class="text-end">
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#mohon-hibah">
-                  <i class="ri-file-edit-line"></i>
-                  Daftar Hibah
-                </button>
-              </div>
+            </div>
+            <div class="text-end">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mohon-hibah">
+                <i class="ri-file-edit-line"></i>
+                Daftar Hibah
+              </button>
+            </div>
 
-              <div class="modal fade" id="mohon-hibah" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Tambah Permohonan Hibah</h5>
-                      <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form>
-                        <div class="row g-3">
+            <div class="modal fade" id="mohon-hibah" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Tambah Permohonan Hibah</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                          <label for="peruntukan" class="form-label d-flex justify-content-start">
+                            No NPHD
+                            <sup class="text-danger">*</sup>
+                          </label>
+                          <input type="text" class="form-control" name="no_NPHD" required />
+                          <input type="hidden" name="id_proposal"/>
                         </div>
-                        <div class="row mt-3">
-                          <div class="col-md-12">
-                            <label
-                              for="sub-kegiatan"
-                              class="form-label d-flex justify-content-start">
-                              Sub Kegiatan
-                              <sup class="text-danger">*</sup>
-                            </label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="sub-kegiatan"
-                              required />
-                          </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                          <label for="peruntukan" class="form-label d-flex justify-content-start">
+                            Peruntukan
+                            <sup class="text-danger">*</sup>
+                          </label>
+                          <input type="text" class="form-control" name="peruntukan" required />
                         </div>
-                        <div class="row mt-3">
-                          <div class="col-md-12">
-                            <label
-                              for="lembaga"
-                              class="form-label d-flex justify-content-start">
-                              Lembaga
-                              <sup class="text-danger">*</sup>
-                            </label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="lembaga"
-                              required />
-                          </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                          <label for="lembaga" class="form-label d-flex justify-content-start">
+                            Sumber Dana Hibah
+                            <sup class="text-danger">*</sup>
+                          </label>
+                          <input type="text" class="form-control" name="sumber_dana" required />
                         </div>
-                        <div class="row mt-3">
-                          <div class="col-md-12">
-                            <label
-                              for="alamat-lembaga"
-                              class="form-label d-flex justify-content-start">
-                              Alamat Lembaga
-                              <sup class="text-danger">*</sup>
-                            </label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="alamat-lembaga"
-                              required />
-                          </div>
-                        </div>
-                        <div class="row mt-3">
-                          <div class="col-md-12">
-                            <label
-                              for="peruntukan"
-                              class="form-label d-flex justify-content-start">
-                              Peruntukan
-                              <sup class="text-danger">*</sup>
-                            </label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="peruntukan"
-                              required />
-                          </div>
+                      </div>
 
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                          <label for="tahun" class="form-label d-flex justify-content-start">
+                            Tahun
+                            <sup class="text-danger">*</sup>
+                          </label>
+                          <select id="tahun" name="tahun" class="form-select">
+                            @foreach($tahun as $item)
+                              @if($item == date('Y'))
+                                <option value="{{$item}}" selected>{{ $item }}</option>
+                              @elseif((int)$item > (int)date('Y'))
+                                <option value="{{$item}}">{{ $item }}</option>
+                              @endif
+                            @endforeach
+                          </select>
                         </div>
-                        <div class="row mt-3">
-                          <div class="col-md-12">
-                            <label
-                              for="tahun"
-                              class="form-label d-flex justify-content-start">
-                              Tahun
-                              <sup class="text-danger">*</sup>
-                            </label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="tahun"
-                              required />
-                          </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                          <label for="nilai_pengajuan" class="form-label d-flex justify-content-start">
+                            Jumlah
+                            <sup class="text-danger">*</sup>
+                          </label>
+                          <input type="text" class="form-control" name="nilai_pengajuan" required />
                         </div>
-                        <div class="row mt-3">
-                          <div class="col-md-12">
-                            <label
-                              for="Jumlah"
-                              class="form-label d-flex justify-content-start">
-                              Jumlah
-                              <sup class="text-danger">*</sup>
-                            </label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="Jumlah"
-                              required />
-                          </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                          <label for="file_proposal" class="form-label">
+                            File Proposal
+                            <sup class="text-danger">*</sup>
+                          </label>
+                          <input type="file" name="file_proposal" class="form-control" id="file_proposal" required accept="application/pdf" />
+                          <span class="badge bg-primary">
+                            File harus berupa PDF
+                          </span>
+                          <button type="button" class="btn btn-outline-success" id="display_file">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            Lihat file
+                          </button>
                         </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="submit"
-                        class="btn btn-primary"
-                        data-bs-dismiss="modal">
-                        <i class="ri-file-edit-line"></i>
-                        Simpan data
-                      </button>
-                    </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                      <i class="ri-file-edit-line"></i>
+                      Simpan data
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="modal fade" id="display-file_tabungan" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+              <embed id="file_display" src="" type="application/pdf" width="100%" height="600px" />
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="col-lg-12">
         <!-- Card with header and footer -->
@@ -223,32 +207,27 @@
             <table class="table">
               <thead>
                 <tr>
-                  {{-- <th scope="col">NO PJBR</th> --}}
                   <th scope="col">Sumber Dana Hibah</th>
                   <th scope="col">Lembaga</th>
                   <th scope="col">Alamat Lembaga</th>
                   <th scope="col">Peruntukan</th>
                   <th scope="col">Tahun</th>
                   <th scope="col">Jumlah</th>
-                  {{-- <th scope="col">Status</th> --}}
-                  <th scope="col">Aksi</th>
+                  <th scope="col">File</th>
+                  <!-- <th scope="col">Aksi</th> -->
                 </tr>
               </thead>
               <tbody>
+                @foreach($proposals as $item)
                 <tr>
-                  {{-- <td>150</td> --}}
-                  <td>DPC PKB</td>
-                  <td>MWC Singaparna</td>
-                  <td>Jl. Raya Singaparna</td>
-                  <td>Pengelolaan Sarana dan Prasarana Spiritual</td>
-                  <td>2023</td>
-                  <td>Rp. 5.000.000.-</td>
+                  <td>{{ $item->sumber_dana }}</td>
+                  <td>{{ $item->nama_lembaga }}</td>
+                  <td>{{ $item->alamat_lembaga }}</td>
+                  <td>{{ $item->peruntukan }}</td>
+                  <td>{{ $item->tahun }}</td>
+                  <td>{{ $item->nilai_pengajuan }}</td>
                   <td>
-                    {{-- <button type="button" class="btn btn-light">
-                      <span class="badge text-primary">
-                        Menunggu Pengisian
-                      </span>
-                    </button> --}}
+                    <a class="btn btn-outline-success" href="{{ asset('storage/'.$item->file_proposal) }}">Lihat</a>
                   </td>
                   <td>
                     <a class="btn btn-primary" href="{{route('bank')}}">
@@ -256,6 +235,7 @@
                     </a>
                   </td>
                 </tr>
+                @endforeach
               </tbody>
             </table>
             <!-- End Table with stripped rows -->

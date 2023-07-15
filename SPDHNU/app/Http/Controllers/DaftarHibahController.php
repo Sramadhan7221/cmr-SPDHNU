@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
@@ -13,103 +14,138 @@ use App\Models\Rab;
 
 class DaftarHibahController extends Controller
 {
-    // public function _construct(){
-    //     $this->display_menu = [
-    //         'daftar_hibah' => true,
-    //         'rab' => false,
-    //         'propsal' => false,
-    //         'history' => false,
-    //         'bank' => false
-    //     ];
-    // }
+    public function index()
+    {
+        if (!session()->get('id_lembaga')) {
+            Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
+        }
 
-    public function index(){
-        return view('SibahNU.daftarHibabh.dafatarHibah');
+        $proposal = Proposal::select(DB::raw('nama_lembaga,alamat_lembaga,peruntukan,nilai_pengajuan,tahun'))
+            ->join('lembaga', 'proposal.lembaga', '=', 'lembaga.id_lembaga')
+            ->where('lembaga', session('id_lembaga'))
+            ->where('proposal.deleted_at',null)
+            ->get();
+        
+        $data = [
+            'proposals' => $proposal,
+            'tahun' => $this->generateYears()
+        ];
+
+        return view('SibahNU.daftarHibabh.dafatarHibah',$data);
     }
 
-    public function detailHibah(){
+    function addProposal(Request $request) 
+    {
+        $rules = [
+            'no_NPHD' => 'required|regex:/^[a-zA-Z\s.-]+$/',
+            'peruntukan' => 'required|regex:/^[a-zA-Z\s.-]+$/',
+            'sumber_dana' => 'required|regex:/^[a-zA-Z\s.-]+$/',
+            'nilai_pengajuan' => 'required|regex:/^[0-9]+$/',
+            'file_proposal' => 'required|max:2048',
+        ];
+
+        $message = [
+            'no_NPHD.required' => 'NPHD Harus Diisi',
+            'peruntukan.required' => 'Peruntukan Harus Diisi',
+            'sumber_dana.required' => 'Sumber Dana Harus Diisi',
+            'no_NPHD.regex' => 'Format Harus Abjad',
+            'peruntukan.regex' => 'Format Harus Abjad',
+            'sumber_dana.regex' => 'Format Harus Abjad',
+            'nilai_pengajuan.required' => 'Jumlah Harus Diisi',
+            'nilai_pengajuan.regex' => 'Jumlah hanya menerima format angka',
+            'file_proposal.required' => 'file Harus Diisi',
+            'file_proposal.max' => 'File KTP Harus 2MB',
+        ];
+
+        if($request->id_proposal) {
+            $rules['file_proposal'] = 'max:2048';
+            return $this->editProposal($request,$rules,$message);
+        }
+
+        $validated = Validator::make($request->all(), $rules, $message);
+        if ($validated->fails()) {
+            return redirect()->back()->withErrors($validated)->withInput($request->all());
+        }
+
+        $data = $validated->validate();
+        $file_proposal = $request->file('file_proposal');
+        if ($file_proposal) {
+            $file_proposal_name = $file_proposal->getClientOriginalName();
+            $file_proposal_path = Storage::putFileAs($file_proposal, $file_proposal_name);
+            $data['file_proposal'] = $file_proposal_path;
+        }
+    
+        $id_lembaga = session('id_lembaga');
+        $data['lembaga'] = $id_lembaga;
+        Proposal::create($data);
+        return redirect()->route('/daftarhibah')->withSuccess('Data Berhasil Disimpan');
+    }
+
+    public function detailHibah()
+    {
+        if(!session()->get('id_lembaga')){
+            Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
+        }
         return view(route('bank'));
-        // if(!session()->get('id_lembaga')){
-        //     Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
-        // }
-        // $DataBank = Lembaga::query()->where('id_lembaga',Session::get('id_lembaga'))->first();
-        // $dataProposal = Proposal::query()->where('lembaga', Session::get('id_lembaga'))->first();
-        // $dataRab = Rab::query()->wherey('proposal', $dataProposal->id_proposal)->get() ?? new Rab;
-        // $data = [
-        //     'dataBank' => $DataBank ?? new Lembaga,
-        //     'dataProposal' => $dataProposal ?? new Proposal,
-        //     'dataRab' => $dataRab,
-        //     'no' => $count = 1,
-        //     'display_menu' => $this->display_menu
-        // ];
-        // return view('SibahNU.detailHibah',$data);
     }
 
-    // public function AddDataBank(Request $request){
-    //     $rules = [
-    //         'bank' => 'required',
-    //         'no_rek' => 'required',
-    //         'nama_rekening' => 'required',
-    //         'cabang_bank' => 'required',
-    //         'file_buku_tabungan' => 'required|max:2048'
-    //     ];
+    public function detailProposal(Request $request) 
+    {
+        $id_proposal = $request->get('id_proposal');
+        $proposal = Proposal::where('id_proposal', $id_proposal)
+            ->first();
 
-    //     $message = [
-    //         'bank.required' => 'Bank Harus Diisi',
-    //         'no_rek.required' => 'No Rekening Harus Diisi',
-    //         'nama_rekening.required' => 'Nama Rekening Harus Diisi',
-    //         'cabang_bank' => 'Cabang Bank Harus Diisi',
-    //         'file_buku_tabungan.required' => 'Buku Tabungan Harus Di Upload',
-    //         'file_buku_tabungan.max' => 'Ukruan File Harus 2MB'
-    //     ];
+        if ($proposal)
+            return response()->json($proposal, 200);
+        else
+            return response()->json([], 404);
+    }
 
-    //     $validated = Validator::make($request->all(), $rules,$message);
-    //     if($validated->fails()){
-    //         return redirect()->back()->withErrors($validated);
-    //     }
+    protected function editProposal($request,$rules,$message)
+    {
+        $validated = Validator::make($request->all(), $rules, $message);
+        if ($validated->fails()) {
+            return redirect()->back()->withErrors($validated)->withInput($request->all());
+        }
 
-    //     $dataBank = $validated->validate();
-    //     $file_buku_tabungan = $request->file('file_buku_tabungan');
-    //     $file_buku_tabungan_name = $file_buku_tabungan->getClientOriginalName();
-    //     $file_buku_tabungan_path = Storage::putFileAs($file_buku_tabungan, $file_buku_tabungan_name);
-    //     $dataBank['file_buku_tabungan'] = $file_buku_tabungan_path;
-    //     Lembaga::query()->where('id_lembaga', Session::get('id_lembaga'))->update($dataBank);
-    //     return redirect()->back()->withSuccess('Data Berhasil Disimpan');
-    // }
+        $data = $validated->validate();
+        $file_proposal = $request->file('file_proposal');
+        if ($file_proposal) {
+            $file_proposal_name = $file_proposal->getClientOriginalName();
+            $file_proposal_path = Storage::putFileAs($file_proposal, $file_proposal_name);
+            $data['file_proposal'] = $file_proposal_path;
+        }
+        
+        Proposal::where('id_proposal',$request->id_proposal)
+            ->update($data);
+        
+        return redirect()->route('/daftarhibah')->withSuccess('Data Berhasil Diupdate');
+    }
 
-    // function addRab(Request $request) {
-    //     $proposal = Proposal::query()->where('lembaga', session()->get('id_lembaga'))->first();
-    //     $rules = [
-    //         'uraian'=> 'required|regex:/^[a-zA-Z\s.-]+$/',
-    //         'satuan'=> 'required|regex:/^[a-zA-Z\s.-]+$/',
-    //         'qty'=> 'required',
-    //         'harga' => 'required'
-    //     ];
+    public function deleteProposal($id_proposal)
+    {
+        $deleted = Proposal::where('id_proposal', $id_proposal)
+            ->delete();
 
-    //     $message = [
-    //         'uraian.required' => 'Uraian harus Diisi',
-    //         'uraian.regex' => 'Format Uraian Harus Abjad',
-    //         'satuan.required' => 'Satuan harus Diisi',
-    //         'satuan.regex' => 'Format Satuan Harus Abjad',
-    //         'qty.required' => 'Jumlah minimal 1',
-    //         'harga.required' => 'Harga harus Diisi'
-    //     ];
+        if ($deleted > 0)
+            return redirect(route('/daftarhibah'))->withSuccess('Data Berhasil Diupdate');
+        else
+            return redirect(route('/daftarhibah'))->withErrors('Data Gagal Diupdate');
+    }
+    
+    protected function generateYears() 
+    {
+        $arrYears = [];
+        for ($i=5; $i > 0; $i--) { 
+            $item = (int)date('Y') - $i;
+            array_push($arrYears, (string)$item);
+        }
+        array_push($arrYears, date('Y'));
+        for ($i=1; $i < 6; $i++) {
+            $item = (int)date('Y') + $i;
+            array_push($arrYears, (string)$item);
+        }
 
-    //     $validated = Validator::make($request->all(), $rules, $message);
-    //     if ($validated->fails()) {
-    //         return redirect()->back()->withErrors($validated)->withInput($request->all());
-    //     }
-
-    //     $data = $validated->validate();
-    //     if($request->id_rab) {
-    //         Rab::where('id_rab', $request->id_rab)
-    //             ->update($data);
-    //         return redirect()->back()->withSuccess('Data Berhasil Diupdate');
-    //     }
-    //     $total = (int)$data['qty'] * (int)$data['harga'];
-    //     $data['total'] = $total;
-    //     $data['proposal'] = $proposal->id_proposal;
-    //     Rab::create($data);
-    //     return redirect()->back()->withSuccess('Data Berhasil Disimpan');
-    // }
+        return $arrYears;
+    }
 }
