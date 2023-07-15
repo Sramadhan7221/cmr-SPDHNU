@@ -100,14 +100,14 @@
                   <td>Rp. 5.000.000.-</td>
                 </tr>
                 <tr>
-                  {{-- <td scope="col">Status</td>
+                  <td scope="col">Status</td>
                   <td>
                     <button type="button" class="btn btn-light">
                       <span class="badge text-primary">
                         Menunggu Pengisian
                       </span>
                     </button>
-                  </td> --}}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -560,12 +560,12 @@
           </div>
         </div>
         <!-- End Card with header and footer -->
-        {{-- <div class="d-grid">
+        <div class="d-grid">
           <button type="button" class="btn btn-warning mt-2">
             <i class="ri-send-plane-fill"></i>
             Submit Data Untuk Dilakukan Verifikasi !
           </button>
-        </div> --}}
+        </div>
       </div>
     </section>
   </main>

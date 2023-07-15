@@ -267,4 +267,4 @@
   </main>
   <!-- End #main -->
 </body>
-  @include('SibahNU.template.footer')
+@include('SibahNU.template.footer')

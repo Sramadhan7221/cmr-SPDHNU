@@ -6,22 +6,32 @@ use App\Models\Rab;
 use App\Models\Proposal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Lembaga;
 
 class RabController extends Controller
 {
+    public function _construct(){
+        $this->display_menu = [
+            'rab' => true,
+            'propsal' => false,
+            'history' => false,
+            'bank' => false
+        ];
+    }
+
     function index() {
         $proposal = Proposal::query()->where('lembaga', session()->get('id_lembaga'))->first();
-        $dataRab = Rab::query()->where('proposal',$proposal->id_proposal);
-        // dd($dataRab);
+        $dataRab = Rab::query()->where('proposal',$proposal->id_proposal)->get();
         $count = 1;
-        // $data = [
-        //     'dataRab' => $dataRab,
-        //     'no' => $count
-        // ];
-        return view('SibahNU.detailHibah', [
-            'dataRab' => $dataRab,
-            'no' => $count
-        ]);
+        $data = [
+            'dataRab' => $dataRab ?? new Rab,
+            'no' => $count,
+            'display_menu' => $this->display_menu
+        ];
+        return view('SibahNU.daftarHibabh.rab',$data);
     }
 
     function addRab(Request $request) {

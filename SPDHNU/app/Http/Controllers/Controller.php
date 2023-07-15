@@ -17,4 +17,11 @@ class Controller extends BaseController
         'pimpinan' => false
     ];
 
+    protected $display_menu = [
+        'bank' => true,
+        'proposal' => false,
+        'rab' => false,
+        'history' => false
+    ];
+
 }

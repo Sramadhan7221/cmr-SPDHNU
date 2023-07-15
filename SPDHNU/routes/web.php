@@ -8,6 +8,8 @@ use App\Http\Controllers\PimpinanController;
 use App\Http\Controllers\PersyaratanController;
 use App\Http\Controllers\DaftarHibahController;
 use App\Http\Controllers\GenerateFileController;
+use App\Http\Controllers\BankController;
+use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\RabController;
 
 /*
@@ -41,10 +43,14 @@ Route::get('/deletePersyaratan/{id_persyaratan}', [PersyaratanController::class,
 
 Route::get('/daftarhibah', [DaftarHibahController::class, 'index'])->name('daftarHibah')->middleware('isMWC');
 Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name('detailhibah')->middleware('isMWC');
-Route::post('/addDataBank', [DaftarHibahController::class, 'AddDataBank'])->name('addDataBank');
-Route::post('/addDataProposal', [DaftarHibahController::class, 'addProposal'])->name('addProposal');
 
-Route::get('/dataRab', [RabController::class, 'index'])->name('dataRab');
+Route::post('/addDataBank', [BankController::class, 'AddDataBank'])->name('addDataBank');
+Route::get('/bank', [BankController::class, 'index'])->name('bank');
+
+Route::post('/addDataProposal', [ProposalController::class, 'addProposal'])->name('addProposal');
+Route::get('/proposal', [ProposalController::class, 'index'])->name('proposal');
+
+Route::get('/rab', [RabController::class, 'index'])->name('dataRab');
 Route::get('/rab-detail', [RabController::class, 'getRabDetail'])->name('rab-detail');
 Route::post('/rab-add', [RabController::class, 'addRab'])->name('rab-add');
 Route::get('/rab-del/{id_rab}', [RabController::class, 'deletePersyaratan'])->name('rab-del');
