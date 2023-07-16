@@ -98,7 +98,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form>
+                    <form id="proposal_form" method="POST" action="{{route('addProposal')}}">
+                      @csrf
                       <div class="row mt-3">
                         <div class="col-md-12">
                           <label for="peruntukan" class="form-label d-flex justify-content-start">
@@ -106,7 +107,7 @@
                             <sup class="text-danger">*</sup>
                           </label>
                           <input type="text" class="form-control" name="no_NPHD" required />
-                          <input type="hidden" name="id_proposal"/>
+                          <input type="hidden" name="id_proposal" />
                         </div>
                       </div>
                       <div class="row mt-3">
@@ -127,7 +128,6 @@
                           <input type="text" class="form-control" name="sumber_dana" required />
                         </div>
                       </div>
-
                       <div class="row mt-3">
                         <div class="col-md-12">
                           <label for="tahun" class="form-label d-flex justify-content-start">
@@ -136,11 +136,11 @@
                           </label>
                           <select id="tahun" name="tahun" class="form-select">
                             @foreach($tahun as $item)
-                              @if($item == date('Y'))
-                                <option value="{{$item}}" selected>{{ $item }}</option>
-                              @elseif((int)$item > (int)date('Y'))
-                                <option value="{{$item}}">{{ $item }}</option>
-                              @endif
+                            @if($item == date('Y'))
+                            <option value="{{$item}}" selected>{{ $item }}</option>
+                            @elseif((int)$item > (int)date('Y'))
+                            <option value="{{$item}}">{{ $item }}</option>
+                            @endif
                             @endforeach
                           </select>
                         </div>
@@ -170,14 +170,14 @@
                           </button>
                         </div>
                       </div>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
-                      <i class="ri-file-edit-line"></i>
-                      Simpan data
-                    </button>
-                  </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                        <i class="ri-file-edit-line"></i>
+                        Simpan data
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -225,7 +225,7 @@
                   <td>{{ $item->alamat_lembaga }}</td>
                   <td>{{ $item->peruntukan }}</td>
                   <td>{{ $item->tahun }}</td>
-                  <td>{{ $item->nilai_pengajuan }}</td>
+                  <td>{{ number_format($item->nilai_pengajuan,0,',','.') }}</td>
                   <td>
                     <a class="btn btn-outline-success" href="{{ asset('storage/'.$item->file_proposal) }}">Lihat</a>
                   </td>

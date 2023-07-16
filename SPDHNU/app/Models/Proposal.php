@@ -24,8 +24,17 @@ class Proposal extends Model
         'peruntukan',
         'file_proposal',
         'nilai_pengajuan',
-        'total_rab'
+        'total_rab',
+        'tahun',
+        'sumber_dana'
     ];
+
+    protected $casts = [
+        'no_NPHD' => 'string',
+        'nilai_pengajuan' => 'decimal:2',
+        'total_rab' => 'decimal:2'
+    ];
+
     protected static function boot()
     {
         parent::boot();

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use Ramsey\Uuid\Type\Decimal;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Lembaga;
 use App\Models\Proposal;
@@ -20,7 +21,7 @@ class DaftarHibahController extends Controller
             Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
         }
 
-        $proposal = Proposal::select(DB::raw('nama_lembaga,alamat_lembaga,peruntukan,nilai_pengajuan,tahun'))
+        $proposal = Proposal::select(DB::raw('sumber_dana,nama_lembaga,alamat_lembaga,peruntukan,nilai_pengajuan,tahun'))
             ->join('lembaga', 'proposal.lembaga', '=', 'lembaga.id_lembaga')
             ->where('lembaga', session('id_lembaga'))
             ->where('proposal.deleted_at',null)
@@ -37,11 +38,12 @@ class DaftarHibahController extends Controller
     function addProposal(Request $request) 
     {
         $rules = [
-            'no_NPHD' => 'required|regex:/^[a-zA-Z\s.-]+$/',
+            'no_NPHD' => 'required|regex:/^[a-zA-Z0-9\/.]+$/',
             'peruntukan' => 'required|regex:/^[a-zA-Z\s.-]+$/',
             'sumber_dana' => 'required|regex:/^[a-zA-Z\s.-]+$/',
             'nilai_pengajuan' => 'required|regex:/^[0-9]+$/',
             'file_proposal' => 'required|max:2048',
+            'tahun' => 'required'
         ];
 
         $message = [
@@ -55,9 +57,11 @@ class DaftarHibahController extends Controller
             'nilai_pengajuan.regex' => 'Jumlah hanya menerima format angka',
             'file_proposal.required' => 'file Harus Diisi',
             'file_proposal.max' => 'File KTP Harus 2MB',
+            'tahun.required' => 'Mohon isi Tahun' 
         ];
 
         if($request->id_proposal) {
+            dd($request);
             $rules['file_proposal'] = 'max:2048';
             return $this->editProposal($request,$rules,$message);
         }
@@ -78,7 +82,7 @@ class DaftarHibahController extends Controller
         $id_lembaga = session('id_lembaga');
         $data['lembaga'] = $id_lembaga;
         Proposal::create($data);
-        return redirect()->route('/daftarhibah')->withSuccess('Data Berhasil Disimpan');
+        return redirect()->route('daftarhibah')->withSuccess('Data Berhasil Disimpan');
     }
 
     public function detailHibah()

@@ -50,8 +50,8 @@ Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name(
 Route::post('/addDataBank', [BankController::class, 'AddDataBank'])->name('addDataBank');
 Route::get('/bank', [BankController::class, 'index'])->name('bank');
 
-Route::post('/addDataProposal', [ProposalController::class, 'addProposal'])->name('addProposal');
-Route::get('/proposal', [ProposalController::class, 'index'])->name('proposal');
+// Route::post('/addDataProposal', [ProposalController::class, 'addProposal'])->name('addProposal');
+// Route::get('/proposal', [ProposalController::class, 'index'])->name('proposal');
 
 Route::get('/rab', [RabController::class, 'index'])->name('dataRab');
 Route::get('/rab-detail', [RabController::class, 'getRabDetail'])->name('rab-detail');
