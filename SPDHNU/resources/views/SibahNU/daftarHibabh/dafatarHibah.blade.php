@@ -230,7 +230,7 @@
                     <a class="btn btn-outline-success" href="{{ asset('storage/'.$item->file_proposal) }}">Lihat</a>
                   </td>
                   <td>
-                    <a class="btn btn-primary" href="{{route('bank')}}">
+                    <a class="btn btn-primary" href="{{route('bank',$item->id_proposal)}}">
                       Detail
                     </a>
                   </td>

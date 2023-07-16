@@ -64,50 +64,39 @@
         <!-- Default Card -->
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">informasi Data Hibah #150</h5>
+            <h5 class="card-title">informasi Data Hibah</h5>
             <table class="table">
               <thead>
-                {{-- <tr>
-                  <td scope="col">NO PJBR</td>
-                  <td>150</td>
-                </tr> --}}
+                <tr>
+                  <td scope="col">NO NHPD</td>
+                  <td>{{$proposal->no_NPHD}}</td>
+                </tr>
               </thead>
               <tbody>
                 <tr>
                   <td scope="col">Sumber Dana Hibah</td>
-                  <td>DPC PKB</td>
+                  <td>{{ $proposal->sumber_dana }}</td>
                 </tr>
                 <tr>
                   <td scope="col">Lembaga</td>
-                  <td>MWC Singaparna</td>
+                  <td>{{ $proposal->nama_lembaga}}</td>
                 </tr>
                 <tr>
                   <td scope="col">Alamat Lembaga</td>
-                  <td>Jl. Raya Singaparna</td>
+                  <td>{{ $proposal->alamat_lembaga }}</td>
                 </tr>
 
                 <tr>
                   <td scope="col">Peruntukan</td>
-                  <td>Pengelolaan Sarana dan Prasarana Spiritual</td>
+                  <td>{{ $proposal->peruntukan}}</td>
                 </tr>
                 <tr>
                   <td scope="col">Tahun</td>
-                  <td>2023</td>
+                  <td>{{ $proposal->tahun }}</td>
                 </tr>
-
                 <tr>
                   <td scope="col">Jumlah</td>
-                  <td>Rp. 5.000.000.-</td>
-                </tr>
-                <tr>
-                  {{-- <td scope="col">Status</td>
-                  <td>
-                    <button type="button" class="btn btn-light">
-                      <span class="badge text-primary">
-                        Menunggu Pengisian
-                      </span>
-                    </button>
-                  </td> --}}
+                  <td>Rp {{ number_format($proposal->nilai_pengajuan,0,',','.')}}</td>
                 </tr>
               </tbody>
             </table>

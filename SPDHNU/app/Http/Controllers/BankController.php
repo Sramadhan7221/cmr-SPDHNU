@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Proposal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -11,14 +12,17 @@ use App\Models\Lembaga;
 
 class BankController extends Controller
 {
-    public function index(){
+    public function index($id_proposal){
         if(!session()->get('id_lembaga')){
             Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
         }
+
+        $proposal = $this->headHibah($id_proposal);
         $DataBank = Lembaga::query()->where('id_lembaga',Session::get('id_lembaga'))->first();
         $data = [
             'dataBank' => $DataBank ?? new Lembaga,
-            'display_menu' => $this->display_menu
+            'display_menu' => $this->display_menu,
+            'proposal' => $proposal
         ];
         return view('SibahNU.daftarHibabh.bank',$data);
     }

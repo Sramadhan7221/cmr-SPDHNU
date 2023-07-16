@@ -48,7 +48,7 @@ Route::get('/deleteProposal/{id_proposal}', [DaftarHibahController::class, 'dele
 Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name('detailhibah')->middleware('isMWC');
 
 Route::post('/addDataBank', [BankController::class, 'AddDataBank'])->name('addDataBank');
-Route::get('/bank', [BankController::class, 'index'])->name('bank');
+Route::get('/bank/{id_proposal}', [BankController::class, 'index'])->name('bank');
 
 // Route::post('/addDataProposal', [ProposalController::class, 'addProposal'])->name('addProposal');
 // Route::get('/proposal', [ProposalController::class, 'index'])->name('proposal');

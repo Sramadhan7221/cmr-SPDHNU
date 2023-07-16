@@ -21,7 +21,7 @@ class DaftarHibahController extends Controller
             Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
         }
 
-        $proposal = Proposal::select(DB::raw('sumber_dana,nama_lembaga,alamat_lembaga,peruntukan,nilai_pengajuan,tahun'))
+        $proposal = Proposal::select(['id_proposal','sumber_dana','nama_lembaga','alamat_lembaga','peruntukan','nilai_pengajuan','tahun'])
             ->join('lembaga', 'proposal.lembaga', '=', 'lembaga.id_lembaga')
             ->where('lembaga', session('id_lembaga'))
             ->where('proposal.deleted_at',null)
