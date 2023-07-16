@@ -6,25 +6,25 @@
     <!-- Pills Tabs -->
     <ul class="nav nav-pills mb-3 mt-4 gap-3" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
-        <a href="/bank" x-on:click="isLoading = true" class="nav-link {{ $bank ? 'active' : '' }}">
+        <a href="{{ route('bank',$proposal->id_proposal) }}" x-on:click="isLoading = true" class="nav-link {{ $menu['bank'] ? 'active' : '' }}">
           <i class="ri-file-copy-2-line"></i>
           Pengkinian Data
         </a>
       </li>
-      <li class="nav-item" role="presentation">
-        <a href="/proposal" x-on:click="isLoading = true" class="btn nav-link {{ $proposal ? 'active' : '' }}">
+      <!-- <li class="nav-item" role="presentation">
+        <a href="{{ route('proposal',$proposal->id_proposal) }}" x-on:click="isLoading = true" class="btn nav-link {{ $menu['proposal'] ? 'active' : '' }}">
           <i class="ri-file-copy-2-line"></i>
           Proposal Awal
         </a>
-      </li>
+      </li> -->
       <li class="nav-item" role="presentation">
-        <a href="/rab" x-on:click="isLoading = true" class="btn nav-link {{ $rab ? 'active' : '' }}">
+        <a href="/rab" x-on:click="isLoading = true" class="btn nav-link {{ $menu['rab'] ? 'active' : '' }}">
           <i class="ri-file-copy-2-line"></i>
           RAB
         </a>
       </li>
       <li class="nav-item" role="presentation">
-        <a href="/history" x-on:click="isLoading = true" class="btn nav-link {{ $history ? 'active' : '' }}">
+        <a href="/history" x-on:click="isLoading = true" class="btn nav-link {{ $menu['history'] ? 'active' : '' }}">
           <i class="ri-file-copy-2-line"></i>
           History / Pelacakan
         </a>

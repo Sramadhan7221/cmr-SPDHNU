@@ -12,16 +12,16 @@ use App\Models\Proposal;
 
 class ProposalController extends Controller
 {
-    public function _construct(){
+    public function __construct(){
         $this->display_menu = [
-            'rab' => false,
+            'bank' => false,
             'proposal' => true,
-            'history' => false,
-            'bank' => false
+            'rab' => false,
+            'history' => false
         ];
     }
 
-    public function index() {
+    public function index($id_proposal) {
         if(!session()->get('id_lembaga')){
             Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
         }
@@ -30,7 +30,8 @@ class ProposalController extends Controller
         $data = [
             'dataBank' => $DataBank ?? new Lembaga,
             'dataProposal' => $dataProposal ?? new Proposal,
-            'display_menu' => $this->display_menu
+            'display_menu' => $this->display_menu,
+            'proposal' => $this->headHibah($id_proposal)
         ];
         return view('SibahNU.daftarHibabh.proposal',$data);
     }

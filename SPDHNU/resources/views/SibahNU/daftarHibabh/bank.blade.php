@@ -1,5 +1,5 @@
 @include('SibahNU.template.header_hibah');
-@include('SibahNU.template.navigator_hibah',$display_menu)
+@include('SibahNU.template.navigator_hibah',['menu'=>$display_menu, 'proposal'=>$proposal])
 
 <div class="tab-pane fade show active" id="pills-pengkinian-data" role="tabpanel" aria-labelledby="pengkinian-data-tab">
   <!-- Multi Columns Form -->
