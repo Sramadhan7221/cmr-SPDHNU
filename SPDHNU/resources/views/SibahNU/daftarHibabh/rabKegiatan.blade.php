@@ -12,6 +12,7 @@
         </label>
         <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan" required />
         <input type="hidden" class="form-control" id="id_kegiatan" name="id_kegiatan" />
+        <input type="hidden" class="form-control" id="id_proposal" name="id_proposal" value="{{$proposal->id_proposal}}" />
       </div>
     </div>
     <div class="row g-3 pt-4 mt-4 mb-4">
@@ -32,9 +33,9 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($list_sub as $key => $value)
+      @foreach($list_kegiatan as $key => $value)
       <tr>
-        <td>{{$key}}</td>
+        <td>{{$key+1}}</td>
         <td>{{$value->nama_kegiatan}}</td>
         <td>
           <div class="row">
@@ -47,6 +48,7 @@
           </div>
         </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
   <!-- End Multi Columns Form -->

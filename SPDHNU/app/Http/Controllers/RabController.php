@@ -19,7 +19,8 @@ class RabController extends Controller
             'bank' => false,
             'proposal' => false,
             'rab' => true,
-            'history' => false
+            'history' => false,
+            'kegiatan' => false
         ];
     }
 

@@ -30,14 +30,13 @@ class RabKegiatanController extends Controller
             'proposal' => $this->headHibah($id_proposal),
             'list_kegiatan' => $list_sub
         ];
-
         return view('SibahNU.daftarHibabh.rabKegiatan', $data);
     }
 
     function addRabKegiatan(Request $request)
     {
         $rules = [
-            'nama_kegiatan' => 'required|regex:/^[a-zA-Z0-9\/.]+$/'
+            'nama_kegiatan' => 'required|regex:/^[a-zA-Z0-9\/.\s]+$/'
         ];
         $message = [
             'nama_kegiatan.required' => 'Sub Kegiatan harus diisi',
