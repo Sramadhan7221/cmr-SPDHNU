@@ -114,9 +114,9 @@
             <div class="col-sm-12">
               <button type="button" class="edit col-sm-5 bg-yellow-400 p-1 rounded-md" data-syarat="{{$syarat->id_persyaratan}}"><x-heroicon-o-pencil-square /></button>
               <a href="{{route('deletePersyaratan',['id_persyaratan' => $syarat->id_persyaratan])}}">
-              <button type="button" class="delete col-sm-5 bg-red-600 p-1 rounded-md" data-syarat="{{route('deletePersyaratan',$syarat->id_persyaratan)}}"><x-heroicon-o-backspace /></button>
+                <button type="button" class="delete col-sm-5 bg-red-600 p-1 rounded-md" data-syarat="{{route('deletePersyaratan',$syarat->id_persyaratan)}}"><x-heroicon-o-backspace /></button>
               </a>
-          </div>
+            </div>
           </div>
         </td>
       </tr>
@@ -132,13 +132,8 @@
     getData(id);
   })
 
-  $(document).on('click', '.delete', function () {
-    let url = $(this).attr('data-syarat');
-
-  })
-
   $("#tambah").click(function() {
-    $("input").val("");
+    $("input[name='id_persyaratan']").val("");
   })
 
   function getData(id) {
@@ -149,15 +144,5 @@
       $("input[name='yang_mengeluarkan']").val(o.yang_mengeluarkan);
       $("#verticalycentered").modal('show');
     })
-  }
-
-  function deleteData(url) {
-    $.ajax({
-      method: 'DELETE',
-      url: url,
-      headers: {
-        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-      }
-    });
   }
 </script>
