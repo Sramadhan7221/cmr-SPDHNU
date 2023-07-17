@@ -22,6 +22,7 @@ class Controller extends BaseController
         'bank' => true,
         'proposal' => false,
         'rab' => false,
+        'kegiatan' => false,
         'history' => false
     ];
 

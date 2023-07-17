@@ -13,23 +13,20 @@ use App\Models\Lembaga;
 
 class RabController extends Controller
 {
-    public function _construct(){
+    public function __construct()
+    {
         $this->display_menu = [
+            'bank' => false,
+            'proposal' => false,
             'rab' => true,
-            'propsal' => false,
-            'history' => false,
-            'bank' => false
+            'history' => false
         ];
     }
 
-    function index() {
-        $proposal = Proposal::query()->where('lembaga', session()->get('id_lembaga'))->first();
-        $dataRab = Rab::query()->where('proposal',$proposal->id_proposal)->get();
-        $count = 1;
+    function index($id_proposal) {
         $data = [
-            'dataRab' => $dataRab ?? new Rab,
-            'no' => $count,
-            'display_menu' => $this->display_menu
+            'display_menu' => $this->display_menu,
+            'proposal' => $this->headHibah($id_proposal)
         ];
         return view('SibahNU.daftarHibabh.rab',$data);
     }

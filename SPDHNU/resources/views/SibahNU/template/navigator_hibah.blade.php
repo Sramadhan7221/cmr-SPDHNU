@@ -11,14 +11,9 @@
           Pengkinian Data
         </a>
       </li>
-      <!-- <li class="nav-item" role="presentation">
-        <a href="{{ route('proposal',$proposal->id_proposal) }}" x-on:click="isLoading = true" class="btn nav-link {{ $menu['proposal'] ? 'active' : '' }}">
-          <i class="ri-file-copy-2-line"></i>
-          Proposal Awal
-        </a>
-      </li> -->
+      
       <li class="nav-item" role="presentation">
-        <a href="/rab" x-on:click="isLoading = true" class="btn nav-link {{ $menu['rab'] ? 'active' : '' }}">
+        <a href="{{ route('dataRab',$proposal->id_proposal) }}" x-on:click="isLoading = true" class="btn nav-link {{ $menu['rab'] ? 'active' : ''  }}">
           <i class="ri-file-copy-2-line"></i>
           RAB
         </a>
