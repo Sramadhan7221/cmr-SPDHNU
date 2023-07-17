@@ -58,8 +58,9 @@ Route::get('/rab-detail', [RabController::class, 'getRabDetail'])->name('rab-det
 Route::post('/rab-add', [RabController::class, 'addRab'])->name('rab-add');
 Route::get('/rab-del/{id_rab}', [RabController::class, 'deletePersyaratan'])->name('rab-del');
 
+Route::get('/rab-kegiatan', [RabController::class, 'index'])->name('rabKegiatan');
 Route::post('/rab-kegiatan', [RabController::class, 'addRabKegiatan'])->name('addRabKegiatan');
-Route::get('/rab-kegiatan', [RabController::class, 'getRabKegiatan'])->name('getRabKegiatan');
+Route::get('/edit-kegiatan', [RabController::class, 'getRabKegiatan'])->name('getRabKegiatan');
 Route::get('/rab-kegiatan-del/{$id}', [RabController::class, 'deleteKegiatan'])->name('deleteKegiatan');
 
 Route::get('/generateFile', [GenerateFileController::class, 'index'])->name('generateFile')->middleware('isMWC');

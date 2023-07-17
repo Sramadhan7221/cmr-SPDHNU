@@ -11,7 +11,12 @@
           Pengkinian Data
         </a>
       </li>
-      
+      <li class="nav-item" role="presentation">
+        <a href="{{ route('rabKegiatan',$proposal->id_proposal) }}" x-on:click="isLoading = true" class="btn nav-link {{ $menu['kegiatan'] ? 'active' : ''  }}">
+          <i class="ri-file-copy-2-line"></i>
+          Sub Kegiatan
+        </a>
+      </li>
       <li class="nav-item" role="presentation">
         <a href="{{ route('dataRab',$proposal->id_proposal) }}" x-on:click="isLoading = true" class="btn nav-link {{ $menu['rab'] ? 'active' : ''  }}">
           <i class="ri-file-copy-2-line"></i>
