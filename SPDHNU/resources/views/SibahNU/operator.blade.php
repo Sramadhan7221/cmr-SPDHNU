@@ -11,7 +11,6 @@
     </div>
   </template>
   <!-- Multi Columns Form -->
-  <template x-if="!isLoading">
     <form method="POST" action="{{route('addoperator')}}">
       @csrf
       <div class="row g-3 mt-4">
@@ -60,7 +59,7 @@
         </div>
       </div>
     </form>
-  </template>
+
   <!-- End Multi Columns Form -->
 </div>
 @include('SibahNU.template.footer')

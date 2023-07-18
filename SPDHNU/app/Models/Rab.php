@@ -19,7 +19,7 @@ class Rab extends Model
     protected $keyType = 'string';
     protected $guarded = 'id_rab';
     protected $fillable = [
-        'proposal',
+        'rab_kegiatan',
         'uraian',
         'satuan',
         'qty',

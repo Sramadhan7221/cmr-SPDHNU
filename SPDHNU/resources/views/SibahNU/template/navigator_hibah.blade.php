@@ -17,12 +17,12 @@
           Sub Kegiatan
         </a>
       </li>
-      <li class="nav-item" role="presentation">
+      {{-- <li class="nav-item" role="presentation">
         <a href="{{ route('dataRab',$proposal->id_proposal) }}" x-on:click="isLoading = true" class="btn nav-link {{ $menu['rab'] ? 'active' : ''  }}">
           <i class="ri-file-copy-2-line"></i>
           RAB
         </a>
-      </li>
+      </li> --}}
       <li class="nav-item" role="presentation">
         <a href="/history" x-on:click="isLoading = true" class="btn nav-link {{ $menu['history'] ? 'active' : '' }}">
           <i class="ri-file-copy-2-line"></i>

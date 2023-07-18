@@ -1,30 +1,25 @@
 @include('SibahNU.template.header_hibah')
-@include('SibahNU.template.navigator_hibah',['menu'=>$display_menu, 'proposal'=>$proposal])
-<div class="tab-pane fade show active" id="pills-rab" role="tabpanel" aria-labelledby="rab-tab">
-  <!-- Multi Columns Form -->
-  <form id="form_kegiatan" method="POST" action="{{ route('addRabKegiatan')}}">
-    @csrf
-    <div class="row g-3">
-      <div class="col-md-3">
-        <label for="nama_kegiatan" class="form-label">
-          Sub Kegiatan
-          <sup class="text-danger">*</sup>
-        </label>
-        <input type="text" class="form-control" id="nama_kegiatan" name="nama_kegiatan" required />
-      </div>
-      <div class="text-end">
-        <button type="submit" class="btn btn-primary col-md-3">
-          <i class="ri-file-edit-line"></i>
-          Tambah Sub Kegiatan
-        </button>
+@include('SibahNU.template.navigator_hibah',['menu'=>$display_menu, 'proposal'=>$proposal, 'kegiatan'=>$kegiatan])
+
+<template x-if="isLoading">
+    <div class="fixed inset-0 z-[100] bg-white">
+      <div class="flex h-screen w-full items-center justify-center bg-gray-100">
+        <div class="custom-loader"></div>
       </div>
     </div>
-  </form>
+  </template>
+<div class="tab-pane fade show active" id="pills-rab" role="tabpanel" aria-labelledby="rab-tab">
   <div class="text-end">
-    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#verticalycentered">
       <i class="ri-file-edit-line"></i>
       Tambah RAB
     </button>
+  </div>
+  <div class="text-start">
+    <ul class="flex gap-2 mb-2">
+        <li>Nama Kegiatan :</li>
+        <li class="font-bold">{{$kegiatan->nama_kegiatan}}</li>
+    </ul>
   </div>
   <div class="modal fade" id="verticalycentered" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -36,7 +31,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="{{ route('rab-add') }}">
+          <form method="POST" action="{{ route('rab-add',['id_kegiatan' => $kegiatan->id]) }}">
             @csrf
             <div class="row g-3 mb-4">
               <div class="col-md-12">
@@ -73,10 +68,12 @@
                 <input type="text" class="form-control" name="harga" />
               </div>
             </div>
-            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
-              <i class="ri-file-edit-line"></i>
-              Simpan data
-            </button>
+            <div class="text-end">
+                <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
+                  <i class="ri-file-edit-line"></i>
+                  Simpan data
+                </button>
+            </div>
           </form>
         </div>
         <div class="modal-footer">
@@ -98,14 +95,14 @@
       </tr>
     </thead>
     <tbody>
-      {{-- @foreach ($dataRab as $rab)
+      @foreach ($dataRab as $key => $rab)
         <tr>
-            <td>{{$no++}}</td>
+            <td>{{$key+1}}</td>
       <td>{{$rab->uraian}}</td>
       <td>{{$rab->satuan}}</td>
       <td>{{$rab->qty}}</td>
-      <td>Rp.{{$rab->harga}}</td>
-      <td>Rp.{{$rab->total}}</td>
+      <td>Rp.{{ number_format($rab->harga,0,',','.') }}</td>
+      <td>Rp.{{ number_format($rab->total,0,',','.') }}</td>
       <td>
         <button type="button" class="btn btn-outline-primary">
           <i class="bi bi-pencil-square"></i>
@@ -117,7 +114,7 @@
         </a>
       </td>
       </tr>
-      @endforeach --}}
+      @endforeach
     </tbody>
   </table>
 

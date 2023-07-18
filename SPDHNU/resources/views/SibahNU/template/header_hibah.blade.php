@@ -26,7 +26,7 @@
   @vite('resources/css/app.css')
 </head>
 
-<body>
+<body x-data="{isLoading: false}">
   @include('sweetalert::alert')
   <main id="main" class="main">
     <template x-if="isLoading">

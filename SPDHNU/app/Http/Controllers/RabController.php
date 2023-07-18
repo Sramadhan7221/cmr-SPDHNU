@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rab;
-use App\Models\Proposal;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Session;
-use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Lembaga;
+use App\Models\Proposal;
+use App\Models\RabKegiatan;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class RabController extends Controller
 {
@@ -24,16 +25,22 @@ class RabController extends Controller
         ];
     }
 
-    function index($id_proposal) {
+    function index($id_kegiatan) {
+        $proposal = Proposal::query()->where('lembaga', session()->get('id_lembaga'))->first();
+        $dataRab = Rab::query()->where('rab_kegiatan', $id_kegiatan)->get();
+        $rab_kegiatan = RabKegiatan::query()->where('id',$id_kegiatan)->first();
         $data = [
             'display_menu' => $this->display_menu,
-            'proposal' => $this->headHibah($id_proposal)
+            'proposal' => $this->headHibah($proposal->id_proposal),
+            'dataRab' => $dataRab,
+            'kegiatan' => $rab_kegiatan
         ];
         return view('SibahNU.daftarHibabh.rab',$data);
     }
 
-    function addRab(Request $request) {
+    function addRab(Request $request,$id_kegiatan) {
         $proposal = Proposal::query()->where('lembaga', session()->get('id_lembaga'))->first();
+        $rab_kegiatan = RabKegiatan::query()->where('proposal', $proposal->id_proposal)->where('id',$id_kegiatan)->first();
         $rules = [
             'uraian'=> 'required|regex:/^[a-zA-Z\s.-]+$/',
             'satuan'=> 'required|regex:/^[a-zA-Z\s.-]+$/',
@@ -63,7 +70,7 @@ class RabController extends Controller
         }
         $total = (int)$data['qty'] * (int)$data['harga'];
         $data['total'] = $total;
-        $data['proposal'] = $proposal->id_proposal;
+        $data['rab_kegiatan'] = $rab_kegiatan->id;
         Rab::create($data);
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
@@ -88,6 +95,6 @@ class RabController extends Controller
         if ($deleted > 0)
             return redirect()->back()->withSuccess('Data Berhasil Diupdate');
         else
-           return redirect(route('persyaratan'))->withErrors('Data Gagal Diupdate');
+           return redirect()->back()->withErrors('Data Gagal Diupdate');
     }
 }

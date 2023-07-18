@@ -1,5 +1,13 @@
 @include('SibahNU.template.header_hibah')
 @include('SibahNU.template.navigator_hibah',['menu'=>$display_menu, 'proposal'=>$proposal])
+
+<template x-if="isLoading">
+    <div class="fixed inset-0 z-[100] bg-white">
+      <div class="flex h-screen w-full items-center justify-center bg-gray-100">
+        <div class="custom-loader"></div>
+      </div>
+    </div>
+  </template>
 <div class="tab-pane fade show active" id="pills-proposal-awal" role="tabpanel" aria-labelledby="proposal-awal-tab">
   <!-- Multi Columns Form -->
   <form method="POST" action="{{route('addProposal')}}" enctype="multipart/form-data">

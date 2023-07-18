@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Proposal;
 use App\Models\RabKegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -19,16 +20,21 @@ class RabKegiatanController extends Controller
         ];
     }
 
-    function index($id_proposal) 
+    function index($id_proposal)
     {
         $list_sub = RabKegiatan::where('proposal', $id_proposal)
             ->where('deleted_at',null)
             ->get();
 
+        $total_rab = Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')
+                                ->join('rab','rab_kegiatan','=','rab_kegiatan.id')
+                                ->get();
+        $total = $total_rab->sum('total');
         $data = [
             'display_menu' => $this->display_menu,
             'proposal' => $this->headHibah($id_proposal),
-            'list_kegiatan' => $list_sub
+            'list_kegiatan' => $list_sub,
+            'total_rab' => $total
         ];
         return view('SibahNU.daftarHibabh.rabKegiatan', $data);
     }
@@ -74,8 +80,8 @@ class RabKegiatanController extends Controller
         $deleted = RabKegiatan::where('id', $id)
             ->delete();
         if ($deleted > 0)
-            return redirect(route('persyaratan'))->withSuccess('Data Berhasil Diupdate');
+            return redirect()->back()->withSuccess('Data Berhasil Diupdate');
         else
-            return redirect(route('persyaratan'))->withErrors('Data Gagal Diupdate');
+            return redirect()->back()->withErrors('Data Gagal Diupdate');
     }
 }

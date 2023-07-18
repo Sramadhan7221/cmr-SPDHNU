@@ -2,6 +2,13 @@
 @include('SibahNU.template.navigator_hibah',['menu'=>$display_menu, 'proposal'=>$proposal])
 
 <div class="tab-pane fade show active" id="pills-pengkinian-data" role="tabpanel" aria-labelledby="pengkinian-data-tab">
+    <template x-if="isLoading">
+        <div class="fixed inset-0 z-[100] bg-white">
+          <div class="flex h-screen w-full items-center justify-center bg-gray-100">
+            <div class="custom-loader"></div>
+          </div>
+        </div>
+      </template>
   <!-- Multi Columns Form -->
   <form method="POST" action="{{route('addDataBank')}}" enctype="multipart/form-data">
     @csrf
@@ -51,7 +58,7 @@
           <sup class="text-danger">*</sup>
         </label>
         <input type="file" name="file_buku_tabungan" class="form-control" id="input-buku-tabungan" required accept="application/pdf" />
-        <span class="badge bg-primary">
+        <span class="badge bg-success">
           File harus berupa PDF
         </span>
         <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#display-file_tabungan">
@@ -63,7 +70,7 @@
 
     <div class="row g-3 pt-4 mt-4 mb-4">
       <div class="text-end">
-        <button type="submit" class="btn btn-primary col-md-3">
+        <button type="submit" class="btn btn-outline-success col-md-3">
           <i class="ri-file-edit-line"></i>
           Simpan Data Pengkinian
         </button>

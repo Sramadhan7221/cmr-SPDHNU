@@ -2,7 +2,7 @@
  <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('home')}}">
+        <a class="nav-link collapsed" x-on:click="isLoading = true" href="{{route('home')}}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -11,7 +11,7 @@
 
       <li class="nav-heading">Permohonan</li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('daftarHibah')}}">
+        <a class="nav-link collapsed" x-on:click="isLoading = true" href="{{route('daftarHibah')}}">
             <i class="fa-solid fa-paste"></i>
           <span>Daftar Hibah</span>
         </a>
@@ -19,7 +19,7 @@
       <!-- End Hibah Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('generateFile')}}">
+        <a class="nav-link collapsed" x-on:click="isLoading = true" href="{{route('generateFile')}}">
           <i class="bi bi-printer-fill"></i>
           <span>Cetak file</span>
         </a>

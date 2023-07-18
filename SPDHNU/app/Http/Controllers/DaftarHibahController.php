@@ -26,7 +26,7 @@ class DaftarHibahController extends Controller
             ->where('lembaga', session('id_lembaga'))
             ->where('proposal.deleted_at',null)
             ->get();
-        
+
         $data = [
             'proposals' => $proposal,
             'tahun' => $this->generateYears()
@@ -35,7 +35,7 @@ class DaftarHibahController extends Controller
         return view('SibahNU.daftarHibabh.dafatarHibah',$data);
     }
 
-    function addProposal(Request $request) 
+    function addProposal(Request $request)
     {
         $rules = [
             'no_NPHD' => 'required|regex:/^[a-zA-Z0-9\/.]+$/',
@@ -57,7 +57,7 @@ class DaftarHibahController extends Controller
             'nilai_pengajuan.regex' => 'Jumlah hanya menerima format angka',
             'file_proposal.required' => 'file Harus Diisi',
             'file_proposal.max' => 'File KTP Harus 2MB',
-            'tahun.required' => 'Mohon isi Tahun' 
+            'tahun.required' => 'Mohon isi Tahun'
         ];
 
         if($request->id_proposal) {
@@ -78,7 +78,7 @@ class DaftarHibahController extends Controller
             $file_proposal_path = Storage::putFileAs($file_proposal, $file_proposal_name);
             $data['file_proposal'] = $file_proposal_path;
         }
-    
+
         $id_lembaga = session('id_lembaga');
         $data['lembaga'] = $id_lembaga;
         Proposal::create($data);
@@ -93,7 +93,7 @@ class DaftarHibahController extends Controller
         return view(route('bank'));
     }
 
-    public function detailProposal(Request $request) 
+    public function detailProposal(Request $request)
     {
         $id_proposal = $request->get('id_proposal');
         $proposal = Proposal::where('id_proposal', $id_proposal)
@@ -119,11 +119,11 @@ class DaftarHibahController extends Controller
             $file_proposal_path = Storage::putFileAs($file_proposal, $file_proposal_name);
             $data['file_proposal'] = $file_proposal_path;
         }
-        
+
         Proposal::where('id_proposal',$request->id_proposal)
             ->update($data);
-        
-        return redirect()->route('/daftarhibah')->withSuccess('Data Berhasil Diupdate');
+
+        return redirect(route('daftarHibah'))->withSuccess('Data Berhasil Diupdate');
     }
 
     public function deleteProposal($id_proposal)
@@ -136,11 +136,11 @@ class DaftarHibahController extends Controller
         else
             return redirect(route('/daftarhibah'))->withErrors('Data Gagal Diupdate');
     }
-    
-    protected function generateYears() 
+
+    protected function generateYears()
     {
         $arrYears = [];
-        for ($i=5; $i > 0; $i--) { 
+        for ($i=5; $i > 0; $i--) {
             $item = (int)date('Y') - $i;
             array_push($arrYears, (string)$item);
         }

@@ -26,7 +26,7 @@
   @vite('resources/css/app.css')
 </head>
 
-<body>
+<body x-data="{isLoading: false}">
   <template x-if="isLoading">
     <div class="fixed inset-0 z-[100] bg-white">
       <div class="flex h-screen w-full items-center justify-center bg-gray-100">
@@ -84,7 +84,7 @@
               </div>
             </div>
             <div class="text-end">
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mohon-hibah">
+              <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#mohon-hibah">
                 <i class="ri-file-edit-line"></i>
                 Daftar Hibah
               </button>
@@ -161,7 +161,7 @@
                             <sup class="text-danger">*</sup>
                           </label>
                           <input type="file" name="file_proposal" class="form-control" id="file_proposal" required accept="application/pdf" />
-                          <span class="badge bg-primary">
+                          <span class="badge bg-success">
                             File harus berupa PDF
                           </span>
                           <button type="button" class="btn btn-outline-success" id="display_file">
@@ -172,7 +172,7 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                      <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
                         <i class="ri-file-edit-line"></i>
                         Simpan data
                       </button>
@@ -230,7 +230,7 @@
                     <a class="btn btn-outline-success" href="{{ asset('storage/'.$item->file_proposal) }}">Lihat</a>
                   </td>
                   <td>
-                    <a class="btn btn-primary" href="{{route('bank',$item->id_proposal)}}">
+                    <a class="btn btn-success" x-on:click="isLoading = true" href="{{route('bank',$item->id_proposal)}}">
                       Detail
                     </a>
                   </td>
