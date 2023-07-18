@@ -66,4 +66,8 @@ Route::get('/rab-kegiatan-del/{id}', [RabKegiatanController::class, 'deleteKegia
 
 Route::get('/generateFile', [GenerateFileController::class, 'index'])->name('generateFile')->middleware('isMWC');
 
+Route::prefix('report')->group(function () {
+  Route::get('/permohonan-pencairan', [GenerateFileController::class, 'suratPencairan'])->name('permohonan-pencairan');
+});
+
 
