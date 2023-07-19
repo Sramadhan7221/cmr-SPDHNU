@@ -73,9 +73,11 @@
                     <tr>
                       <td scope="col">Surat Permohonan Pencairan</td>
                       <td>
-                        <button type="button" class="btn btn-outline-primary">
-                          <i class="bi bi-download"></i>
-                        </button>
+                        <a href="{{route('permohonan-pencairan')}}">
+                            <button class="btn btn-outline-primary">
+                                <i class="bi bi-download"></i>
+                            </button>
+                        </a>
                         <button type="button" class="btn btn-outline-success">
                           <i class="bi bi-printer"></i>
                         </button>

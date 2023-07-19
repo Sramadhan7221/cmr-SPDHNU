@@ -76,7 +76,7 @@
     </div>
   </div>
   <div>
-    <img class="fill" src="{{ asset('aseets/report-footer.png') }}" alt="">
+    <img class="fill" src="{{ public_path('/aseets/report-footer.png') }}" alt="">
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>

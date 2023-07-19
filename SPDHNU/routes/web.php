@@ -65,9 +65,6 @@ Route::get('/edit-kegiatan', [RabKegiatanController::class, 'getRabKegiatan'])->
 Route::get('/rab-kegiatan-del/{id}', [RabKegiatanController::class, 'deleteKegiatan'])->name('deleteKegiatan');
 
 Route::get('/generateFile', [GenerateFileController::class, 'index'])->name('generateFile')->middleware('isMWC');
-
-Route::prefix('report')->group(function () {
-  Route::get('/permohonan-pencairan', [GenerateFileController::class, 'suratPencairan'])->name('permohonan-pencairan');
-});
+Route::get('/permohonan-pencairan', [GenerateFileController::class, 'suratPencairan'])->name('permohonan-pencairan');
 
 

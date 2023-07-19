@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    {{-- <meta charset="UTF-8"> --}}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css')
+    <link rel="stylesheet" href="{{ public_path('css/app.css') }}" type="text/css" media="all">
     <title>Document</title>
 </head>
 <body>
@@ -16,8 +17,8 @@
         </header>
         <section class="mt-6">
             <p>Yang bertanda tangan dibawah ini : </p>
-            <ul class="w-[360px]">
-                <div class="flex justify-between">
+            <ul class="">
+                <div class="text-cyan-600">
                     <li>Nama Ketua MWCNU</li>
                     <li> : Otomatis Terisi</li>
                 </div>
@@ -74,9 +75,9 @@
             <p class="mt-4">
                 Demikian pernyataan ini dibuat dengan penuh kesadaran dan rasa tanggung jawab serta tidak ada unsur paksaan dari pihak manapun.
                 </p>
-            <div class="flex justify-end mt-8 relative">
-                <img src="{{asset('aseets/Picture1.jpg')}}" alt="" class="mt-12">
-                <div class="text-center absolute mr-4">
+            <div class="flex justify-end mt-8 relative" style="position: relative;">
+                <img src="{{public_path('/aseets/Picture1.jpg')}}" alt="" class="mt-12">
+                <div class="text-center absolute mr-4" style="position: absolute;">
                     <p>Tasikmalaya, 17 Juli 2023</p>
                     <p>MAJELIS WAKIL CABANg NAHDLATUL ULAMA</p>
                     <P>(Otomatos)</P>

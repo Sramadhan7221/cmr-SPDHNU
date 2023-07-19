@@ -7,12 +7,13 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class GenerateFileController extends Controller
 {
     public function index(){
-        return view('SibahNU.pdf.surat_keabsahan');
+        return view('SibahNU.generatefile');
     }
 
-    function suratPencairan() 
+    function suratPencairan()
     {
-        $pdf = PDF::loadView('SibahNU.report.suratPermohonanPencairan')->setPaper('a4', 'potrait');;
+        $pdf = Pdf::loadView('SibahNU.pdf.fakta_integritas');
+        set_time_limit(3600);
         return $pdf->download('report.pdf');
         // return view('SibahNU.report.suratPermohonanPencairan');
     }
