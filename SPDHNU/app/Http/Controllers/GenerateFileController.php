@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class GenerateFileController extends Controller
 {
@@ -12,6 +12,8 @@ class GenerateFileController extends Controller
 
     function suratPencairan() 
     {
-        return view('SibahNU.report.suratPermohonanPencairan');
+        $pdf = PDF::loadView('SibahNU.report.suratPermohonanPencairan')->setPaper('a4', 'potrait');;
+        return $pdf->download('report.pdf');
+        // return view('SibahNU.report.suratPermohonanPencairan');
     }
 }
