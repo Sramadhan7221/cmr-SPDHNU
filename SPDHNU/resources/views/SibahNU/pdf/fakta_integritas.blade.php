@@ -20,35 +20,35 @@
             <ul class="">
                 <div class="text-cyan-600">
                     <li>Nama Ketua MWCNU</li>
-                    <li> : Otomatis Terisi</li>
+                    <li> : {{$pengurus->nama_pengurus}}</li>
+                </div>
+                <div class="flex justify-between">
+                    <li>Jabatan </li>
+                    <li> : {{$pengurus->jabatan}}</li>
                 </div>
                 <div class="flex justify-between">
                     <li>Nomor KTP </li>
-                    <li> : Otomatis Terisi</li>
+                    <li> : {{$pengurus->no_ktp}}</li>
                 </div>
                 <div class="flex justify-between">
                     <li>Alamat Sesuai KTP </li>
-                    <li> : Otomatis Terisi</li>
+                    <li> : {{$pengurus->alamat_ktp}}</li>
                 </div>
                 <div class="flex justify-between">
                     <li>Bertindak Untuk dan Atas Nama </li>
-                    <li> : Otomatis Terisi</li>
+                    <li> : {{$user->nama_mwc}}</li>
                 </div>
                 <div class="flex justify-between">
-                    <li>Jabatan </li>
-                    <li> : Otomatis Terisi</li>
-                </div>
-                <div class="flex justify-between">
-                    <li>Jabatan </li>
-                    <li> : Otomatis Terisi</li>
+                    <li>Alamat Lembaga </li>
+                    <li> : {{$lembaga->alamat_lembaga}}</li>
                 </div>
                 <div class="flex justify-between">
                     <li>Telepon/HP </li>
-                    <li> : Otomatis Terisi</li>
+                    <li> : {{$lembaga->no_telp}}</li>
                 </div>
                 <div class="flex justify-between">
                     <li>Email </li>
-                    <li> : Otomatis Terisi</li>
+                    <li> : {{$lembaga->email_lembaga}}</li>
                 </div>
             </ul>
         </section>
@@ -78,11 +78,11 @@
             <div class="flex justify-end mt-8 relative" style="position: relative;">
                 <img src="{{public_path('/aseets/Picture1.jpg')}}" alt="" class="mt-12">
                 <div class="text-center absolute mr-4" style="position: absolute;">
-                    <p>Tasikmalaya, 17 Juli 2023</p>
+                    <p>Tasikmalaya, {{$date}}</p>
                     <p>MAJELIS WAKIL CABANg NAHDLATUL ULAMA</p>
-                    <P>(Otomatos)</P>
+                    <P>Kecamatan {{$kecamatan->nama}}</P>
                     <p>Ketua</p>
-                    <p class="mt-16">(Nama Ketua)</p>
+                    <p class="mt-16">{{($pengurus->nama_pengurus)}}</p>
                 </div>
             </div>
         </section>

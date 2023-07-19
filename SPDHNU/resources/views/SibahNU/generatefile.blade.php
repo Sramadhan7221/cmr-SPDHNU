@@ -99,9 +99,11 @@
                     <tr>
                       <td scope="col">Fakta Integritas</td>
                       <td>
-                        <button type="button" class="btn btn-outline-primary">
-                          <i class="bi bi-download"></i>
-                        </button>
+                        <a href="{{route('fakta_integritas')}}">
+                            <button type="button" class="btn btn-outline-primary">
+                            <i class="bi bi-download"></i>
+                            </button>
+                        </a>
                         <button type="button" class="btn btn-outline-success">
                           <i class="bi bi-printer"></i>
                         </button>
