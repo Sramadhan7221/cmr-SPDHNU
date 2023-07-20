@@ -82,7 +82,7 @@ class DaftarHibahController extends Controller
         $id_lembaga = session('id_lembaga');
         $data['lembaga'] = $id_lembaga;
         Proposal::create($data);
-        return redirect()->route('daftarhibah')->withSuccess('Data Berhasil Disimpan');
+        return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 
     public function detailHibah()

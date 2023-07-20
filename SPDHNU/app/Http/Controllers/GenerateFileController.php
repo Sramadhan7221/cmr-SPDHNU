@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Wilayah;
 use App\Models\Proposal;
+use App\Models\RabKegiatan;
 use App\Models\UserLembaga;
 use App\Models\RegisterUser;
 use App\Models\PengurusLembaga;
@@ -62,7 +63,14 @@ class GenerateFileController extends Controller
     }
 
     function naskahPerjanjian(){
-        $pdf = Pdf::loadView('SibahNU.pdf.naskah_perjanjian_hibah');
+        // $proposal = Proposal::query()->where('lembaga',Session::get('id_lembaga'))->first();
+        $kegiatan = RabKegiatan::query()->get();
+        // $total = $total_rab->sum('total');
+        $data = [
+            'kegiatan' => $kegiatan,
+            // 'total' => $total
+        ];
+        $pdf = Pdf::loadView('SibahNU.pdf.naskah_perjanjian_hibah', $data);
         set_time_limit(3600);
         return $pdf->stream('naskah_perjanjian_hibah'.Carbon::now()->format('d-m-y').'.pdf');
     }
@@ -99,5 +107,11 @@ class GenerateFileController extends Controller
         $pdf = Pdf::loadView('SibahNU.pdf.surat_keabsahan',$data);
         set_time_limit(3600);
         return $pdf->stream('surat_keabsahan_document'.Carbon::now()->format('d-m-y').'.pdf');
+    }
+
+    function rincianRAB(){
+        $pdf = Pdf::loadView('SibahNU.pdf.rincian_rab');
+        set_time_limit(3600);
+        return $pdf->stream('rincian_rab'.Carbon::now()->format('d-m-y').'.pdf');
     }
 }

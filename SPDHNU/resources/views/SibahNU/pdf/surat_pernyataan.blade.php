@@ -16,6 +16,7 @@
         }
 
         header img{
+            margin-top: 0;
             margin-bottom: 18px;
         }
 

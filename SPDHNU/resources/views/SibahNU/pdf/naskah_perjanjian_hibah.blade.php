@@ -17,7 +17,7 @@
 
         header p{
             font-family: 'Times New Roman', Times, serif;
-            font-size: 10pt;
+            font-size: 11pt;
             text-align: center;
         }
 
@@ -27,7 +27,7 @@
 
         .nomor_surat p{
             font-family: 'Times New Roman', Times, serif;
-            font-size: 10pt;
+            font-size: 11pt;
             text-align: center;
         }
 
@@ -47,7 +47,7 @@
 
         .content p{
             font-family: 'Times New Roman', Times, serif;
-            font-size: 10pt;
+            font-size: 11pt;
         }
 
         .content .pihak1 :nth-child(2){
@@ -87,7 +87,7 @@
         }
         .content2 p{
             font-family: 'Times New Roman', Times, serif;
-            font-size: 10pt;
+            font-size: 11pt;
         }
 
         .content2 .pasal1{
@@ -102,8 +102,50 @@
 
         .content2 .rab table thead tr th{
             border: 1px solid black;
-            font-size: 10pt;
+            font-size: 11pt;
             padding: 5px 30px 5px 30px;
+        }
+        .content2 .rab table tbody tr td{
+            border: 1px solid black;
+            font-size: 11pt;
+            padding: 5px 30px 5px 30px;
+        }
+
+        .content2 .pasal2{
+            text-align: center;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .content2 .list p{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11pt;
+            margin-left: 20px;
+        }
+
+        .content2 .ham p{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11pt;
+            margin-left: 20px;
+        }
+
+        /* footer */
+        .footer{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11pt;
+            margin-left: 20px;
+        }
+        .footer .ttd1{
+            position: relative;
+            left: -220px;
+            text-align: center;
+        }
+
+        .footer .ttd2{
+            position: relative;
+            left: 100px;
+            top: -125px;
+            text-align: center;
         }
     </style>
     <header>
@@ -163,7 +205,100 @@
                         <th>JUMLAH (Rp)</th>
                     </tr>
                 </thead>
+                <tbody>
+                    @foreach ($kegiatan as $key =>  $value)
+                    <tr>
+                        <td>{{$key+1}}</td>
+                        <td>{{$value->nama_kegiatan}}</td>
+                        <td>{{$value->uraian}}</td>
+                        <td>{{$value->satuan}}</td>
+                        <td>{{$value->harga}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
             </table>
+        </div>
+            <p>(4).	Penggunaan belanja hibah sebagaimana dimaksud pada ayat (3) bertujuan untuk Pembangunan Ruang Kelas Baru Keagamaan</p>
+            <div class="pasal2">
+                <p>Pasal 2</p>
+                <p>PENCAIRAN BELANJA HIBAH</p>
+            </div>
+            <div>
+                <p>(1).	Pencairan belanja hibah berupa uang sebagaimana dimaksud dalam Pasal 1 ayat (1) dilakukan sesuai ketentuan peraturan perundang-undangan.</p>
+                <p>(2).	PIHAK KEDUA mengajukan permohonan kepada PIHAK KESATU, dengan melampirkan:</p>
+                <div class="list">
+                    <p style="margin-left: 20px">a.	Surat Permohonan Pencairan Bantuan Hibah, dilengkapi rencana penggunaan Bantuan Hibah;</p>
+                    <p>b.	Naskah Perjanjian Belanja Hibah;</p>
+                    <p>c.	Fotokopi Kartu Tanda Penduduk Elektronik atas nama AHMAD BUSROL KARIM (KETUA);</p>
+                    <p>d.	Fotokopi Rekening Bank yang masih aktif atas nama PONPES AL HAMIDIYAH SARIWANGI (0007526237100);</p>
+                    <p>e.	Surat keterangan domisili dari desa setempat; dan</p>
+                    <p>f.	Pakta integritas/Surat Pernyataan Tanggung Jawab.</p>
+                </div>
+                <p>(3).	Belanja hibah sebagaimana dimaksud dalam Pasal 1 ayat (1) dibayarkan melalui pemindah bukuan
+                    dari Rekening Kas Umum PCNU Kab. Tasikmalaya ke Rekening Bank BJBS (CABANG SINGAPARNA)
+                    Atas nama PONPES AL HAMIDIYAH SARIWANGI selaku PIHAK KEDUA dengan nomor Rekening 0007526237100, sebagaimana ketentuan yang berlaku.</p>
+                <p>(4).	PIHAK KEDUA dilarang mengalihkan sebagian atau seluruh bantuan hibah sebagaimana dimaksud pada ayat (2) kepada pihak lain dengan dalih apapun juga, kecuali diatur lain sebagaimana tercantum dalam NPH ini.</p>
+                <p>(5).	Setelah menerima pencairan bantuan hibah dari PIHAK KESATU, selanjutnya PIHAK KEDUA segera melaksanakan kegiatan dengan berpedoman pada rencana penggunaan hibah/proposal sesuai ketentuan peraturan perundang- undangan.</p>
+            </div>
+        <div class="pasal2">
+            <p>Pasal 3</p>
+            <p>HAK DAN KEWAJIBAN PIHAK KESATU</p>
+        </div>
+        <p>(1).	PIHAK KESATU mempunyai hak:</p>
+        <div class="ham">
+            <p>a.	menunda pencairan belanja hibah, dalam hal PIHAK KEDUA tidak/belum memenuhi persyaratan yang ditetapkan;</p>
+            <p>b.	menerima Laporan Pertanggungjawaban Penggunaan Belanja Hibah dari PIHAK KEDUA.</p>
+            <p>c.	menerima sisa dana hibah, dalam hal sampai akhir kegiatan masih terdapat sisa dana hibah.</p>
+        </div>
+        <p>(2). PIHAK KESATU mempunyai kewajiban:</p>
+        <div class="ham">
+            <p>a.	mencairkan belanja hibah, dalam hal seluruh persyaratan dan kelengkapan berkas pengajuan
+            pencairan dana telah dipenuhi oleh PIHAK KEDUA; dan</p>
+            <p>b.	melaksanakan evaluasi dan monitoring terhadap penggunaan belanja hibah.</p>
+        </div>
+        <div class="pasal2">
+            <p>Pasal 4</p>
+            <p>HAK DAN KEWAJIBAN PIHAK KEDUA</p>
+        </div>
+        <p>(1).	PIHAK KEDUA mempunyai hak menerima belanja hibah, dalam hal seluruh persyaratan dan kelengkapan berkas pengajuan pencairan dana telah dipenuhi oleh PIHAK KEDUA.</p>
+        <p>(2).	PIHAK KEDUA mempunyai kewajiban:</p>
+        <div class="ham">
+            <p>a.	menandatangani Pakta Integritas/Surat Pernyataan Tanggungjawab Permohonan Belanja Hibah;</p>
+            <p>b.	membuat dan menyampaikan Laporan Pertanggungjawaban Penggunaan Belanja Hibah PIHAK KESATU kepada PCNU Kab. Tasikmalaya, 1 (satu) bulan setelah kegiatan selesai atau paling lambat tanggal 27 (dua puluh tujuh) bulan Agustus tahun 2023.</p>
+            <p>c.	mematuhi proses pengadaan barang dan jasa sesuai ketentuan peraturan perundang- undangan, dalam hal dana hibah digunakan untuk pengadaan barang dan jasa; dan</p>
+            <p>d.	mengembalikan sisa dana hibah, ke Kas Umum PCNU Kab. Tasikmalaya dengan nomor rekening 516 012 2700045 dan menyerahkan bukti setorannya kepada PCNU Kab. Tasikmalaya, dalam hal sampai akhir kegiatan masih terdapat sisa dana hibah.</p>
+        </div>
+        <div class="pasal2">
+            <p>Pasal 5</p>
+            <p>SANKSI</p>
+        </div>
+        <p>Dalam hal PIHAK KEDUA melanggar ketentuan Pasal 1 ayat (3) dan Pasal 2 ayat (4), dikenakan sanksi administratif berupa peringatan tertulis, penundaan/penghentian pencairan/penyaluran belanja hibah atau sanksi lain sesuai ketentuan peraturan perundang-undangan.</p>
+        <div class="pasal2">
+            <p>Pasal 6</p>
+            <p>LARANGAN</p>
+        </div>
+        <P>Belanja hibah sebagaimana dimaksud dalam Pasal 1 dilarang untuk dilakukan pemotongan oleh pihak manapun, dalam jumlah berapapun, untuk tujuan apapun. Dalam hal terjadi pemotongan, maka pelakunya harus dilaporkan kepada yang berwajib dan diproses sesuai ketentuan peraturan perundang- undangan.</P>
+        <div class="pasal2">
+            <p>Pasal 7</p>
+            <p>BEA MATERAI, PAJAK-PAJAK DAN BIAYA LAIN-LAIN</p>
+        </div>
+        <p>Biaya materai, pajak-pajak serta biaya lainnya yang timbul sehubungan dengan pelaksanaan Perjanjian Hibah Daerah ini, menjadi beban dan tanggungjawab PIHAK KEDUA, sesuai ketentuan peraturan perundang-undangan.</p>
+        <div class="pasal2">
+            <p>Pasal 8</p>
+            <p>PENUTUP</p>
+        </div>
+        <P>Hal-hal yang belum dan/atau belum cukup diatur dalam Perjanjian Hibah ini akan diatur kemudian oleh PARA PIHAK berdasarkan kesepakatan bersama yang dituangkan dalam Perjanjian Tambahan (addendum), yang merupakan bagian tidak terpisahkan dari Perjanjian Hibah Daerah ini.   </P>
+        <p style="margin-top: 18px;">Demikian Perjanjian Hibah ini dibuat dan ditandatangani oleh PARA PIHAK di Tasikmalaya pada hari, tanggal, bulan dan tahun tersebut di atas dalam rangkap 2 (dua) bermaterai cukup, masing- masing mempunyai kekuatan hukum yang sama.
+            </p>
+    </section>
+    <section  class="footer">
+        <div class="ttd1">
+            <p>PIHAK KEDUA,</p>
+            <p style="margin-top: 80px;">otomatis</p>
+        </div>
+        <div class="ttd2">
+            <p>PIHAK KESATU,</p>
+            <p style="margin-top: 80px;">Drs. KH. ATAM RUSTAM, M.SI</p>
         </div>
     </section>
 </body>

@@ -28,6 +28,7 @@ class RabKegiatanController extends Controller
 
         $total_rab = Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')
                                 ->join('rab','rab_kegiatan','=','rab_kegiatan.id')
+                                ->where('proposal',$id_proposal)
                                 ->get();
         $total = $total_rab->sum('total');
         $data = [
