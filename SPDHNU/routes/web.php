@@ -68,5 +68,8 @@ Route::prefix('report')->group(function () {
   Route::get('/index', [GenerateFileController::class, 'index'])->name('generateFile')->middleware('isMWC');
   Route::get('/permohonan-pencairan', [GenerateFileController::class, 'suratPencairan'])->name('permohonan-pencairan');
   Route::get('/fakta_integritas', [GenerateFileController::class, 'faktaIntegritas'])->name('fakta_integritas');
+  Route::get('/naskah_perjanjian', [GenerateFileController::class, 'naskahPerjanjian'])->name('naskah_perjanjian');
+  Route::get('/surat_pernyataan', [GenerateFileController::class, 'suratPernyataan'])->name('surat_pernyataan');
+  Route::get('/surat_keabsahan', [GenerateFileController::class, 'suratKeabsahan'])->name('surat_keabsahan');
 });
 

@@ -112,9 +112,11 @@
                     <tr>
                       <td scope="col">Surat Pernyataan</td>
                       <td>
-                        <button type="button" class="btn btn-outline-primary">
-                          <i class="bi bi-download"></i>
-                        </button>
+                        <a href="{{route('surat_pernyataan')}}">
+                            <button type="button" class="btn btn-outline-primary">
+                              <i class="bi bi-download"></i>
+                            </button>
+                        </a>
                         <button type="button" class="btn btn-outline-success">
                           <i class="bi bi-printer"></i>
                         </button>
@@ -124,9 +126,11 @@
                     <tr>
                       <td scope="col">Surat Pernyataan Keabsahan Dokumen</td>
                       <td>
-                        <button type="button" class="btn btn-outline-primary">
-                          <i class="bi bi-download"></i>
-                        </button>
+                        <a href="{{route('surat_keabsahan')}}">
+                            <button type="button" class="btn btn-outline-primary">
+                              <i class="bi bi-download"></i>
+                            </button>
+                        </a>
                         <button type="button" class="btn btn-outline-success">
                           <i class="bi bi-printer"></i>
                         </button>
@@ -135,9 +139,11 @@
                     <tr>
                       <td scope="col">Naskan Perjanjian Hibah Daerah</td>
                       <td>
-                        <button type="button" class="btn btn-outline-primary">
-                          <i class="bi bi-download"></i>
-                        </button>
+                        <a href="{{route('naskah_perjanjian')}}">
+                            <button type="button" class="btn btn-outline-primary">
+                              <i class="bi bi-download"></i>
+                            </button>
+                        </a>
                         <button type="button" class="btn btn-outline-success">
                           <i class="bi bi-printer"></i>
                         </button>

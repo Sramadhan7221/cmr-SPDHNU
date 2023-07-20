@@ -31,10 +31,9 @@ class GenerateFileController extends Controller
             'date' => Carbon::parse($lembaga->created_at)->format('d-m-y'),
             'pengurus' => $this->isPimpinanExist()
         ];
-        // return view('SibahNU.pdf.surat_permohonan_pencarian', $data);
-        $pdf = Pdf::loadView('SibahNU.pdf.surat_permohonan_pencarian',$data)->setPaper();
+        $pdf = Pdf::loadView('SibahNU.pdf.surat_permohonan_pencarian',$data);
         set_time_limit(3600);
-        return $pdf->download('surat_permohonan_pencairan'.Carbon::parse($lembaga->created_at)->format('d-m-y').'.pdf');
+        return $pdf->stream('surat_permohonan_pencairan'.Carbon::parse($lembaga->created_at)->format('d-m-y').'.pdf');
     }
 
     protected function isPimpinanExist () {
@@ -59,6 +58,46 @@ class GenerateFileController extends Controller
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.fakta_integritas',$data);
         set_time_limit(3600);
-        return $pdf->download('fakta_integritas'.Carbon::now()->format('d-m-y').'.pdf');
+        return $pdf->stream('fakta_integritas'.Carbon::now()->format('d-m-y').'.pdf');
+    }
+
+    function naskahPerjanjian(){
+        $pdf = Pdf::loadView('SibahNU.pdf.naskah_perjanjian_hibah');
+        set_time_limit(3600);
+        return $pdf->stream('naskah_perjanjian_hibah'.Carbon::now()->format('d-m-y').'.pdf');
+    }
+
+    function suratPernyataan(){
+        $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
+        $lembaga = UserLembaga::join('lembaga', 'user_lembaga.id_lembaga', '=', 'lembaga.id_lembaga')
+            ->where('user_nik', $user->nik)
+            ->first(['alamat_lembaga', 'no_telp', 'email_lembaga','desa', 'kop_surat', 'domisili']);
+        $data = [
+            'user' => $user,
+            'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
+            'lembaga' => $lembaga,
+            'date' => Carbon::now()->format('d-m-y'),
+            'pengurus' => $this->isPimpinanExist()
+        ];
+        $pdf = Pdf::loadView('SibahNU.pdf.surat_pernyataan',$data);
+        set_time_limit(3600);
+        return $pdf->stream('surat_pernyataan'.Carbon::now()->format('d-m-y').'.pdf');
+    }
+
+    function suratKeabsahan(){
+        $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
+        $lembaga = UserLembaga::join('lembaga', 'user_lembaga.id_lembaga', '=', 'lembaga.id_lembaga')
+            ->where('user_nik', $user->nik)
+            ->first(['alamat_lembaga', 'no_telp', 'email_lembaga','desa', 'kop_surat', 'domisili']);
+        $data = [
+            'user' => $user,
+            'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
+            'lembaga' => $lembaga,
+            'date' => Carbon::now()->format('d-m-y'),
+            'pengurus' => $this->isPimpinanExist()
+        ];
+        $pdf = Pdf::loadView('SibahNU.pdf.surat_keabsahan',$data);
+        set_time_limit(3600);
+        return $pdf->stream('surat_keabsahan_document'.Carbon::now()->format('d-m-y').'.pdf');
     }
 }

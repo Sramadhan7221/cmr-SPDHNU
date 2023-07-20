@@ -12,14 +12,18 @@
             margin: 0px;
             padding: 0px;
         }
-        p {
+        p,li {
             font-family: 'Times New Roman', Times, serif;
-            font-size: 11px;
+            font-size: 12pt;
+        }
+        header img{
+            margin-bottom: 18px;
+            object-fit: cover;
         }
         .kanan {
             position: relative;
-            top: -68px;
-            right: -500px;
+            top: -120px;
+            right: -480px;
         }
         .mg-l {
             margin-left: 8rem;
@@ -42,12 +46,12 @@
     </style>
 </head>
 <body>
-    <img src="{{public_path('storage/'.$lembaga->kop_surat)}}" alt="">
     <header>
+        <img src="{{public_path('storage/'.$lembaga->kop_surat)}}" alt="">
         <div class="">
-            <div class="w-[400px]">
+            <div style="width: 380px">
                 <p>Nomor<span class="ml-9"> : </span>{{$proposal->no_NPHD}}</p>
-                <p>Lampiran   <span class="ml-5"> : </span> 1 (Satu) Berkas</p>
+                <p>Lampiran   <span class="ml-4"> : </span> 1 (Satu) Berkas</p>
                 <p>Perihal    <span class="ml-9">: </span> Permohonan Pencairan</p>
                 <p class="ml-24">Bantuan Hibah Nahdlatul Ulama Tahun Anggaran 2023</p>
             </div>
@@ -57,7 +61,8 @@
                 <p>Tasikmalaya<span>,</span>{{$date}}</p>
                 <p>Kepada</p>
                 <p>Yth. Ketua PCNU Kab. Tasikmalaya</p>
-                <p class=" flex flex-col mt-8">di<span>Tasikmalaya</span></p>
+                <p>di</p>
+                <p>Tasikmalaya</p>
             </div>
         </div>
     </header>
@@ -85,6 +90,6 @@
             <p class="mt-16">{{($pengurus->nama_pengurus)}}</p>
         </div>
     </div>
-    <img src="{{public_path('aseets/Picture1.jpg')}}" style="border: 1px solid black;" alt="">
+    <img src="{{public_path('aseets/Picture1.jpg')}}" style="object-fit: contain;" alt="">
 </body>
 </html>
