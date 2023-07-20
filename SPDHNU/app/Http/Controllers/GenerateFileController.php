@@ -31,7 +31,8 @@ class GenerateFileController extends Controller
             'date' => Carbon::parse($lembaga->created_at)->format('d-m-y'),
             'pengurus' => $this->isPimpinanExist()
         ];
-        $pdf = Pdf::loadView('SibahNU.pdf.surat_permohonan_pencarian',$data);
+        // return view('SibahNU.pdf.surat_permohonan_pencarian', $data);
+        $pdf = Pdf::loadView('SibahNU.pdf.surat_permohonan_pencarian',$data)->setPaper();
         set_time_limit(3600);
         return $pdf->download('surat_permohonan_pencairan'.Carbon::parse($lembaga->created_at)->format('d-m-y').'.pdf');
     }

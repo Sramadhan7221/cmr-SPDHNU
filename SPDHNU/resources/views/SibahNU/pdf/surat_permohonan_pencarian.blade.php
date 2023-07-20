@@ -7,10 +7,43 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ public_path('css/app.css') }}" type="text/css" media="all">
     <title>Document</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+        p {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11px;
+        }
+        .kanan {
+            position: relative;
+            top: -68px;
+            right: -500px;
+        }
+        .mg-l {
+            margin-left: 8rem;
+        }
+        .mg {
+            margin-right: 7rem;
+            margin-left: 8rem;
+        }
+        img {
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+        .footer {
+            text-align: center;
+            position: relative;
+            right: -10rem;
+            bottom: -7rem;
+        }
+    </style>
 </head>
-<body class="w-[700px] mx-auto">
+<body>
+    <img src="{{public_path('storage/'.$lembaga->kop_surat)}}" alt="">
     <header>
-        <img src="{{public_path('storage/'.$lembaga->kop_surat)}}" alt="">
         <div class="">
             <div class="w-[400px]">
                 <p>Nomor<span class="ml-9"> : </span>{{$proposal->no_NPHD}}</p>
@@ -18,7 +51,9 @@
                 <p>Perihal    <span class="ml-9">: </span> Permohonan Pencairan</p>
                 <p class="ml-24">Bantuan Hibah Nahdlatul Ulama Tahun Anggaran 2023</p>
             </div>
-            <div class="">
+        </div>
+        <div class="kanan">
+            <div>
                 <p>Tasikmalaya<span>,</span>{{$date}}</p>
                 <p>Kepada</p>
                 <p>Yth. Ketua PCNU Kab. Tasikmalaya</p>
@@ -26,7 +61,7 @@
             </div>
         </div>
     </header>
-    <section>
+    <section class="">
         <div class="w-full px-4 mt-12">
             <p class="w-full"><span class="ml-20">Berdasarkan Peraturan Pengurus Cabang Nahdlatul Ulama Kab. Tasikmalaya</span> Nomor 121/PC-A.II/D.22/XII/2022 tahun 2022 tentang Bantuan Hibah PCNU Kab. Tasikmalaya Tahun Anggaran 2023,
                 bahwa Majelis Wakil Cabang Nahdlatul Ulama kami tercatat sebagai satu diantara calon penerima Bantuan Hibah bersumber dari Anggaran PCNU Kab. Tasikmalya dengan nilai Rp. {{number_format($proposal->nilai_pengajuan,0,',','.')}}</p>
@@ -41,15 +76,15 @@
             </ul>
             <p class="ml-8 mt-4">Demikain surat ini dibuat, atas pelayanannya diucapkan terima kasih.</p>
         </div>
-        <div class="flex mt-10 justify-end relative">
-            <img src="{{public_path('aseets/Picture1.jpg')}}" alt="">
-            <div class="text-center absolute">
-                <p>MAJELIS WAKI CABANG NAHDLATUL ULAMA</p>
-                <p>{{$kecamatan->nama}}</p>
-                <p>Ketua</p>
-                <p class="mt-16">{{($pengurus->nama_pengurus)}}</p>
-            </div>
-        </div>
     </section>
+    <div class="footer">
+        <div class="">
+            <p>MAJELIS WAKI CABANG NAHDLATUL ULAMA</p>
+            <p>{{$kecamatan->nama}}</p>
+            <p>Ketua</p>
+            <p class="mt-16">{{($pengurus->nama_pengurus)}}</p>
+        </div>
+    </div>
+    <img src="{{public_path('aseets/Picture1.jpg')}}" style="border: 1px solid black;" alt="">
 </body>
 </html>
