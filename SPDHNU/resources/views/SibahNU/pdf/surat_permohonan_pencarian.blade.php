@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ public_path('css/app.css') }}" type="text/css" media="all">
@@ -12,27 +13,43 @@
             margin: 0px;
             padding: 0px;
         }
+
         p {
             font-family: 'Times New Roman', Times, serif;
             font-size: 11px;
         }
+
+        ol {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11px;
+        }
+
+        li {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 11px;
+        }
+
         .kanan {
             position: relative;
             top: -68px;
             right: -500px;
         }
+
         .mg-l {
             margin-left: 8rem;
         }
+
         .mg {
             margin-right: 7rem;
             margin-left: 8rem;
         }
+
         img {
             width: 100%;
             margin: 0px;
             padding: 0px;
         }
+
         .footer {
             text-align: center;
             position: relative;
@@ -41,14 +58,15 @@
         }
     </style>
 </head>
+
 <body>
     <img src="{{public_path('storage/'.$lembaga->kop_surat)}}" alt="">
     <header>
         <div class="">
             <div class="w-[400px]">
                 <p>Nomor<span class="ml-9"> : </span>{{$proposal->no_NPHD}}</p>
-                <p>Lampiran   <span class="ml-5"> : </span> 1 (Satu) Berkas</p>
-                <p>Perihal    <span class="ml-9">: </span> Permohonan Pencairan</p>
+                <p>Lampiran <span class="ml-5"> : </span> 1 (Satu) Berkas</p>
+                <p>Perihal <span class="ml-9">: </span> Permohonan Pencairan</p>
                 <p class="ml-24">Bantuan Hibah Nahdlatul Ulama Tahun Anggaran 2023</p>
             </div>
         </div>
@@ -67,19 +85,19 @@
                 bahwa Majelis Wakil Cabang Nahdlatul Ulama kami tercatat sebagai satu diantara calon penerima Bantuan Hibah bersumber dari Anggaran PCNU Kab. Tasikmalya dengan nilai Rp. {{number_format($proposal->nilai_pengajuan,0,',','.')}}</p>
             <p class="mt-4"><span class="ml-20">Sehubungan dengan hal tersebut, dengan ini Kami sampaikan permohonan</span> pencairan bantuan hibah sebesar Rp. {{number_format($proposal->nilai_pengajuan,0,',','.')}}, yang akan di gunakan untuk {{$proposal->peruntukan}} sebagaimana naskah perjanjian hibah Nahdlatul Ulama (NPHNU), dengan kelengkapan terlampir, sebagai berikut</p>
             <ul>
-                <li>1.	Rincian rencana penggunaan belanja hibah;</li>
-                <li>2.	Fotocopy Kartu Tanda Penduduk Elektronik atas nama Ketua;</li>
-                <li>3.	Fotocopy rekening bank yang masih aktif;</li>
-                <li>4.	Dokumen asli dan terbaru, Surat keterangan domisili dari desa;</li>
-                <li>5.	Fakta integritas/Surat Pertanggungjawaban bermaterai;</li>
-                <li>6.	Surat Pernyataan.</li>
+                <li>1. Rincian rencana penggunaan belanja hibah;</li>
+                <li>2. Fotocopy Kartu Tanda Penduduk Elektronik atas nama Ketua;</li>
+                <li>3. Fotocopy rekening bank yang masih aktif;</li>
+                <li>4. Dokumen asli dan terbaru, Surat keterangan domisili dari desa;</li>
+                <li>5. Fakta integritas/Surat Pertanggungjawaban bermaterai;</li>
+                <li>6. Surat Pernyataan.</li>
             </ul>
             <p class="ml-8 mt-4">Demikain surat ini dibuat, atas pelayanannya diucapkan terima kasih.</p>
         </div>
     </section>
     <div class="footer">
         <div class="">
-            <p>MAJELIS WAKI CABANG NAHDLATUL ULAMA</p>
+            <p>MAJELIS WAKIL CABANG NAHDLATUL ULAMA</p>
             <p>{{$kecamatan->nama}}</p>
             <p>Ketua</p>
             <p class="mt-16">{{($pengurus->nama_pengurus)}}</p>
@@ -87,4 +105,5 @@
     </div>
     <img src="{{public_path('aseets/Picture1.jpg')}}" style="border: 1px solid black;" alt="">
 </body>
+
 </html>
