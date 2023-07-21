@@ -97,7 +97,7 @@
         }
 
         .content2 .rab{
-            margin-top: 18px;
+            margin-top: 70px;
         }
 
         .content2 .rab table thead tr th{
@@ -143,9 +143,14 @@
 
         .footer .ttd2{
             position: relative;
-            left: 100px;
+            left: 160px;
             top: -125px;
             text-align: center;
+        }
+
+        .page-break{
+            page-break-after: always;
+            margin-bottom: 100px
         }
     </style>
     <header>
@@ -189,7 +194,7 @@
             <p>Pasal 1</p>
             <p>JUMLAH DAN TUJUAN HIBAH</p>
         </div>
-        <div>
+        <div class="page-break">
             <p>(1).	PIHAK KESATU pada Tahun Anggaran 2023 memberikan belanja hibah kepada PIHAK KEDUA, berupa uang sebesar Rp. 1.000.000,- (seratus juta Rupiah).</p>
             <p>(2).	PIHAK KEDUA menyatakan menerima belanja hibah dari PIHAK KESATU berupa uang sebesar Rp. 1.000.000,- (seratus juta Rupiah).</p>
             <p>(3).	Besaran bantuan hibah sebagaimana dimaksud pada ayat (1) sesuai dengan rencana penggunaan belanja hibah/proposal yang diajukan PIHAK KEDUA, yang merupakan bagian tidak terpisahkan dari Naskah Perjanjian Belanja Hibah (NPH) ini, meliputi:</p>
@@ -245,12 +250,12 @@
             <p>HAK DAN KEWAJIBAN PIHAK KESATU</p>
         </div>
         <p>(1).	PIHAK KESATU mempunyai hak:</p>
-        <div class="ham">
+        <div class="ham" class="page-break">
             <p>a.	menunda pencairan belanja hibah, dalam hal PIHAK KEDUA tidak/belum memenuhi persyaratan yang ditetapkan;</p>
             <p>b.	menerima Laporan Pertanggungjawaban Penggunaan Belanja Hibah dari PIHAK KEDUA.</p>
             <p>c.	menerima sisa dana hibah, dalam hal sampai akhir kegiatan masih terdapat sisa dana hibah.</p>
         </div>
-        <p>(2). PIHAK KESATU mempunyai kewajiban:</p>
+        <p style="margin-top: 70px">(2). PIHAK KESATU mempunyai kewajiban:</p>
         <div class="ham">
             <p>a.	mencairkan belanja hibah, dalam hal seluruh persyaratan dan kelengkapan berkas pengajuan
             pencairan dana telah dipenuhi oleh PIHAK KEDUA; dan</p>
@@ -282,8 +287,8 @@
             <p>Pasal 7</p>
             <p>BEA MATERAI, PAJAK-PAJAK DAN BIAYA LAIN-LAIN</p>
         </div>
-        <p>Biaya materai, pajak-pajak serta biaya lainnya yang timbul sehubungan dengan pelaksanaan Perjanjian Hibah Daerah ini, menjadi beban dan tanggungjawab PIHAK KEDUA, sesuai ketentuan peraturan perundang-undangan.</p>
-        <div class="pasal2">
+        <p class="page-break">Biaya materai, pajak-pajak serta biaya lainnya yang timbul sehubungan dengan pelaksanaan Perjanjian Hibah Daerah ini, menjadi beban dan tanggungjawab PIHAK KEDUA, sesuai ketentuan peraturan perundang-undangan.</p>
+        <div class="pasal2" style="margin-top: 70px;">
             <p>Pasal 8</p>
             <p>PENUTUP</p>
         </div>

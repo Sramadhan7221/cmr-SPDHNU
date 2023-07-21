@@ -15,27 +15,22 @@
         }
         p,li {
             font-family: 'Times New Roman', Times, serif;
-            font-size: 12pt;
+            font-size: 11pt;
         }
         header img{
             margin-bottom: 18px;
             object-fit: cover;
         }
 
-        ol {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 11px;
-        }
-
-        li {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 11px;
-        }
-
         .kanan {
             position: relative;
-            top: -120px;
+            top: -115px;
             right: -480px;
+        }
+
+        .content{
+            position: relative;
+            top: -80px;
         }
 
         .mg-l {
@@ -58,6 +53,20 @@
             position: relative;
             right: -10rem;
             bottom: -7rem;
+        }
+
+        .footer .ttd{
+            position: absolute;
+            top: -80px;
+            left: 150px;
+            z-index: 10;
+        }
+
+        .footer img{
+            position: absolute;
+            z-index: -1;
+            top: -80px;
+            left: -170px;
         }
     </style>
 </head>
@@ -83,8 +92,8 @@
             </div>
         </div>
     </header>
-    <section class="">
-        <div class="w-full px-4 mt-12">
+    <section class="content">
+        <div class="">
             <p class="w-full"><span class="ml-20">Berdasarkan Peraturan Pengurus Cabang Nahdlatul Ulama Kab. Tasikmalaya</span> Nomor 121/PC-A.II/D.22/XII/2022 tahun 2022 tentang Bantuan Hibah PCNU Kab. Tasikmalaya Tahun Anggaran 2023,
                 bahwa Majelis Wakil Cabang Nahdlatul Ulama kami tercatat sebagai satu diantara calon penerima Bantuan Hibah bersumber dari Anggaran PCNU Kab. Tasikmalya dengan nilai Rp. {{number_format($proposal->nilai_pengajuan,0,',','.')}}</p>
             <p class="mt-4"><span class="ml-20">Sehubungan dengan hal tersebut, dengan ini Kami sampaikan permohonan</span> pencairan bantuan hibah sebesar Rp. {{number_format($proposal->nilai_pengajuan,0,',','.')}}, yang akan di gunakan untuk {{$proposal->peruntukan}} sebagaimana naskah perjanjian hibah Nahdlatul Ulama (NPHNU), dengan kelengkapan terlampir, sebagai berikut</p>
@@ -100,14 +109,14 @@
         </div>
     </section>
     <div class="footer">
-        <div class="">
+        <div class="ttd">
             <p>MAJELIS WAKIL CABANG NAHDLATUL ULAMA</p>
             <p>{{$kecamatan->nama}}</p>
             <p>Ketua</p>
             <p class="mt-16">{{($pengurus->nama_pengurus)}}</p>
         </div>
+        <img src="{{public_path('aseets/Picture1.jpg')}}" style="object-fit: contain;" alt="">
     </div>
-    <img src="{{public_path('aseets/Picture1.jpg')}}" style="object-fit: contain;" alt="">
 </body>
 
 </html>

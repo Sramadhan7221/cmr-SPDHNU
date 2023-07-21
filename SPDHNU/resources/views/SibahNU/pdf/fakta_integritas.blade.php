@@ -16,23 +16,23 @@
 
         p {
             font-family: 'Times New Roman', Times, serif;
-            font-size: 11px;
+            font-size: 11pt;
         }
 
         ul {
             font-family: 'Times New Roman', Times, serif;
-            font-size: 11px;
+            font-size: 11pt;
         }
 
         li {
             font-family: 'Times New Roman', Times, serif;
-            font-size: 11px;
+            font-size: 11pt;
         }
 
         .kanan {
             position: relative;
-            top: -130px;
-            right: -160px;
+            top: -175px;
+            right: -220px;
         }
 
         img {
@@ -47,11 +47,22 @@
             right: -10rem;
             /* bottom: -7rem; */
         }
+
+        .footer .ttd{
+            position: absolute;
+            top: -80px;
+            left: 150px;
+            z-index: 10;
+        }
+
+        .footer img{
+            position: absolute;
+            z-index: -1;
+            top: -80px;
+            left: -170px;
+        }
     </style>
 </head>
-
-<body>
-
     <body>
         <img src="{{public_path('storage/'.$lembaga->kop_surat)}}" alt="">
         <header>
@@ -84,7 +95,7 @@
                 </div>
             </ul>
         </section>
-        <section class="mt-4 px-4 w-full" style="position: relative; top: -8rem;">
+        <section class="mt-4 px-4 w-full" style="position: relative; top: -10rem;">
             <p>Dengan ini, menyatakan dengan sebenarnya bahwa untuk memenuhi tujuan transparansi dan akuntabilitas penggunaan belanja hibah :</p>
             <ul class="mt-4">
                 <li>1. Akan menggunakan belanja hibah sesuai dengan Naskah Perjanjian Hibah Nahdlatul Ulama (NPHNU) yang telah disepakati.</li>
@@ -97,15 +108,13 @@
             </p>
         </section>
         <div class="footer">
-            <div class="">
+            <div class="ttd">
                 <p>MAJELIS WAKIL CABANG NAHDLATUL ULAMA</p>
-                <p>{{$kecamatan->nama}}</p>
+                <p>Kecamatan {{$kecamatan->nama}}</p>
                 <p>Ketua</p>
                 <p class="mt-16">{{($pengurus->nama_pengurus)}}</p>
             </div>
+            <img src="{{public_path('/aseets/Picture1.jpg')}}" alt="">
         </div>
-        <img src="{{public_path('/aseets/Picture1.jpg')}}" alt="">
     </body>
-</body>
-
 </html>

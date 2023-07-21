@@ -27,7 +27,7 @@
 
         .biodata p,ul,li{
             font-family: 'Times New Roman', Times, serif;
-            font-size: 12pt;
+            font-size: 11pt;
         }
 
         .content{
@@ -36,7 +36,7 @@
 
         .content p{
             font-family: 'Times New Roman', Times, serif;
-            font-size: 12pt;
+            font-size: 11pt;
         }
 
         .footer{
@@ -47,19 +47,24 @@
             position: absolute;
             text-align: center;
             left: 20rem;
-            top: -15px;
+            top: 25px;
             z-index: 20px;
         }
         .content img {
             position: absolute;
             right: 20px;
+            top: 100px;
             object-fit: cover;
             z-index: -1;
+        }
+
+        .page-break{
+            page-break-after: always;
         }
     </style>
     <header>
         <div class="title">
-            <img src="{{public_path('storage/'.$lembaga->kop_surat)}}" alt="" style="width: 100%">
+            <img src="{{public_path('storage/'.$lembaga->kop_surat)}}" alt="">
             <p>SURAT PERNYATAAN TANGGUNG JAWAB</p>
             <P>PENERIMA HIBAH</P>
         </div>
@@ -68,18 +73,18 @@
         <p>Yang bertanda tangan dibawah ini : </p>
         <ul class="bodata_lengkap">
             <li>Nama Ketua MWCNU <span class="ml-24">: {{$pengurus->nama_pengurus}}</span></li>
-            <li>Jabatan <span style="margin-left: 195px">: {{$pengurus->jabatan}}</span></li>
-            <li>Nomor KTP <span style="margin-left: 164px">: {{$pengurus->no_ktp}}</span></li>
-            <li>Alamat Sesuai KTP <span style="margin-left: 116px">: {{$pengurus->alamat_ktp}}</span></li>
-            <li>Bertindak Untuk dan Atas Nama <span style="margin-left: 34px">: {{$user->nama_mwc}}</span></li>
-            <li>Alamat Lembaga <span style="margin-left: 133px">: {{$lembaga->alamat_lembaga}}</span></li>
-            <li>Telepon/HP <span style="margin-left: 167px">: {{$lembaga->no_telp}}</span></li>
-            <li>Email <span style="margin-left: 206px;">: {{$lembaga->email_lembaga}}</span></li>
+            <li>Jabatan <span style="margin-left: 187px">: {{$pengurus->jabatan}}</span></li>
+            <li>Nomor KTP <span style="margin-left: 158px">: {{$pengurus->no_ktp}}</span></li>
+            <li>Alamat Sesuai KTP <span style="margin-left: 114px">: {{$pengurus->alamat_ktp}}</span></li>
+            <li>Bertindak Untuk dan Atas Nama <span style="margin-left: 38px">: {{$user->nama_mwc}}</span></li>
+            <li>Alamat Lembaga <span style="margin-left: 129px">: {{$lembaga->alamat_lembaga}}</span></li>
+            <li>Telepon/HP <span style="margin-left: 160px">: {{$lembaga->no_telp}}</span></li>
+            <li>Email <span style="margin-left: 195px;">: {{$lembaga->email_lembaga}}</span></li>
         </ul>
     </section>
     <section class="content">
         <p>Dengan ini menyatakan dengan sebenarnya bahwa : </p>
-        <ul class="mt-4">
+        <ul class="page-break">
             <li>1. Tidak ada pungutan dan atau memberikan sesuatu (uang, barang dll) dari dan ke pihak PCNU Kab. Tasikmalaya selama proses permohonan bantuan,
                 penetapan, pencairan dan realisasi penggunaan dana hibah, bila terjadi pungutan maka akan melaporkannya kepada pihak berwajib.</li>
             <li>2. Semua dokumen yang dibuat dan disampaikan sebagai kelengkapan permohonan pencairan adalah valid tidak ada satupun dokumen

@@ -27,7 +27,7 @@
 
         .biodata p,ul,li{
             font-family: 'Times New Roman', Times, serif;
-            font-size: 12pt;
+            font-size: 11pt;
         }
 
         .content{
@@ -36,7 +36,7 @@
 
         .content p{
             font-family: 'Times New Roman', Times, serif;
-            font-size: 12pt;
+            font-size: 11pt;
         }
 
         .footer{
@@ -70,13 +70,13 @@
             <p>Yang bertanda tangan dibawah ini : </p>
             <ul class="bodata_lengkap">
                 <li>Nama Ketua MWCNU <span class="ml-24">: {{$pengurus->nama_pengurus}}</span></li>
-                <li>Jabatan <span style="margin-left: 195px">: {{$pengurus->jabatan}}</span></li>
-                <li>Nomor KTP <span style="margin-left: 164px">: {{$pengurus->no_ktp}}</span></li>
-                <li>Alamat Sesuai KTP <span style="margin-left: 116px">: {{$pengurus->alamat_ktp}}</span></li>
-                <li>Bertindak Untuk dan Atas Nama <span style="margin-left: 34px">: {{$user->nama_mwc}}</span></li>
-                <li>Alamat Lembaga <span style="margin-left: 133px">: {{$lembaga->alamat_lembaga}}</span></li>
-                <li>Telepon/HP <span style="margin-left: 167px">: {{$lembaga->no_telp}}</span></li>
-                <li>Email <span style="margin-left: 206px;">: {{$lembaga->email_lembaga}}</span></li>
+                <li>Jabatan <span style="margin-left: 187px">: {{$pengurus->jabatan}}</span></li>
+                <li>Nomor KTP <span style="margin-left: 158px">: {{$pengurus->no_ktp}}</span></li>
+                <li>Alamat Sesuai KTP <span style="margin-left: 114px">: {{$pengurus->alamat_ktp}}</span></li>
+                <li>Bertindak Untuk dan Atas Nama <span style="margin-left: 38px">: {{$user->nama_mwc}}</span></li>
+                <li>Alamat Lembaga <span style="margin-left: 129px">: {{$lembaga->alamat_lembaga}}</span></li>
+                <li>Telepon/HP <span style="margin-left: 160px">: {{$lembaga->no_telp}}</span></li>
+                <li>Email <span style="margin-left: 195px;">: {{$lembaga->email_lembaga}}</span></li>
             </ul>
         </section>
         <section class="content">
