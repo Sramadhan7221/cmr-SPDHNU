@@ -35,7 +35,8 @@ class RabKegiatanController extends Controller
             'display_menu' => $this->display_menu,
             'proposal' => $this->headHibah($id_proposal),
             'list_kegiatan' => $list_sub,
-            'total_rab' => $total
+            'total_rab' => $total,
+            'actived_menu' => 'Rincian RAB',
         ];
         return view('SibahNU.daftarHibabh.rabKegiatan', $data);
     }
@@ -57,7 +58,8 @@ class RabKegiatanController extends Controller
 
         $data = $validated->validate();
         if ($request->id_kegiatan) {
-            RabKegiatan::where('id_', $request->id_kegiatan)
+            unset($data['id_kegiatan']);
+            RabKegiatan::where('id', $request->id_kegiatan)
                 ->update($data);
             return redirect()->back()->withSuccess('Data Berhasil Diupdate');
         }

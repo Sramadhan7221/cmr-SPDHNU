@@ -109,7 +109,13 @@ class GenerateFileController extends Controller
         return $pdf->stream('surat_keabsahan_document'.Carbon::now()->format('d-m-y').'.pdf');
     }
 
-    function rincianRAB(){
+    function rincianRAB($proposal_id)
+    {
+        $data = RabKegiatan::join('rab', 'rab_kegiatan.id', '=', 'rab.rab_kegiatan')
+            ->groupBy('proposal')
+            ->having('proposal', $proposal_id)
+            ->get();
+        dd($data);
         $pdf = Pdf::loadView('SibahNU.pdf.rincian_rab');
         set_time_limit(3600);
         return $pdf->stream('rincian_rab'.Carbon::now()->format('d-m-y').'.pdf');

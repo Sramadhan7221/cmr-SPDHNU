@@ -21,6 +21,7 @@ class RabKegiatan extends Model
     protected $fillable = [
         'proposal',
         'nama_kegiatan',
+        'sub_total'
     ];
 
     protected static function boot()

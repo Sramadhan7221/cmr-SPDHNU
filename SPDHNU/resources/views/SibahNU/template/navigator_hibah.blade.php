@@ -1,8 +1,7 @@
 <!-- Card with header and footer -->
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title text-success">Kelengkapan Identitas MWCNU</h5>
-
+    {{-- <h5 class="card-title text-success">Kelengkapan Identitas MWCNU</h5> --}}
     <!-- Pills Tabs -->
     <ul class="nav nav-pills mb-3 mt-4 gap-3" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
@@ -23,12 +22,12 @@
           RAB
         </a>
       </li> --}}
-      <li class="nav-item" role="presentation">
+      {{-- <li class="nav-item" role="presentation">
         <a href="/history" x-on:click="isLoading = true" class="btn nav-link {{ $menu['history'] ? 'active' : '' }}">
           <i class="ri-file-copy-2-line"></i>
           History / Pelacakan
         </a>
-      </li>
+      </li> --}}
     </ul>
 
     <div class="card bg-success">

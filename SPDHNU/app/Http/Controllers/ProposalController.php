@@ -31,7 +31,8 @@ class ProposalController extends Controller
             'dataBank' => $DataBank ?? new Lembaga,
             'dataProposal' => $dataProposal ?? new Proposal,
             'display_menu' => $this->display_menu,
-            'proposal' => $this->headHibah($id_proposal)
+            'proposal' => $this->headHibah($id_proposal),
+            'actived_menu' => 'Pengajuan Proposal',
         ];
         return view('SibahNU.daftarHibabh.proposal',$data);
     }

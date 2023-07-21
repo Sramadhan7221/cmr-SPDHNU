@@ -1,14 +1,14 @@
-@include('SibahNU.template.header_hibah');
+@include('SibahNU.template.header_hibah',['actived_menu'=>$actived_menu])
 @include('SibahNU.template.navigator_hibah',['menu'=>$display_menu, 'proposal'=>$proposal])
 
 <div class="tab-pane fade show active" id="pills-pengkinian-data" role="tabpanel" aria-labelledby="pengkinian-data-tab">
-    <template x-if="isLoading">
-        <div class="fixed inset-0 z-[100] bg-white">
-          <div class="flex h-screen w-full items-center justify-center bg-gray-100">
-            <div class="custom-loader"></div>
-          </div>
-        </div>
-      </template>
+  <template x-if="isLoading">
+    <div class="fixed inset-0 z-[100] bg-white">
+      <div class="flex h-screen w-full items-center justify-center bg-gray-100">
+        <div class="custom-loader"></div>
+      </div>
+    </div>
+  </template>
   <!-- Multi Columns Form -->
   <form method="POST" action="{{route('addDataBank')}}" enctype="multipart/form-data">
     @csrf

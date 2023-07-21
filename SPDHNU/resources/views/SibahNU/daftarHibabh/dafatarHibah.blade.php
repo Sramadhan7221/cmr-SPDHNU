@@ -202,7 +202,7 @@
         <!-- Card with header and footer -->
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Kelengkapan Identitas MWCNU</h5>
+            <h5 class="card-title">Daftar Riwayat Hibah</h5>
 
             <table class="table">
               <thead>

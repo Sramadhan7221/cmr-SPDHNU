@@ -29,7 +29,8 @@ class DaftarHibahController extends Controller
 
         $data = [
             'proposals' => $proposal,
-            'tahun' => $this->generateYears()
+            'tahun' => $this->generateYears(),
+            'actived_menu' => '',
         ];
 
         return view('SibahNU.daftarHibabh.dafatarHibah',$data);
