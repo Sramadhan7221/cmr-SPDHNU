@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('satuan', 100);
             $table->integer('qty');
             $table->decimal('harga');
-            $table->decimal('total');
+            $table->decimal('total',10);
             $table->timestamps();
             $table->softDeletes();
 
