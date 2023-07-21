@@ -22,6 +22,7 @@ class BankController extends Controller
         $data = [
             'dataBank' => $DataBank ?? new Lembaga,
             'display_menu' => $this->display_menu,
+            'actived_menu' => 'Pengkinian Data',
             'proposal' => $proposal
         ];
         return view('SibahNU.daftarHibabh.bank',$data);

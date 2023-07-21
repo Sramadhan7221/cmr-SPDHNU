@@ -53,7 +53,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">Permohonan</li>
-          <li class="breadcrumb-item active">Detail Hibah</li>
+          <li class="breadcrumb-item active">{{ $actived_menu }}</li>
         </ol>
       </nav>
     </div>

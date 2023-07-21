@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('proposal')->nullable();
             $table->string('nama_kegiatan',500);
+            $table->decimal('sub_total',10)->nullable();
             $table->timestamps();
             $table->softDeletes();
 

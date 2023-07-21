@@ -1,13 +1,13 @@
-@include('SibahNU.template.header_hibah')
+@include('SibahNU.template.header_hibah',['actived_menu'=>$actived_menu])
 @include('SibahNU.template.navigator_hibah',['menu'=>$display_menu, 'proposal'=>$proposal, 'kegiatan'=>$kegiatan])
 
 <template x-if="isLoading">
-    <div class="fixed inset-0 z-[100] bg-white">
-      <div class="flex h-screen w-full items-center justify-center bg-gray-100">
-        <div class="custom-loader"></div>
-      </div>
+  <div class="fixed inset-0 z-[100] bg-white">
+    <div class="flex h-screen w-full items-center justify-center bg-gray-100">
+      <div class="custom-loader"></div>
     </div>
-  </template>
+  </div>
+</template>
 <div class="tab-pane fade show active" id="pills-rab" role="tabpanel" aria-labelledby="rab-tab">
   <div class="text-end">
     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#verticalycentered">
@@ -17,8 +17,8 @@
   </div>
   <div class="text-start">
     <ul class="flex gap-2 mb-2">
-        <li>Nama Kegiatan :</li>
-        <li class="font-bold">{{$kegiatan->nama_kegiatan}}</li>
+      <li>Nama Kegiatan :</li>
+      <li class="font-bold">{{$kegiatan->nama_kegiatan}}</li>
     </ul>
   </div>
   <div class="modal fade" id="verticalycentered" tabindex="-1">
@@ -69,10 +69,10 @@
               </div>
             </div>
             <div class="text-end">
-                <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
-                  <i class="ri-file-edit-line"></i>
-                  Simpan data
-                </button>
+              <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
+                <i class="ri-file-edit-line"></i>
+                Simpan data
+              </button>
             </div>
           </form>
         </div>
@@ -96,23 +96,23 @@
     </thead>
     <tbody>
       @foreach ($dataRab as $key => $rab)
-        <tr>
-            <td>{{$key+1}}</td>
-      <td>{{$rab->uraian}}</td>
-      <td>{{$rab->satuan}}</td>
-      <td>{{$rab->qty}}</td>
-      <td>Rp.{{ number_format($rab->harga,0,',','.') }}</td>
-      <td>Rp.{{ number_format($rab->total,0,',','.') }}</td>
-      <td>
-        <button type="button" class="btn btn-outline-primary">
-          <i class="bi bi-pencil-square"></i>
-        </button>
-        <a href="{{route('rab-del',['id_rab' => $rab->id_rab])}}">
-          <button type="button" class="btn btn-outline-danger">
-            <i class="bi bi-trash"></i>
+      <tr>
+        <td>{{$key+1}}</td>
+        <td>{{$rab->uraian}}</td>
+        <td>{{$rab->satuan}}</td>
+        <td>{{$rab->qty}}</td>
+        <td>Rp.{{ number_format($rab->harga,0,',','.') }}</td>
+        <td>Rp.{{ number_format($rab->total,0,',','.') }}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary">
+            <i class="bi bi-pencil-square"></i>
           </button>
-        </a>
-      </td>
+          <a href="{{route('rab-del',['id_rab' => $rab->id_rab])}}">
+            <button type="button" class="btn btn-outline-danger">
+              <i class="bi bi-trash"></i>
+            </button>
+          </a>
+        </td>
       </tr>
       @endforeach
     </tbody>

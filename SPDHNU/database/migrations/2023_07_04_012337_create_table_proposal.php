@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('sumber_dana', 500)->nullable();
             $table->string('no_NPHD', 150)->unique();
             $table->string('peruntukan', 150);
-            $table->string('file_proposal', 225);
+            $table->string('file_proposal', 225)->nullable();
             $table->decimal('nilai_pengajuan',12,2)->nullable();
             $table->decimal('total_rab',12,2)->nullable();
             $table->string('tahun', 4);

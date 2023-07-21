@@ -33,7 +33,8 @@ class RabController extends Controller
             'display_menu' => $this->display_menu,
             'proposal' => $this->headHibah($proposal->id_proposal),
             'dataRab' => $dataRab,
-            'kegiatan' => $rab_kegiatan
+            'kegiatan' => $rab_kegiatan,
+            'actived_menu' => 'Rincian RAB',
         ];
         return view('SibahNU.daftarHibabh.rab',$data);
     }
