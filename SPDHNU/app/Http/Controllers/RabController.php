@@ -69,10 +69,11 @@ class RabController extends Controller
                 ->update($data);
             return redirect()->back()->withSuccess('Data Berhasil Diupdate');
         }
-        $total = (int)$data['qty'] * (int)$data['harga'];
-        $data['total'] = $total;
+        $data['total'] = $data['qty'] * $data['harga'];
+        $sub_total = $rab_kegiatan['sub_total'] + $data['total'];
         $data['rab_kegiatan'] = $rab_kegiatan->id;
         Rab::create($data);
+        RabKegiatan::where('id',$id_kegiatan)->update(['sub_total' => $sub_total]);
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 

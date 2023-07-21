@@ -70,8 +70,8 @@
       <td>
         <div class="row">
           <div class="col-sm-12 d-flex justify-content-center">
-            <button type="button" class="edit col-sm-3 btn btn-outline-success p-1 rounded-md mr-1" data-item="{{$value->id}}"><x-heroicon-o-pencil-square /></button>
-            <a href="{{route('deleteKegiatan',$value->id)}}" class="delete col-sm-3 btn btn-outline-danger p-1 rounded-md ml-1">
+            <button type="button" class="edit col-sm-4 btn btn-outline-success p-1 rounded-md mr-1" data-item="{{$value->id}}"><x-heroicon-o-pencil-square /></button>
+            <a href="{{route('deleteKegiatan',$value->id)}}" class="delete col-sm-4 btn btn-outline-danger p-1 rounded-md ml-1">
               <x-heroicon-o-backspace />
             </a>
           </div>
