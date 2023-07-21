@@ -13,7 +13,7 @@
   <form method="POST" action="{{route('addDataBank')}}" enctype="multipart/form-data">
     @csrf
     <div class="row g-3">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <label for="input-bank" class="form-label">
           Bank
           <sup class="text-danger">*</sup>
@@ -28,30 +28,27 @@
           <option value="BANK BJB">BJB SYARIAH</option>
         </select>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <label for="input-rekening" class="form-label">
           No Rekening
           <sup class="text-danger">*</sup>
         </label>
         <input type="text" class="form-control" id="input-rekening" name="no_rek" value="{{$dataBank->no_rek}}" required />
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <label for="input-nama-rekening" class="form-label">
           Nama Lembaga di Rekening
           <sup class="text-danger">*</sup>
         </label>
         <input type="text" class="form-control" id="input-nama-rekening" name="nama_rekening" value="{{$dataBank->nama_rekening}}" required />
       </div>
-      <div class="col-md-3">
+      <div class="col-md-6">
         <label for="input-cabang-bank" class="form-label">
           Cabang Bank
           <sup class="text-danger">*</sup>
         </label>
         <input type="text" class="form-control" id="input-cabang-bank" name="cabang_bank" value="{{$dataBank->cabang_bank}}" required />
       </div>
-    </div>
-
-    <div class="row g-3 pt-4">
       <div class="col-md-6">
         <label for="input-buku-tabungan" class="form-label">
           File Buku Tabungan
@@ -66,6 +63,9 @@
           Lihat file
         </button>
       </div>
+    </div>
+
+    <div class="row g-3 pt-4">
     </div>
 
     <div class="row g-3 pt-4 mt-4 mb-4">

@@ -37,14 +37,14 @@
         </div>
 
         <div class="row g-3 pt-4">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="input-tlp" class="form-label">
                     No HP Ketua MWC
                     <sup class="text-danger">*</sup>
                 </label>
                 <input type="text" name="no_telp" class="form-control" value="{{ $pimpinan->no_telp ?? ''}}" id="input-tlp" required />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="input-ktp" class="form-label">
                     File KTP Ketua
                     <sup class="text-danger">*</sup>
