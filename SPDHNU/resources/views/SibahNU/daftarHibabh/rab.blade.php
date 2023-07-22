@@ -104,7 +104,7 @@
         <td>Rp.{{ number_format($rab->harga,0,',','.') }}</td>
         <td>Rp.{{ number_format($rab->total,0,',','.') }}</td>
         <td>
-          <button type="button" class="btn btn-outline-primary">
+          <button type="button" class="edit btn btn-outline-primary" data-item="{{$rab->id_rab}}">
             <i class="bi bi-pencil-square"></i>
           </button>
           <a href="{{route('rab-del',['id_rab' => $rab->id_rab])}}">
@@ -117,134 +117,24 @@
       @endforeach
     </tbody>
   </table>
-
-  <div class="modal fade" id="add-sub-kegiatan" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Tambah Sub Kegiatan</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row g-3">
-              <div class="col-md-12">
-                <label for="input-uraian" class="form-label d-flex justify-content-start">
-                  Uraian Kegiatan / Pengelompokan Pengeluaran
-                  <sup class="text-danger">*</sup>
-                </label>
-                <input type="text" class="form-control" id="input-uraian" required disabled placeholder="Peralatan" />
-              </div>
-            </div>
-            <div class="row g-3 mt-2">
-              <div class="col-md-12">
-                <label for="input-sub-uraian" class="form-label d-flex justify-content-start">
-                  Nama Uraian Kegiatan
-                  <sup class="text-danger">*</sup>
-                </label>
-                <input type="text" class="form-control" id="input-sub-uraian" required />
-              </div>
-            </div>
-
-            <div class="row g-3 mt-2">
-              <div class="col-md-8">
-                <label for="input-sub-uraian" class="form-label d-flex justify-content-start">
-                  Volume / Satuan
-                  <sup class="text-danger">*</sup>
-                </label>
-                <div class="d-flex justify-content-start" id="input-sub-uraian">
-                  <input type="text" class="form-control" required />
-                  <select class="form-select">
-                    <option selected>Unit</option>
-                    <option>...</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row g-3 mt-2">
-              <div class="col-md-8">
-                <label for="input-harga" class="form-label d-flex justify-content-start">
-                  Harga
-                  <sup class="text-danger">*</sup>
-                </label>
-                <input type="text" class="form-control" id="input-harga" required />
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
-            <i class="ri-file-edit-line"></i>
-            Simpan data
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="edit-sub-kegiatan" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Edit Sub Kegiatan</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row g-3">
-              <div class="col-md-12">
-                <label for="input-uraian" class="form-label d-flex justify-content-start">
-                  Uraian Kegiatan / Pengelompokan Pengeluaran
-                  <sup class="text-danger">*</sup>
-                </label>
-                <input type="text" class="form-control" id="input-uraian" required disabled placeholder="Peralatan" />
-              </div>
-            </div>
-            <div class="row g-3 mt-2">
-              <div class="col-md-12">
-                <label for="input-sub-uraian" class="form-label d-flex justify-content-start">
-                  Nama Uraian Kegiatan
-                  <sup class="text-danger">*</sup>
-                </label>
-                <input type="text" class="form-control" id="input-sub-uraian" required />
-              </div>
-            </div>
-
-            <div class="row g-3 mt-2">
-              <div class="col-md-8">
-                <label for="input-sub-uraian" class="form-label d-flex justify-content-start">
-                  Volume / Satuan
-                  <sup class="text-danger">*</sup>
-                </label>
-                <div class="d-flex justify-content-start" id="input-sub-uraian">
-                  <input type="text" class="form-control" required />
-                  <select class="form-select">
-                    <option selected>Unit</option>
-                    <option>...</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row g-3 mt-2">
-              <div class="col-md-8">
-                <label for="input-harga" class="form-label d-flex justify-content-start">
-                  Harga
-                  <sup class="text-danger">*</sup>
-                </label>
-                <input type="text" class="form-control" id="input-harga" required />
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
-            <i class="ri-file-edit-line"></i>
-            Simpan data
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 </div>
 </div>
 @include('SibahNU.template.footer')
+<script>
+  $(document).on('click', '.edit', function(o) {
+    let id = $(this).attr('data-item');
+    getData(id);
+  })
+
+  function getData(id) {
+    $.get("{{route('rab-detail')}}?id_rab=" + id, function(o) {
+      $("input[name='id_rab']").val(o.id_rab);
+      $("input[name='uraian']").val(o.uraian);
+      $("input[name='satuan']").val(o.satuan);
+      $("input[name='qty']").val(o.qty);
+      $("input[name='harga']").val(o.harga);
+      $("#verticalycentered").modal('show');
+    })
+  }
+</script>
