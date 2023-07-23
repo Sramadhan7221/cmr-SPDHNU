@@ -66,20 +66,29 @@
                     <th>NO</th>
                     <th>URAIAN</th>
                     <th>VOLUME/SATUAN</th>
-                    <th>JUMLAH</th>
                     <th>HARGA SATUAN</th>
                     <th>JUMLAH (Rp)</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Kesik</td>
-                    <td>Truk</td>
-                    <td>2</td>
-                    <td>Rp. 200.000</td>
-                    <td>Rp. 400.000</td>
-                </tr>
+                @foreach ($list_rab as $item => $value)
+                    <tr>
+                        <td>{{ $item+1 }}</td>
+                        <td>{{ $value['nama_kegiatan'] }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    @foreach ($value['rab'] as $key => $val)
+                        <tr>
+                            <td>{{ $item+1 }}.{{ $key+1 }}</td>
+                            <td>{{ $val->uraian }}</td>
+                            <td>{{ $val->qty }} {{ $val->satuan }}</td>
+                            <td>{{ number_format($val->harga ,0,',','.')}}</td>
+                            <td>{{ number_format($val->total ,0,',','.')}}</td>
+                        </tr>
+                    @endforeach
+                @endforeach
             </tbody>
         </table>
     </section>

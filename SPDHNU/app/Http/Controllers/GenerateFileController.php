@@ -130,8 +130,7 @@ class GenerateFileController extends Controller
             $rab['rab'] = Rab::where('rab_kegiatan', $value['id'])->get();
             return collect($rab);
         });
-        dd($list);
-        $pdf = Pdf::loadView('SibahNU.pdf.rincian_rab');
+        $pdf = Pdf::loadView('SibahNU.pdf.rincian_rab',['list_rab'=>$list]);
         set_time_limit(3600);
         return $pdf->stream('rincian_rab'.Carbon::now()->format('d-m-y').'.pdf');
     }
