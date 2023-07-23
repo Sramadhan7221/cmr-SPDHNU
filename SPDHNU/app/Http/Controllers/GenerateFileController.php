@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rab;
 use Carbon\Carbon;
 use App\Models\Wilayah;
 use App\Models\Proposal;
@@ -10,11 +11,20 @@ use App\Models\UserLembaga;
 use App\Models\RegisterUser;
 use App\Models\PengurusLembaga;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Arr;
 
 class GenerateFileController extends Controller
 {
-    public function index(){
-        return view('SibahNU.generatefile');
+    public function index()
+    {
+        $rab = Proposal::join('lembaga', 'proposal.lembaga', '=', 'lembaga.id_lembaga')
+            // ->join('rab_kegiatan', 'proposal.id_proposal', '=', 'rab_kegiatan.proposal')
+            ->where('id_lembaga', session()->get('id_lembaga'))
+            ->get(['nama_lembaga','no_NPHD','peruntukan','nilai_pengajuan','tahun','id_proposal']);
+        $data = [
+            'rab_list' => $rab
+        ];
+        return view('SibahNU.generatefile',$data);
     }
 
     function suratPencairan()
@@ -111,12 +121,16 @@ class GenerateFileController extends Controller
 
     function rincianRAB($proposal_id)
     {
-        $data = RabKegiatan::join('rab', 'rab_kegiatan.id', '=', 'rab.rab_kegiatan')
-            ->groupBy('proposal')
-            ->having('proposal', $proposal_id)
-            ->get();
-        dd($data);
-        $pdf = Pdf::loadView('SibahNU.pdf.rincian_rab');
+        // $data = RabKegiatan::join('rab', 'rab_kegiatan.id', '=', 'rab.rab_kegiatan')
+        // ->groupBy('proposal')
+        $data = RabKegiatan::where('proposal', $proposal_id)
+            ->get()->toArray();
+        $list = Arr::map($data, function (array $value) {
+            $rab = ['nama_kegiatan' => $value['nama_kegiatan']];
+            $rab['rab'] = Rab::where('rab_kegiatan', $value['id'])->get();
+            return collect($rab);
+        });
+        $pdf = Pdf::loadView('SibahNU.pdf.rincian_rab',['list_rab'=>$list]);
         set_time_limit(3600);
         return $pdf->stream('rincian_rab'.Carbon::now()->format('d-m-y').'.pdf');
     }
