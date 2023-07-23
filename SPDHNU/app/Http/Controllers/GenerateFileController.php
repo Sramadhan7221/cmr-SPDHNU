@@ -121,16 +121,21 @@ class GenerateFileController extends Controller
 
     function rincianRAB($proposal_id)
     {
-        // $data = RabKegiatan::join('rab', 'rab_kegiatan.id', '=', 'rab.rab_kegiatan')
-        // ->groupBy('proposal')
-        $data = RabKegiatan::where('proposal', $proposal_id)
+        $total_rab = Proposal::where('lembaga',session()->get('id_lembaga'))->first(['total_rab']);
+        $data = RabKegiatan::join('proposal','proposal','=','proposal.id_proposal')
+            ->where('proposal',$proposal_id)
             ->get()->toArray();
         $list = Arr::map($data, function (array $value) {
-            $rab = ['nama_kegiatan' => $value['nama_kegiatan']];
+            $rab = ['nama_kegiatan' => $value['nama_kegiatan'],'sub_total' => $value['sub_total']];
             $rab['rab'] = Rab::where('rab_kegiatan', $value['id'])->get();
             return collect($rab);
         });
-        $pdf = Pdf::loadView('SibahNU.pdf.rincian_rab',['list_rab'=>$list]);
+        $data_all = [
+            'list_rab'=>$list,
+            'total_rab'=>$total_rab,
+            'pengurus' => $this->isPimpinanExist()
+        ];
+        $pdf = Pdf::loadView('SibahNU.pdf.rincian_rab',$data_all);
         set_time_limit(3600);
         return $pdf->stream('rincian_rab'.Carbon::now()->format('d-m-y').'.pdf');
     }

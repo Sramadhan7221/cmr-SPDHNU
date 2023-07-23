@@ -40,8 +40,9 @@ class RabController extends Controller
     }
 
     function addRab(Request $request,$id_kegiatan) {
-        $proposal = Proposal::query()->where('lembaga', session()->get('id_lembaga'))->first();
-        $rab_kegiatan = RabKegiatan::query()->where('proposal', $proposal->id_proposal)->where('id',$id_kegiatan)->first();
+        $proposal = Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')
+                    ->where('id',$id_kegiatan)
+                    ->first(['sub_total','total_rab','id']);
         $rules = [
             'uraian'=> 'required|regex:/^[a-zA-Z\s.-]+$/',
             'satuan'=> 'required|regex:/^[a-zA-Z\s.-]+$/',
@@ -70,10 +71,14 @@ class RabController extends Controller
             return redirect()->back()->withSuccess('Data Berhasil Diupdate');
         }
         $data['total'] = $data['qty'] * $data['harga'];
-        $sub_total = $rab_kegiatan['sub_total'] + $data['total'];
-        $data['rab_kegiatan'] = $rab_kegiatan->id;
+        // $sub_total = $rab_kegiatan['sub_total'] + $data['total'];
+        $sub_total = $proposal['sub_total'] + $data['total'];
+        $total_rab = $proposal['total_rab'] + $data['total'];
+        $data['rab_kegiatan'] = $proposal->id;
         Rab::create($data);
         RabKegiatan::where('id',$id_kegiatan)->update(['sub_total' => $sub_total]);
+        Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')
+                    ->where('id',$id_kegiatan)->update(['total_rab' => $total_rab]);
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 
@@ -91,9 +96,16 @@ class RabController extends Controller
 
     public function deletePersyaratan(Request $request, $id_rab)
     {
+        $proposal = Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')
+                    ->join('rab','rab_kegiatan','=','rab_kegiatan.id')
+                    ->where('id_rab',$id_rab)
+                    ->first(['sub_total','total_rab','id']);
         $deleted = Rab::where('id_rab', $id_rab)
             ->delete();
-
+        $MinSubTotal = $proposal['sub_total'] - $deleted;
+        RabKegiatan::join('rab','rab_kegiatan','=','rab_kegiatan.id')
+                    ->where('id_rab',$id_rab)
+                    ->update(['sub_total'=>$MinSubTotal]);
         if ($deleted > 0)
             return redirect()->back()->withSuccess('Data Berhasil Diupdate');
         else

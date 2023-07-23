@@ -53,14 +53,16 @@
             text-align: center;
         }
 
-
+        .page_break {
+            page-break-after: always;
+        }
     </style>
     <header>
         <img src="{{public_path('/aseets/report-footer.png')}}" alt="">
         <p>RENCANA ANGGARAN BIAYA</p>
     </header>
     <section class="rab">
-        <table>
+        <table class="page_break">
             <thead>
                 <tr>
                     <th>NO</th>
@@ -84,11 +86,25 @@
                             <td>{{ $item+1 }}.{{ $key+1 }}</td>
                             <td>{{ $val->uraian }}</td>
                             <td>{{ $val->qty }} {{ $val->satuan }}</td>
-                            <td>{{ number_format($val->harga ,0,',','.')}}</td>
-                            <td>{{ number_format($val->total ,0,',','.')}}</td>
+                            <td>Rp. {{ number_format($val->harga ,0,',','.')}}</td>
+                            <td>Rp. {{ number_format($val->total ,0,',','.')}}</td>
                         </tr>
                     @endforeach
+                        <tr>
+                            <td>Sub Total</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Rp. {{ number_format($value['sub_total'] ,0,',','.')}}</td>
+                        </tr>
                 @endforeach
+                <tr>
+                    <td>Total</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Rp. {{ number_format($total_rab->total_rab,0,',','.')}}</td>
+                </tr>
             </tbody>
         </table>
     </section>
@@ -100,7 +116,7 @@
         <div class="ttd">
             <div class="ttd1">
                 <p>PIHAK KEDUA,</p>
-                <p style="margin-top: 80px;">otomatis</p>
+                <p style="margin-top: 80px;">{{$pengurus->nama_pengurus}}</p>
             </div>
             <div class="ttd2">
                 <p>PIHAK KESATU,</p>

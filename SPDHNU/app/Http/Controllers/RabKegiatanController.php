@@ -29,13 +29,12 @@ class RabKegiatanController extends Controller
         $total_rab = Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')
                                 ->join('rab','rab_kegiatan','=','rab_kegiatan.id')
                                 ->where('proposal',$id_proposal)
-                                ->get();
-        $total = $total_rab->sum('total');
+                                ->first(['total_rab']);
         $data = [
             'display_menu' => $this->display_menu,
             'proposal' => $this->headHibah($id_proposal),
             'list_kegiatan' => $list_sub,
-            'total_rab' => $total,
+            'total_rab' => $total_rab ?? new Proposal,
             'actived_menu' => 'Rincian RAB',
         ];
         return view('SibahNU.daftarHibabh.rabKegiatan', $data);

@@ -88,7 +88,7 @@
 </table>
 <ul class="flex justify-between">
   <li class="font-bold">- Total RAB</li>
-  <li class="font-bold">Rp. {{number_format($total_rab,0,',','.')}}</li>
+  <li class="font-bold">Rp. {{number_format($total_rab->total_rab,0,',','.')}}</li>
 </ul>
 <!-- End Multi Columns Form -->
 </div>

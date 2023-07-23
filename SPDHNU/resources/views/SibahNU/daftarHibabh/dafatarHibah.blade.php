@@ -27,6 +27,7 @@
 </head>
 
 <body x-data="{isLoading: false}">
+    @include('sweetalert::alert')
   <template x-if="isLoading">
     <div class="fixed inset-0 z-[100] bg-white">
       <div class="flex h-screen w-full items-center justify-center bg-gray-100">
