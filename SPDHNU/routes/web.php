@@ -71,6 +71,6 @@ Route::prefix('report')->group(function () {
   Route::get('/naskah_perjanjian', [GenerateFileController::class, 'naskahPerjanjian'])->name('naskah_perjanjian');
   Route::get('/surat_pernyataan', [GenerateFileController::class, 'suratPernyataan'])->name('surat_pernyataan');
   Route::get('/surat_keabsahan', [GenerateFileController::class, 'suratKeabsahan'])->name('surat_keabsahan');
-  Route::get('/rincian_rab', [GenerateFileController::class, 'rincianRAB'])->name('rincian_rab');
+  Route::get('/rincian_rab/{id}', [GenerateFileController::class, 'rincianRAB'])->name('rincian_rab');
 });
 

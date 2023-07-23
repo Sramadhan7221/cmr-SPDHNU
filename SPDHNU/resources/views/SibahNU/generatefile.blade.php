@@ -85,7 +85,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    {{-- <tr>
                       <td scope="col">Rincian RAB</td>
                       <td>
                         <a href="{{route('rincian_rab')}}">
@@ -97,7 +97,7 @@
                           <i class="bi bi-printer"></i>
                         </button>
                       </td>
-                    </tr>
+                    </tr> --}}
                     <tr>
                       <td scope="col">Fakta Integritas</td>
                       <td>
@@ -156,6 +156,51 @@
               </div>
             </div>
             <!-- End Default Card -->
+            <div class="card">
+              <div class="card-title ml-4 pl-3">Surat Rincian RAB</div>
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="py-4" scope="col">No</th>
+                      <th class="py-4" scope="col">Nomor NPHD</th>
+                      <th class="py-4" scope="col">Proposal</th>
+                      <th class="py-4" scope="col">Tahun</th>
+                      <th class="py-4" scope="col">MWCNU</th>
+                      <th class="py-4" scope="col">Nilai</th>
+                      <th class="py-4 text-center" scope="col">Aksi</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($rab_list as $key => $value)
+                    <tr>
+                      <td>{{$key+1}}</td>
+                      <td>{{$value->no_NPHD}}</td>
+                      <td>{{$value->peruntukan}}</td>
+                      <td>{{$value->tahun}}</td>
+                      <td>{{$value->nama_lembaga}}</td>
+                      <td>Rp. {{number_format($value->nilai_pengajuan,0,',','.')}}</td>
+                      <td>
+                        <div class="row d-flex justify-content-center">
+                          <a href="{{route('rincian_rab',$value->id_proposal)}}" class="col-sm-2 mx-2 ml-0">
+                            <button type="button" class="btn btn-outline-primary">
+                              <i class="bi bi-download"></i>
+                            </button>
+                          </a>
+                          <a href="#" class="col-sm-2 mx-2">
+                            <button type="button" class="btn btn-outline-success">
+                              <i class="bi bi-printer"></i>
+                            </button>
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </section>
       </main>
