@@ -78,9 +78,6 @@
                                 <i class="bi bi-download"></i>
                             </button>
                         </a>
-                        <button type="button" class="btn btn-outline-success">
-                          <i class="bi bi-printer"></i>
-                        </button>
                       </td>
                     </tr>
                   </thead>
@@ -106,9 +103,6 @@
                             <i class="bi bi-download"></i>
                             </button>
                         </a>
-                        <button type="button" class="btn btn-outline-success">
-                          <i class="bi bi-printer"></i>
-                        </button>
                       </td>
                     </tr>
                     <tr>
@@ -119,9 +113,6 @@
                               <i class="bi bi-download"></i>
                             </button>
                         </a>
-                        <button type="button" class="btn btn-outline-success">
-                          <i class="bi bi-printer"></i>
-                        </button>
                       </td>
                     </tr>
 
@@ -133,28 +124,64 @@
                               <i class="bi bi-download"></i>
                             </button>
                         </a>
-                        <button type="button" class="btn btn-outline-success">
-                          <i class="bi bi-printer"></i>
-                        </button>
                       </td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                       <td scope="col">Naskan Perjanjian Hibah Daerah</td>
                       <td>
-                        <a href="{{route('naskah_perjanjian')}}">
+                        @foreach ($rab_list as $value)
+                        <a href="{{route('naskah_perjanjian',$value->id_proposal)}}">
                             <button type="button" class="btn btn-outline-primary">
                               <i class="bi bi-download"></i>
                             </button>
                         </a>
-                        <button type="button" class="btn btn-outline-success">
-                          <i class="bi bi-printer"></i>
-                        </button>
+                        @endforeach
                       </td>
-                    </tr>
+                    </tr> --}}
                   </tbody>
                 </table>
               </div>
             </div>
+            <div class="card">
+                <div class="card-title ml-4 pl-3">Naskah Perjanjian Hibah</div>
+                <div class="card-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="py-4" scope="col">No</th>
+                        <th class="py-4" scope="col">Nama</th>
+                        <th class="py-4" scope="col"></th>
+                        <th class="py-4" scope="col"></th>
+                        <th class="py-4" scope="col"></th>
+                        <th class="py-4" scope="col"></th>
+                        <th class="py-4 text-center" scope="col">Aksi</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($rab_list as $key => $value)
+                      <tr>
+                        <td>{{$key+1}}</td>
+                        <td>Naskah Perjanjian Hibah {{$value->peruntukan}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <div class="row d-flex justify-content-center">
+                            <a href="{{route('naskah_perjanjian',$value->id_proposal)}}" class="col-sm-2 mx-2 ml-0">
+                              <button type="button" class="btn btn-outline-primary">
+                                <i class="bi bi-download"></i>
+                              </button>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             <!-- End Default Card -->
             <div class="card">
               <div class="card-title ml-4 pl-3">Surat Rincian RAB</div>
@@ -186,11 +213,6 @@
                           <a href="{{route('rincian_rab',$value->id_proposal)}}" class="col-sm-2 mx-2 ml-0">
                             <button type="button" class="btn btn-outline-primary">
                               <i class="bi bi-download"></i>
-                            </button>
-                          </a>
-                          <a href="#" class="col-sm-2 mx-2">
-                            <button type="button" class="btn btn-outline-success">
-                              <i class="bi bi-printer"></i>
                             </button>
                           </a>
                         </div>

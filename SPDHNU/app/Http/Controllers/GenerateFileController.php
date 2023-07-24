@@ -2,27 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rab;
 use Carbon\Carbon;
+use App\Models\Rab;
 use App\Models\Wilayah;
 use App\Models\Proposal;
 use App\Models\RabKegiatan;
 use App\Models\UserLembaga;
+use Illuminate\Support\Arr;
 use App\Models\RegisterUser;
 use App\Models\PengurusLembaga;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Arr;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class GenerateFileController extends Controller
 {
     public function index()
     {
+        if (!session()->get('id_lembaga')) {
+            Alert::error('Oops!', 'Silahkan Lengkapi Data Lembaga Dan Daftar Hibah');
+            return redirect()->back();
+        }
         $rab = Proposal::join('lembaga', 'proposal.lembaga', '=', 'lembaga.id_lembaga')
-            // ->join('rab_kegiatan', 'proposal.id_proposal', '=', 'rab_kegiatan.proposal')
-            ->where('id_lembaga', session()->get('id_lembaga'))
-            ->get(['nama_lembaga','no_NPHD','peruntukan','nilai_pengajuan','tahun','id_proposal']);
+                        ->where('id_lembaga', session()->get('id_lembaga'))
+                        ->get(['nama_lembaga','no_NPHD','peruntukan','nilai_pengajuan','tahun','id_proposal']);
         $data = [
-            'rab_list' => $rab
+            'rab_list' => $rab,
         ];
         return view('SibahNU.generatefile',$data);
     }
@@ -72,13 +76,27 @@ class GenerateFileController extends Controller
         return $pdf->stream('fakta_integritas'.Carbon::now()->format('d-m-y').'.pdf');
     }
 
-    function naskahPerjanjian(){
-        // $proposal = Proposal::query()->where('lembaga',Session::get('id_lembaga'))->first();
-        $kegiatan = RabKegiatan::query()->get();
-        // $total = $total_rab->sum('total');
+    function naskahPerjanjian($proposal_id){
+        $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
+        $lembaga = UserLembaga::join('lembaga', 'user_lembaga.id_lembaga', '=', 'lembaga.id_lembaga')
+                            ->where('user_nik', $user->nik)
+                            ->first();
+        $total_rab = Proposal::where('lembaga',session()->get('id_lembaga'))
+                            ->where('id_proposal',$proposal_id)
+                            ->first(['total_rab','nilai_pengajuan','peruntukan']);
+        $data = RabKegiatan::join('proposal','proposal','=','proposal.id_proposal')
+                            ->where('proposal',$proposal_id)
+                            ->get()->toArray();
+        $list = Arr::map($data, function (array $value) {
+            $rab = ['nama_kegiatan' => $value['nama_kegiatan'],'sub_total' => $value['sub_total']];
+            $rab['rab'] = Rab::where('rab_kegiatan', $value['id'])->get();
+            return collect($rab);
+            });
         $data = [
-            'kegiatan' => $kegiatan,
-            // 'total' => $total
+            'lembaga' => $lembaga,
+            'pengurus' => $this->isPimpinanExist(),
+            'list_rab' => $list,
+            'nilai_rab'=> $total_rab
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.naskah_perjanjian_hibah', $data);
         set_time_limit(3600);
@@ -89,7 +107,7 @@ class GenerateFileController extends Controller
         $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
         $lembaga = UserLembaga::join('lembaga', 'user_lembaga.id_lembaga', '=', 'lembaga.id_lembaga')
             ->where('user_nik', $user->nik)
-            ->first(['alamat_lembaga', 'no_telp', 'email_lembaga','desa', 'kop_surat', 'domisili']);
+            ->first();
         $data = [
             'user' => $user,
             'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
@@ -105,8 +123,8 @@ class GenerateFileController extends Controller
     function suratKeabsahan(){
         $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
         $lembaga = UserLembaga::join('lembaga', 'user_lembaga.id_lembaga', '=', 'lembaga.id_lembaga')
-            ->where('user_nik', $user->nik)
-            ->first(['alamat_lembaga', 'no_telp', 'email_lembaga','desa', 'kop_surat', 'domisili']);
+                            ->where('user_nik', $user->nik)
+                            ->first(['alamat_lembaga', 'no_telp', 'email_lembaga','desa', 'kop_surat', 'domisili']);
         $data = [
             'user' => $user,
             'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
@@ -121,10 +139,12 @@ class GenerateFileController extends Controller
 
     function rincianRAB($proposal_id)
     {
-        $total_rab = Proposal::where('lembaga',session()->get('id_lembaga'))->first(['total_rab']);
+        $total_rab = Proposal::where('lembaga',session()->get('id_lembaga'))
+                            ->where('id_proposal',$proposal_id)
+                            ->first(['total_rab']);
         $data = RabKegiatan::join('proposal','proposal','=','proposal.id_proposal')
-            ->where('proposal',$proposal_id)
-            ->get()->toArray();
+                            ->where('proposal',$proposal_id)
+                            ->get()->toArray();
         $list = Arr::map($data, function (array $value) {
             $rab = ['nama_kegiatan' => $value['nama_kegiatan'],'sub_total' => $value['sub_total']];
             $rab['rab'] = Rab::where('rab_kegiatan', $value['id'])->get();

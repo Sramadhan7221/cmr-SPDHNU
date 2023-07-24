@@ -19,6 +19,7 @@ class DaftarHibahController extends Controller
     {
         if (!session()->get('id_lembaga')) {
             Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
+            return redirect()->back();
         }
 
         $proposal = Proposal::select(['id_proposal','sumber_dana','nama_lembaga','alamat_lembaga','peruntukan','nilai_pengajuan','tahun'])
@@ -39,7 +40,7 @@ class DaftarHibahController extends Controller
     function addProposal(Request $request)
     {
         $rules = [
-            'no_NPHD' => 'required|regex:/^[a-zA-Z0-9\/.]+$/',
+            'no_NPHD' => 'required|regex:/^[a-zA-Z0-9\/.]+$/|unique:proposal,no_NPHD',
             'peruntukan' => 'required|regex:/^[a-zA-Z\s.-]+$/',
             'sumber_dana' => 'required|regex:/^[a-zA-Z\s.-]+$/',
             'nilai_pengajuan' => 'required|regex:/^[0-9]+$/',
@@ -49,6 +50,7 @@ class DaftarHibahController extends Controller
 
         $message = [
             'no_NPHD.required' => 'NPHD Harus Diisi',
+            'no_NPHD.unique' => 'No NPHD Sudah Terdaftar',
             'peruntukan.required' => 'Peruntukan Harus Diisi',
             'sumber_dana.required' => 'Sumber Dana Harus Diisi',
             'no_NPHD.regex' => 'Format Harus Abjad',

@@ -9,6 +9,14 @@
   </div>
 </template>
 <div class="tab-pane fade show active" id="pills-rab" role="tabpanel" aria-labelledby="rab-tab">
+  <div class="text-start">
+    <a href="{{route('rabKegiatan',$proposal->id_proposal)}}">
+        <button type="button" class="btn btn-outline-success">
+        <i class="ri-file-edit-line"></i>
+        Kembali
+        </button>
+    </a>
+  </div>
   <div class="text-end">
     <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#verticalycentered">
       <i class="ri-file-edit-line"></i>
@@ -117,7 +125,7 @@
       @endforeach
     </tbody>
   </table>
-  
+
 </div>
 </div>
 @include('SibahNU.template.footer')

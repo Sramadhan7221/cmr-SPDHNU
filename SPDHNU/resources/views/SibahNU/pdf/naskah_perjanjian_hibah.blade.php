@@ -103,12 +103,12 @@
         .content2 .rab table thead tr th{
             border: 1px solid black;
             font-size: 11pt;
-            padding: 5px 30px 5px 30px;
+            padding: 5px 20px 5px 20px;
         }
         .content2 .rab table tbody tr td{
             border: 1px solid black;
             font-size: 11pt;
-            padding: 5px 30px 5px 30px;
+            padding: 5px 20px 5px 20px;
         }
 
         .content2 .pasal2{
@@ -157,8 +157,8 @@
         <p>NASKAH PERJANJIAN HIBAH ANTARA</p>
         <P>PENGURUS CABANG NAHDALTUL ULAMA KAB. TASIKMALAYA</P>
         <P>DENGAN</P>
-        <P>NAMA MWC</P>
-        <P>ALAMAT LENGKAP MWC</P>
+        <P>{{$lembaga->nama_lembaga}}</P>
+        <P>{{$lembaga->alamat_lembaga}}</P>
         <P>TENTANG</P>
         <P>HIBAH TAHUN ANGGARAN 2023</P>
         <hr style="border: 1px solid black; margin-top: 8px;">
@@ -180,8 +180,8 @@
         <div class="pihak2">
             <p>I. PIHAK KEDUA</p>
             <p> : </p>
-            <P> AHMAD BUSROL KARIM. berkedudukan di KP CIPANCUR RT. 002 RW. 005 DESA. SIRNASARI KECAMATAN SARIWANGI KABUPATEN TASIKMALAYA
-                dalam hal ini bertindak untuk dan atas nama MWCNU Sariwangi (otomatis nama MWCNU). selanjutnya disebut PIHAK KEDUA.</P>
+            <P> {{$pengurus->nama_pengurus}}. berkedudukan di {{$pengurus->alamat_ktp}}
+                dalam hal ini bertindak untuk dan atas nama {{$lembaga->nama_lembaga}}. selanjutnya disebut PIHAK KEDUA.</P>
         </div>
     </section>
     <section class="content2">
@@ -195,8 +195,8 @@
             <p>JUMLAH DAN TUJUAN HIBAH</p>
         </div>
         <div class="page-break">
-            <p>(1).	PIHAK KESATU pada Tahun Anggaran 2023 memberikan belanja hibah kepada PIHAK KEDUA, berupa uang sebesar Rp. 1.000.000,- (seratus juta Rupiah).</p>
-            <p>(2).	PIHAK KEDUA menyatakan menerima belanja hibah dari PIHAK KESATU berupa uang sebesar Rp. 1.000.000,- (seratus juta Rupiah).</p>
+            <p>(1).	PIHAK KESATU pada Tahun Anggaran 2023 memberikan belanja hibah kepada PIHAK KEDUA, berupa uang sebesar Rp. {{number_format($nilai_rab->nilai_pengajuan,0,',','.')}}.</p>
+            <p>(2).	PIHAK KEDUA menyatakan menerima belanja hibah dari PIHAK KESATU berupa uang sebesar Rp. {{number_format($nilai_rab->nilai_pengajuan,0,',','.')}}.</p>
             <p>(3).	Besaran bantuan hibah sebagaimana dimaksud pada ayat (1) sesuai dengan rencana penggunaan belanja hibah/proposal yang diajukan PIHAK KEDUA, yang merupakan bagian tidak terpisahkan dari Naskah Perjanjian Belanja Hibah (NPH) ini, meliputi:</p>
         </div>
         <div class="rab">
@@ -211,19 +211,42 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($kegiatan as $key =>  $value)
+                    @foreach ($list_rab as $item => $value)
                     <tr>
-                        <td>{{$key+1}}</td>
-                        <td>{{$value->nama_kegiatan}}</td>
-                        <td>{{$value->uraian}}</td>
-                        <td>{{$value->satuan}}</td>
-                        <td>{{$value->harga}}</td>
+                        <td>{{ $item+1 }}</td>
+                        <td>{{ $value['nama_kegiatan'] }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
+                    @foreach ($value['rab'] as $key => $val)
+                        <tr>
+                            <td>{{ $item+1 }}.{{ $key+1 }}</td>
+                            <td>{{ $val->uraian }}</td>
+                            <td>{{ $val->qty }} {{ $val->satuan }}</td>
+                            <td>Rp. {{ number_format($val->harga ,0,',','.')}}</td>
+                            <td>Rp. {{ number_format($val->total ,0,',','.')}}</td>
+                        </tr>
                     @endforeach
+                        <tr>
+                            <td>Sub Total</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Rp. {{ number_format($value['sub_total'] ,0,',','.')}}</td>
+                        </tr>
+                @endforeach
+                <tr>
+                    <td>Total</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Rp. {{ number_format($nilai_rab->total_rab,0,',','.')}}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
-            <p>(4).	Penggunaan belanja hibah sebagaimana dimaksud pada ayat (3) bertujuan untuk Pembangunan Ruang Kelas Baru Keagamaan</p>
+            <p>(4).	Penggunaan belanja hibah sebagaimana dimaksud pada ayat (3) bertujuan untuk {{$nilai_rab->peruntukan}}</p>
             <div class="pasal2">
                 <p>Pasal 2</p>
                 <p>PENCAIRAN BELANJA HIBAH</p>
@@ -234,14 +257,14 @@
                 <div class="list">
                     <p style="margin-left: 20px">a.	Surat Permohonan Pencairan Bantuan Hibah, dilengkapi rencana penggunaan Bantuan Hibah;</p>
                     <p>b.	Naskah Perjanjian Belanja Hibah;</p>
-                    <p>c.	Fotokopi Kartu Tanda Penduduk Elektronik atas nama AHMAD BUSROL KARIM (KETUA);</p>
-                    <p>d.	Fotokopi Rekening Bank yang masih aktif atas nama PONPES AL HAMIDIYAH SARIWANGI (0007526237100);</p>
+                    <p>c.	Fotokopi Kartu Tanda Penduduk Elektronik atas nama {{$pengurus->nama_pengurus}};</p>
+                    <p>d.	Fotokopi Rekening Bank yang masih aktif atas nama {{$lembaga->nama_rekening}} {{($lembaga->no_rek)}};</p>
                     <p>e.	Surat keterangan domisili dari desa setempat; dan</p>
                     <p>f.	Pakta integritas/Surat Pernyataan Tanggung Jawab.</p>
                 </div>
                 <p>(3).	Belanja hibah sebagaimana dimaksud dalam Pasal 1 ayat (1) dibayarkan melalui pemindah bukuan
-                    dari Rekening Kas Umum PCNU Kab. Tasikmalaya ke Rekening Bank BJBS (CABANG SINGAPARNA)
-                    Atas nama PONPES AL HAMIDIYAH SARIWANGI selaku PIHAK KEDUA dengan nomor Rekening 0007526237100, sebagaimana ketentuan yang berlaku.</p>
+                    dari Rekening Kas Umum PCNU Kab. Tasikmalaya ke Rekening Bank BJBS {{$lembaga->cabang_bank}}
+                    Atas nama {{$lembaga->nama_rekening}} selaku PIHAK KEDUA dengan nomor Rekening {{($lembaga->no_rek)}}, sebagaimana ketentuan yang berlaku.</p>
                 <p>(4).	PIHAK KEDUA dilarang mengalihkan sebagian atau seluruh bantuan hibah sebagaimana dimaksud pada ayat (2) kepada pihak lain dengan dalih apapun juga, kecuali diatur lain sebagaimana tercantum dalam NPH ini.</p>
                 <p>(5).	Setelah menerima pencairan bantuan hibah dari PIHAK KESATU, selanjutnya PIHAK KEDUA segera melaksanakan kegiatan dengan berpedoman pada rencana penggunaan hibah/proposal sesuai ketentuan peraturan perundang- undangan.</p>
             </div>
@@ -299,7 +322,7 @@
     <section  class="footer">
         <div class="ttd1">
             <p>PIHAK KEDUA,</p>
-            <p style="margin-top: 80px;">otomatis</p>
+            <p style="margin-top: 80px;">{{$pengurus->nama_pengurus}}</p>
         </div>
         <div class="ttd2">
             <p>PIHAK KESATU,</p>

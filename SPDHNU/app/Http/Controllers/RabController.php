@@ -101,11 +101,17 @@ class RabController extends Controller
                     ->where('id_rab',$id_rab)
                     ->first(['sub_total','total_rab','id']);
         $deleted = Rab::where('id_rab', $id_rab)
-            ->delete();
-        $MinSubTotal = $proposal['sub_total'] - $deleted;
+                   ->delete();
+        $restore = Rab::withTrashed()->where('id_rab',$id_rab)->first();
+        $MinSubTotal = $proposal['sub_total'] - $restore['total'];
+        $MinTotalRab = $proposal['total_rab'] - $restore['total'];
         RabKegiatan::join('rab','rab_kegiatan','=','rab_kegiatan.id')
                     ->where('id_rab',$id_rab)
-                    ->update(['sub_total'=>$MinSubTotal]);
+                    ->update(['sub_total'=> $MinSubTotal]);
+        Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')
+                ->join('rab','rab_kegiatan','=','rab_kegiatan.id')
+                ->where('id_rab',$id_rab)
+                ->update(['total_rab' => $MinTotalRab]);
         if ($deleted > 0)
             return redirect()->back()->withSuccess('Data Berhasil Diupdate');
         else
