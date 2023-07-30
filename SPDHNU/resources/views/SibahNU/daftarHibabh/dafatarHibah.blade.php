@@ -27,7 +27,7 @@
 </head>
 
 <body x-data="{isLoading: false}">
-    @include('sweetalert::alert')
+  @include('sweetalert::alert')
   <template x-if="isLoading">
     <div class="fixed inset-0 z-[100] bg-white">
       <div class="flex h-screen w-full items-center justify-center bg-gray-100">
@@ -69,7 +69,7 @@
           <div class="card-body">
             <h5 class="card-title">Filter Daftar Hibah</h5>
             <div class="row">
-            @if(session()->get('id_user') || session()->get('id_admin'))
+              @if(session()->get('id_user') || session()->get('id_admin'))
               <div class="col-lg-4">
                 <label for="filter-by-years" class="form-label d-flex justify-content-start">
                   Berdasarkan Tahun Anggaran
@@ -87,34 +87,36 @@
               @endif
               @if(!session()->get('id_user'))
               <div class="col-lg-4">
-                <label for="filter-by-years" class="form-label d-flex justify-content-start">
+                <label class="form-label d-flex justify-content-start">
                   Berdasarkan MWC
                 </label>
-                <select id="filter-by-years" class="form-select">
-                  @foreach($mwc as $item)
-                  @if($item)
-                  <option value="{{$item->nama}}" selected>MWC {{ $item->nama }}</option>
-                  @else
-                  <option value="{{$item->nama}}">MWC {{ $item->nama }}</option>
-                  @endif
-                  @endforeach
+                <select id="filter-by-mwc" class="form-select">
+                  @if(count($mwc) < 1) <option disabled>Tidak ada mwc ditampilkan, pastikan mwc telah melengkapi data</option>
+                    @endif
+                    @foreach($mwc as $item)
+                    @if($item)
+                    <option value="{{$item->id_lembaga}}" selected>{{ $item->nama_lembaga }}</option>
+                    @else
+                    <option value="{{$item->id_lembaga}}">{{ $item->nama_lembaga }}</option>
+                    @endif
+                    @endforeach
                 </select>
               </div>
               @endif
             </div>
             <div class="text-end">
-            @if(!session()->get('id_user'))
+              @if(!session()->get('id_user'))
               <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#dana-hibah">
                 <i class="ri-file-edit-line"></i>
                 Tambah Dana Hibah
               </button>
-            @endif
-            @if(session()->get('id_user'))
+              @endif
+              {{-- @if(session()->get('id_user'))
               <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#mohon-hibah">
                 <i class="ri-file-edit-line"></i>
                 Daftar Hibah
               </button>
-            @endif
+              @endif --}}
             </div>
 
             <div class="modal fade" id="mohon-hibah" tabindex="-1">
@@ -148,11 +150,11 @@
                       </div>
                       <div class="row mt-3">
                         <div class="col-md-12">
-                          <label for="lembaga" class="form-label d-flex justify-content-start">
+                          <label for="sumber_dana" class="form-label d-flex justify-content-start">
                             Sumber Dana Hibah
                             <sup class="text-danger">*</sup>
                           </label>
-                          <input type="text" class="form-control" name="sumber_dana" required />
+                          <input type="text" class="form-control" name="sumber_dana" readonly />
                         </div>
                       </div>
                       <div class="row mt-3">
@@ -178,7 +180,7 @@
                             Jumlah
                             <sup class="text-danger">*</sup>
                           </label>
-                          <input type="text" class="form-control" name="nilai_pengajuan" required />
+                          <input type="text" class="form-control" name="nilai_pengajuan" readonly />
                         </div>
                       </div>
                       <div class="row mt-3">
@@ -197,13 +199,13 @@
                           </button>
                         </div>
                       </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
-                        <i class="ri-file-edit-line"></i>
-                        Simpan data
-                      </button>
-                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
+                      <i class="ri-file-edit-line"></i>
+                      Simpan data
+                    </button>
+                  </div>
                   </form>
                 </div>
               </div>
@@ -220,7 +222,7 @@
                       @csrf
                       <div class="row mt-3">
                         <div class="col-md-12">
-                          <label for="lembaga" class="form-label d-flex justify-content-start">
+                          <label for="sumber_dana" class="form-label d-flex justify-content-start">
                             Sumber Dana Hibah
                             <sup class="text-danger">*</sup>
                           </label>
@@ -246,19 +248,22 @@
                       </div>
                       <div class="row mt-3">
                         <div class="col-md-12">
-                        <label for="tahun" class="form-label d-flex justify-content-start">
+                          <label for="lembaga" class="form-label d-flex justify-content-start">
                             MWCNU
                             <sup class="text-danger">*</sup>
-                        </label>
-                        <select id="mwc" class="form-select">
-                            @foreach($mwc as $item)
-                            @if($item)
-                            <option value="{{$item->nama}}" selected>MWC {{ $item->nama }}</option>
-                            @else
-                            <option value="{{$item->nama}}">MWC {{ $item->nama }}</option>
+                          </label>
+                          <select id="lembaga" name="lembaga" class="form-select">
+                            @if(count($mwc) < 1) 
+                              <option disabled>Tidak ada mwc ditampilkan, pastikan mwc telah melengkapi data</option>
                             @endif
+                            @foreach($mwc as $item)
+                              @if($item)
+                                <option value="{{$item->id_lembaga}}" selected>{{ $item->nama_lembaga }}</option>
+                              @else
+                                <option value="{{$item->id_lembaga}}">{{ $item->nama_lembaga }}</option>
+                              @endif
                             @endforeach
-                        </select>
+                          </select>
                         </div>
                       </div>
                       <div class="row mt-3">
@@ -270,13 +275,13 @@
                           <input type="text" class="form-control" name="nilai_pengajuan" required />
                         </div>
                       </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
-                        <i class="ri-file-edit-line"></i>
-                        Simpan data
-                      </button>
-                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
+                      <i class="ri-file-edit-line"></i>
+                      Simpan data
+                    </button>
+                  </div>
                   </form>
                 </div>
               </div>

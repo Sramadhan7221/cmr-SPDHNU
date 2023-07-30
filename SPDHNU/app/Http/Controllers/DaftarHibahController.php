@@ -18,11 +18,11 @@ class DaftarHibahController extends Controller
 {
     public function index()
     {
-        // if (!session()->get('id_lembaga')) {
-        //     Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
-        //     return redirect()->back();
-        // }
-        $mwc = Wilayah::getKecamatan();
+        if (!session()->get('id_lembaga') && !session()->get('id_admin')) {
+            Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
+            return redirect()->back();
+        }
+        $mwc = Lembaga::select(['id_lembaga','nama_lembaga'])->get();
         if($lembaga = session()->get('id_lembaga')){
             $proposal = Proposal::select(['id_proposal','sumber_dana','nama_lembaga','alamat_lembaga','peruntukan','nilai_pengajuan','tahun'])
                 ->join('lembaga', 'proposal.lembaga', '=', 'lembaga.id_lembaga')
@@ -57,7 +57,8 @@ class DaftarHibahController extends Controller
         $rules = [
             'sumber_dana' => 'required|regex:/^[a-zA-Z\s.-]+$/',
             'nilai_pengajuan' => 'required|regex:/^[0-9]+$/',
-            'tahun' => 'required'
+            'tahun' => 'required',
+            'lembaga'=> 'required'
         ];
 
         $message = [
@@ -65,7 +66,8 @@ class DaftarHibahController extends Controller
             'sumber_dana.regex' => 'Format Harus Abjad',
             'nilai_pengajuan.required' => 'Jumlah Harus Diisi',
             'nilai_pengajuan.regex' => 'Jumlah hanya menerima format angka',
-            'tahun.required' => 'Mohon isi Tahun'
+            'tahun.required' => 'Mohon isi Tahun',
+            'lembaga.required' => 'Mwc Belum dipilih'
         ];
         $validated = Validator::make($request->all(), $rules, $message);
         if ($validated->fails()) {
