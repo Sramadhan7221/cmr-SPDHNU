@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Wilayah;
-use Illuminate\Http\Request;
-use App\Models\RegisterUser;
 use App\Models\lembaga;
-use App\Models\kepengurusan;
+use App\Models\Wilayah;
 use App\Models\UserLembaga;
+use App\Models\kepengurusan;
+use App\Models\RegisterUser;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 class LembagaController extends Controller
@@ -29,7 +30,7 @@ class LembagaController extends Controller
         $lembaga = UserLembaga::join('lembaga', 'user_lembaga.id_lembaga', '=', 'lembaga.id_lembaga')
             ->where('user_nik', $user->nik)
             ->first(['alamat_lembaga', 'no_telp', 'email_lembaga','desa', 'kop_surat', 'domisili']);
-        
+
         if (empty($lembaga)) {
             $lembaga = new Lembaga();
             $lembaga->kop_surat = '';
@@ -100,6 +101,7 @@ class LembagaController extends Controller
         UserLembaga::where('user_nik', $user->nik)
             ->update(['id_lembaga' => $lembaga->id_lembaga]);
         session()->put('id_lembaga', $lembaga->id_lembaga);
+        Alert::success('Data Berhasil Disimpan');
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 

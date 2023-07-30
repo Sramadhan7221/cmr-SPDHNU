@@ -68,6 +68,7 @@ class PersyaratanController extends Controller
         $data['file'] = $file_path;
         $data['id_lembaga'] = session('id_lembaga');
         Persyaratan::create($data);
+        Alert::success('Data Berhasil Disimpan');
         return redirect(route('persyaratan'))->withSuccess('Data Berhasil Disimpan');
     }
 
@@ -115,7 +116,7 @@ class PersyaratanController extends Controller
 
         Persyaratan::where('id_persyaratan',$request->id_persyaratan)
             ->update($data);
-
+            Alert::success('Data Berhasil Diupdate');
         return redirect(route('persyaratan'))->withSuccess('Data Berhasil Diupdate');
     }
 
@@ -123,9 +124,11 @@ class PersyaratanController extends Controller
         $deleted = Persyaratan::where('id_persyaratan', $id_persyaratan)
             ->delete();
 
-        if ($deleted > 0)
+        if ($deleted > 0){
+            Alert::success('Data Berhasil DiHapus');
             return redirect(route('persyaratan'))->withSuccess('Data Berhasil Diupdate');
-        else
-           return redirect(route('persyaratan'))->withErrors('Data Gagal Diupdate');
+        } else {
+            return redirect(route('persyaratan'))->withErrors('Data Gagal Diupdate');
+        }
     }
 }

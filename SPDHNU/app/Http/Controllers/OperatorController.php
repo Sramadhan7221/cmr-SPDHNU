@@ -59,8 +59,8 @@ class OperatorController extends Controller
             'no_telp.unique' => 'No Telephone Sudah Terdaftar',
             'alamat_ktp' => 'Alamat Harus Diisi'
         ];
-        
-        if($is_exist) 
+
+        if($is_exist)
             $rules['no_ktp'] = 'required';
 
         $validated = Validator::make($request->all(),$rules,$message);
@@ -77,6 +77,7 @@ class OperatorController extends Controller
         }
         $operator = kepengurusan::create($data);
         PengurusLembaga::create(['lembaga'=> $id_lembaga, 'pengurus' => $operator->id_pengurus]);
+        Alert::success('Data Berhasil Disimpan');
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 

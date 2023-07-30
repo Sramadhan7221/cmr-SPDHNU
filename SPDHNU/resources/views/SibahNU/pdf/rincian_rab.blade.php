@@ -58,7 +58,7 @@
         }
     </style>
     <header>
-        <img src="{{public_path('/aseets/report-footer.png')}}" alt="">
+        <img src="{{public_path('storage/'.$lembaga->kop_surat)}}" alt="">
         <p>RENCANA ANGGARAN BIAYA</p>
     </header>
     <section class="rab">

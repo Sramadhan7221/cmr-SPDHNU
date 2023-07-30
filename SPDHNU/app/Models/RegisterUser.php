@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Role;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RegisterUser extends Model
 {
@@ -18,6 +20,7 @@ class RegisterUser extends Model
     protected $table = 'register_user';
     protected $guarded = 'id';
     protected $fillable = [
+        'role_id',
         'nik',
         'kecamatan',
         'nama',
@@ -39,5 +42,9 @@ class RegisterUser extends Model
                 $register_user->password = Hash::make($register_user->password);
             }
         });
+    }
+    public function role() : HasOne
+    {
+        return $this->hasOne(Role::class);
     }
 }

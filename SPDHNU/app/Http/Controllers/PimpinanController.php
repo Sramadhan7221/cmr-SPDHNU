@@ -38,7 +38,7 @@ class PimpinanController extends Controller
         ];
         return view('SibahNU.pimpinan', $data);
     }
-    
+
     public function addDataPimpinan(Request $request){
         //cek if pengurus is exist by nik
         $is_exist = Kepengurusan::where('no_ktp', $request->no_ktp)->first();
@@ -50,8 +50,8 @@ class PimpinanController extends Controller
             'file_ktp' => 'required|max:2048',
             'alamat_ktp' => 'required'
         ];
-        
-        
+
+
         $message = [
             'nama_pengurus.required' => 'Nama Pimpinan Harus Diisi',
             'nama_pengurus.regex' => 'Format Nama Harus Abjad',
@@ -64,7 +64,7 @@ class PimpinanController extends Controller
             'file_ktp.max' => 'File KTP Harus 2MB',
             'alamat_ktp.required' => 'Alamat Harus Diisi'
         ];
-        
+
         if($is_exist) {
             $rules['no_ktp'] = 'required';
             if ($is_exist->file_ktp){
@@ -75,7 +75,7 @@ class PimpinanController extends Controller
         if($validated->fails()){
             return redirect()->back()->withErrors($validated)->withInput($request->all());
         }
-        
+
         $data = $validated->validate();
         $file_ktp = $request->file('file_ktp');
         if ($file_ktp) {
@@ -95,6 +95,7 @@ class PimpinanController extends Controller
 
         $pimpinan = kepengurusan::create($data);
         PengurusLembaga::create(['lembaga'=> $id_lembaga, 'pengurus' => $pimpinan->id_pengurus]);
+        Alert::success('Data Berhasil Disimpan');
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 

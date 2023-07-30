@@ -2,39 +2,78 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Session;
-use Ramsey\Uuid\Type\Decimal;
-use RealRashid\SweetAlert\Facades\Alert;
-use App\Models\Lembaga;
-use App\Models\Proposal;
 use App\Models\Rab;
+use App\Models\Lembaga;
+use App\Models\Wilayah;
+use App\Models\Proposal;
+use Illuminate\Http\Request;
+use Ramsey\Uuid\Type\Decimal;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class DaftarHibahController extends Controller
 {
     public function index()
     {
-        if (!session()->get('id_lembaga')) {
-            Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
-            return redirect()->back();
+        // if (!session()->get('id_lembaga')) {
+        //     Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
+        //     return redirect()->back();
+        // }
+        $mwc = Wilayah::getKecamatan();
+        if($lembaga = session()->get('id_lembaga')){
+            $proposal = Proposal::select(['id_proposal','sumber_dana','nama_lembaga','alamat_lembaga','peruntukan','nilai_pengajuan','tahun'])
+                ->join('lembaga', 'proposal.lembaga', '=', 'lembaga.id_lembaga')
+                ->where('lembaga', session('id_lembaga'))
+                ->where('proposal.deleted_at',null)
+                ->get();
+            $data = [
+                'proposals' => $proposal,
+                'mwc' => $mwc,
+                'tahun' => $this->generateYears(),
+                'actived_menu' => '',
+            ];
+
+            return view('SibahNU.daftarHibabh.dafatarHibah',$data);
+        } else {
+            $proposal = Proposal::select(['id_proposal','sumber_dana','nama_lembaga','alamat_lembaga','peruntukan','nilai_pengajuan','tahun'])
+                ->join('lembaga', 'proposal.lembaga', '=', 'lembaga.id_lembaga')
+                ->where('proposal.deleted_at',null)
+                ->get();
+            $data = [
+                'proposals' => $proposal,
+                'mwc' => $mwc,
+                'tahun' => $this->generateYears(),
+                'actived_menu' => '',
+            ];
+
+            return view('SibahNU.daftarHibabh.dafatarHibah',$data);
         }
+    }
 
-        $proposal = Proposal::select(['id_proposal','sumber_dana','nama_lembaga','alamat_lembaga','peruntukan','nilai_pengajuan','tahun'])
-            ->join('lembaga', 'proposal.lembaga', '=', 'lembaga.id_lembaga')
-            ->where('lembaga', session('id_lembaga'))
-            ->where('proposal.deleted_at',null)
-            ->get();
-
-        $data = [
-            'proposals' => $proposal,
-            'tahun' => $this->generateYears(),
-            'actived_menu' => '',
+    function addDanaHibah(Request $request){
+        $rules = [
+            'sumber_dana' => 'required|regex:/^[a-zA-Z\s.-]+$/',
+            'nilai_pengajuan' => 'required|regex:/^[0-9]+$/',
+            'tahun' => 'required'
         ];
 
-        return view('SibahNU.daftarHibabh.dafatarHibah',$data);
+        $message = [
+            'sumber_dana.required' => 'Sumber Dana Harus Diisi',
+            'sumber_dana.regex' => 'Format Harus Abjad',
+            'nilai_pengajuan.required' => 'Jumlah Harus Diisi',
+            'nilai_pengajuan.regex' => 'Jumlah hanya menerima format angka',
+            'tahun.required' => 'Mohon isi Tahun'
+        ];
+        $validated = Validator::make($request->all(), $rules, $message);
+        if ($validated->fails()) {
+            return redirect()->back()->withErrors($validated)->withInput($request->all());
+        }
+        $data = $validated->validate();
+        Proposal::create($data);
+        return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 
     function addProposal(Request $request)

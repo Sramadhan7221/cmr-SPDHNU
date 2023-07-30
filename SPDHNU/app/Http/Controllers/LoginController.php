@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Wilayah;
-use Illuminate\Http\Request;
+use App\Models\Role;
 use App\Models\User;
-use App\Models\RegisterUser;
+use App\Models\admin;
+use App\Models\Wilayah;
 use App\Models\UserLembaga;
+use App\Models\RegisterUser;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
@@ -21,6 +24,8 @@ class LoginController extends Controller
             ];
             return view('register',$data);
         }
+
+        $role = Role::query()->where('name','User')->first();
 
         $rules = [
             'nik' => 'required',
@@ -51,6 +56,7 @@ class LoginController extends Controller
             return redirect()->back()->withErrors($validated)->withInput();
         }
         $data = $validated->validate();
+        $data['role_id'] = $role->role_id;
         RegisterUser::query()->create($data);
         UserLembaga::query()->create(['user_nik'=>$data['nik']]);
         return redirect(route('login'))->with('success','Register Berhasil');
@@ -69,22 +75,25 @@ class LoginController extends Controller
             Alert::error('Oops!', 'Username Atau Password Salah!');
             return redirect()->back();
         }
-
         if(!Hash::check($password, $user->password)){
             Alert::error('Oops!', 'Password Tidak Cocok');
             return redirect()->back();
         }
-        // dd($user->nik);
         $lembaga = UserLembaga::where('user_nik', $user->nik)->first();
-
         if(!session()->isStarted())
             session()->start();
             session()->put('logged','yes',true);
             session()->put('id_user',$user->nik);
+            session()->put('id_admin',$user->role_id);
             session()->put('id_lembaga');
-            if ($lembaga)
+            if ($lembaga){
                 session()->put('id_lembaga',$lembaga->id_lembaga);
-            return redirect('home');
+            }
+            if(Session::get('id_user'))
+                return redirect(route('home'));
+            if(Session::get('id_admin'))
+                return redirect(route('daftarHibah'));
+
     }
 
     public function logout(){

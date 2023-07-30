@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('register_user', function (Blueprint $table) {
             $table->id();
-            $table->string('nik',16)->unique('register_user_nik_IDX');
-            $table->string('kecamatan', 13);
-            $table->string('nama',150);
-            $table->string('nama_mwc',150);
+            $table->uuid('role_id');
+            $table->string('nik',16)->unique('register_user_nik_IDX')->nullable();
+            $table->string('kecamatan', 13)->nullable();
+            $table->string('nama',150)->nullable();
+            $table->string('nama_mwc',150)->nullable();
             $table->string('email', 150);
-            $table->string('no_telp', 16);
+            $table->string('no_telp', 16)->nullable();
             $table->string('password', 225);
             $table->timestamps();
             $table->softDeletes();

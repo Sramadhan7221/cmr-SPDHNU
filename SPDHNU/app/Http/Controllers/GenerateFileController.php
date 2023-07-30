@@ -139,6 +139,10 @@ class GenerateFileController extends Controller
 
     function rincianRAB($proposal_id)
     {
+        $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
+        $lembaga = UserLembaga::join('lembaga', 'user_lembaga.id_lembaga', '=', 'lembaga.id_lembaga')
+            ->where('user_nik', $user->nik)
+            ->first();
         $total_rab = Proposal::where('lembaga',session()->get('id_lembaga'))
                             ->where('id_proposal',$proposal_id)
                             ->first(['total_rab']);
@@ -153,6 +157,7 @@ class GenerateFileController extends Controller
         $data_all = [
             'list_rab'=>$list,
             'total_rab'=>$total_rab,
+            'lembaga' => $lembaga,
             'pengurus' => $this->isPimpinanExist()
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.rincian_rab',$data_all);

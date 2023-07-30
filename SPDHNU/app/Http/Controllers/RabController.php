@@ -75,6 +75,10 @@ class RabController extends Controller
         $sub_total = $proposal['sub_total'] + $data['total'];
         $total_rab = $proposal['total_rab'] + $data['total'];
         $data['rab_kegiatan'] = $proposal->id;
+        if($total_rab > 5000000){
+            Alert::error('Oops!','Total Rab Melebihi Batas Dana');
+            return redirect()->back();
+        }
         Rab::create($data);
         RabKegiatan::where('id',$id_kegiatan)->update(['sub_total' => $sub_total]);
         Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')

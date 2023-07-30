@@ -26,7 +26,7 @@ use App\Http\Controllers\RabController;
 
 Route::any('/', [LoginController::class, 'login'])->name('login');
 Route::any('/register', [LoginController::class, 'register'])->name('register');
-Route::any('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('isMWC');
+Route::any('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/home', [LembagaController::class, 'index'])->name('home')->middleware('isMWC');
 Route::post('/lembaga', [LembagaController::class, 'addDataLembaga'])->name('lembaga')->middleware('isMWC');
@@ -42,11 +42,12 @@ Route::post('/addPersyaratan', [PersyaratanController::class, 'addPersyaratan'])
 Route::get('/getPersyaratan', [PersyaratanController::class, 'getPersyaratan'],)->name('getPersyaratan')->middleware('isMWC');
 Route::get('/deletePersyaratan/{id_persyaratan}', [PersyaratanController::class, 'deletePersyaratan'],)->name('deletePersyaratan')->middleware('isMWC');
 
-Route::get('/daftarhibah', [DaftarHibahController::class, 'index'])->name('daftarHibah')->middleware('isMWC');
-Route::get('/detailProposal', [DaftarHibahController::class, 'detailProposal'])->name('detailProposal')->middleware('isMWC');
-Route::post('/addProposal', [DaftarHibahController::class, 'addProposal'])->name('addProposal')->middleware('isMWC');
-Route::get('/deleteProposal/{id_proposal}', [DaftarHibahController::class, 'deleteProposal'])->name('deleteProposal')->middleware('isMWC');
-Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name('detailhibah')->middleware('isMWC');
+Route::get('/daftarhibah', [DaftarHibahController::class, 'index'])->name('daftarHibah');
+Route::get('/detailProposal', [DaftarHibahController::class, 'detailProposal'])->name('detailProposal');
+Route::post('/addProposal', [DaftarHibahController::class, 'addProposal'])->name('addProposal');
+Route::post('/addDanaHibah', [DaftarHibahController::class, 'addDanaHibah'])->name('addDanaHibah');
+Route::get('/deleteProposal/{id_proposal}', [DaftarHibahController::class, 'deleteProposal'])->name('deleteProposal');
+Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name('detailhibah');
 
 Route::post('/addDataBank', [BankController::class, 'AddDataBank'])->name('addDataBank');
 Route::get('/bank/{id_proposal}', [BankController::class, 'index'])->name('bank');

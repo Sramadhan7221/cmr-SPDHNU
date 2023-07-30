@@ -1,6 +1,7 @@
  <!-- ======= Sidebar ======= -->
  <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
+    @if(session()->has('logged','id_user'))
       <li class="nav-item">
         <a class="nav-link collapsed" x-on:click="isLoading = true" href="{{route('home')}}">
           <i class="bi bi-grid"></i>
@@ -8,7 +9,7 @@
         </a>
       </li>
       <!-- End Dashboard Nav -->
-
+      @endif
       <li class="nav-heading">Permohonan</li>
       <li class="nav-item">
         <a class="nav-link collapsed" x-on:click="isLoading = true" href="{{route('daftarHibah')}}">

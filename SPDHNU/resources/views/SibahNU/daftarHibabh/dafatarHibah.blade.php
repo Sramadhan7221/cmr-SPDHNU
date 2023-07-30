@@ -16,7 +16,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
   <!-- Option 1: Include in HTML -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -69,7 +69,8 @@
           <div class="card-body">
             <h5 class="card-title">Filter Daftar Hibah</h5>
             <div class="row">
-              <div class="col-lg-3">
+            @if(session()->get('id_user') || session()->get('id_admin'))
+              <div class="col-lg-4">
                 <label for="filter-by-years" class="form-label d-flex justify-content-start">
                   Berdasarkan Tahun Anggaran
                 </label>
@@ -83,12 +84,37 @@
                   @endforeach
                 </select>
               </div>
+              @endif
+              @if(!session()->get('id_user'))
+              <div class="col-lg-4">
+                <label for="filter-by-years" class="form-label d-flex justify-content-start">
+                  Berdasarkan MWC
+                </label>
+                <select id="filter-by-years" class="form-select">
+                  @foreach($mwc as $item)
+                  @if($item)
+                  <option value="{{$item->nama}}" selected>MWC {{ $item->nama }}</option>
+                  @else
+                  <option value="{{$item->nama}}">MWC {{ $item->nama }}</option>
+                  @endif
+                  @endforeach
+                </select>
+              </div>
+              @endif
             </div>
             <div class="text-end">
+            @if(!session()->get('id_user'))
+              <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#dana-hibah">
+                <i class="ri-file-edit-line"></i>
+                Tambah Dana Hibah
+              </button>
+            @endif
+            @if(session()->get('id_user'))
               <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#mohon-hibah">
                 <i class="ri-file-edit-line"></i>
                 Daftar Hibah
               </button>
+            @endif
             </div>
 
             <div class="modal fade" id="mohon-hibah" tabindex="-1">
@@ -169,6 +195,79 @@
                             <i class="fa-solid fa-file-pdf"></i>
                             Lihat file
                           </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
+                        <i class="ri-file-edit-line"></i>
+                        Simpan data
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="dana-hibah" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Tambah Dana Hibah</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="proposal_form" method="POST" action="{{route('addDanaHibah')}}">
+                      @csrf
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                          <label for="lembaga" class="form-label d-flex justify-content-start">
+                            Sumber Dana Hibah
+                            <sup class="text-danger">*</sup>
+                          </label>
+                          <input type="text" class="form-control" name="sumber_dana" required />
+                        </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                          <label for="tahun" class="form-label d-flex justify-content-start">
+                            Tahun
+                            <sup class="text-danger">*</sup>
+                          </label>
+                          <select id="tahun" name="tahun" class="form-select">
+                            @foreach($tahun as $item)
+                            @if($item == date('Y'))
+                            <option value="{{$item}}" selected>{{ $item }}</option>
+                            @elseif((int)$item > (int)date('Y'))
+                            <option value="{{$item}}">{{ $item }}</option>
+                            @endif
+                            @endforeach
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                        <label for="tahun" class="form-label d-flex justify-content-start">
+                            MWCNU
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <select id="mwc" class="form-select">
+                            @foreach($mwc as $item)
+                            @if($item)
+                            <option value="{{$item->nama}}" selected>MWC {{ $item->nama }}</option>
+                            @else
+                            <option value="{{$item->nama}}">MWC {{ $item->nama }}</option>
+                            @endif
+                            @endforeach
+                        </select>
+                        </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                          <label for="nilai_pengajuan" class="form-label d-flex justify-content-start">
+                            Jumlah
+                            <sup class="text-danger">*</sup>
+                          </label>
+                          <input type="text" class="form-control" name="nilai_pengajuan" required />
                         </div>
                       </div>
                     </div>

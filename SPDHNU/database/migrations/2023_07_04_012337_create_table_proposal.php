@@ -15,8 +15,8 @@ return new class extends Migration
             $table->uuid('id_proposal')->primary();
             $table->uuid('lembaga')->nullable();
             $table->string('sumber_dana', 500)->nullable();
-            $table->string('no_NPHD', 150)->unique();
-            $table->string('peruntukan', 150);
+            $table->string('no_NPHD', 150)->unique()->nullable();
+            $table->string('peruntukan', 150)->nullable();
             $table->string('file_proposal', 225)->nullable();
             $table->decimal('nilai_pengajuan',12,2)->nullable();
             $table->decimal('total_rab',12,2)->nullable();
