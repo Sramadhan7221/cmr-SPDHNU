@@ -98,11 +98,11 @@ class BankController extends Controller
 
         $data_proposal = Proposal::where('id_proposal', $id_proposal)->get();
         $data_bank = Lembaga::where('id_lembaga', $id_lembaga)->get();
-        if ($data_proposal->file_proposal)
+        if (isset($data_proposal->file_proposal))
         {
             $rules['file_proposal'] = 'max:2048';
         }
-        if ($data_bank->file_buku_tabungan)
+        if (isset($data_bank->file_buku_tabungan))
         {
             $rules['file_buku_tabungan'] = 'max:2048';
         }
