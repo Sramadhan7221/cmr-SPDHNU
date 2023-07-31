@@ -82,7 +82,9 @@ class LembagaController extends Controller
 
         $validated = Validator::make($request->all(),$rules,$message);
         if($validated->fails()){
-            return redirect()->back()->withErrors($validated)->withInput();
+            // return redirect()->back()->withErrors($validated)->withInput();
+            Alert::error('Oops!', implode(",",$validated->errors()->messages()));
+            return redirect()->back();
         }
         $data = $validated->validate();
         //upload image

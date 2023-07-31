@@ -105,7 +105,6 @@ class DaftarHibahController extends Controller
         ];
 
         if($request->id_proposal) {
-            dd($request);
             $rules['file_proposal'] = 'max:2048';
             return $this->editProposal($request,$rules,$message);
         }

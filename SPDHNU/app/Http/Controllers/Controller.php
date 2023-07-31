@@ -27,7 +27,7 @@ class Controller extends BaseController
     ];
 
     protected function headHibah ($id_proposal) {
-        return Proposal::select(['id_proposal', 'no_NPHD', 'sumber_dana', 'nama_lembaga', 'alamat_lembaga', 'peruntukan', 'nilai_pengajuan', 'tahun'])
+        return Proposal::select(['id_proposal', 'no_NPHD', 'sumber_dana', 'nama_lembaga', 'alamat_lembaga', 'peruntukan', 'nilai_pengajuan', 'tahun', 'file_proposal'])
         ->join('lembaga', 'proposal.lembaga', '=', 'lembaga.id_lembaga')
         ->where('id_proposal', $id_proposal)
         ->first();

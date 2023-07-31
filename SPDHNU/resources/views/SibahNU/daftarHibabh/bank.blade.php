@@ -12,7 +12,38 @@
   <!-- Multi Columns Form -->
   <form method="POST" action="{{route('addDataBank')}}" enctype="multipart/form-data">
     @csrf
-    <div class="row g-3">
+        <div class="row g-3">
+      <div class="col-md-6">
+        <label for="peruntukan" class="form-label d-flex justify-content-start">
+          No NPHD
+          <sup class="text-danger">*</sup>
+        </label>
+        <input type="text" class="form-control" name="no_NPHD" value="{{ $proposal->no_NPHD }}" required />
+        <input type="hidden" name="id_proposal" value="{{ $proposal->id_proposal }}" />
+      </div>
+      <div class="col-md-6">
+        <label for="peruntukan" class="form-label d-flex justify-content-start">
+          Peruntukan
+          <sup class="text-danger">*</sup>
+        </label>
+        <input type="text" class="form-control" name="peruntukan" value="{{ $proposal->peruntukan }}" required />
+      </div>
+      <div class="col-md-4">
+        <label for="file_proposal" class="form-label">
+          File Proposal
+          <sup class="text-danger">*</sup>
+        </label>
+        <input type="file" name="file_proposal" class="form-control" id="file_proposal" required accept="application/pdf" />
+        <span class="badge bg-success">
+          File harus berupa PDF
+        </span>
+        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#display-file_proposal">
+          <i class="fa-solid fa-file-pdf"></i>
+          Lihat file
+        </button>
+      </div>
+    </div>
+    <div class="row g-3 pt-4">
       <div class="col-md-4">
         <label for="input-bank" class="form-label">
           Bank
@@ -64,10 +95,6 @@
         </button>
       </div>
     </div>
-
-    <div class="row g-3 pt-4">
-    </div>
-
     <div class="row g-3 pt-4 mt-4 mb-4">
       <div class="text-end">
         <button type="submit" class="btn btn-outline-success col-md-3">
@@ -77,6 +104,7 @@
       </div>
     </div>
   </form>
+  {{-- Modall --}}
   <div class="modal fade" id="display-file_tabungan" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -85,6 +113,19 @@
         </div>
         <div class="modal-body">
           <embed src="{{ asset('storage/'.$dataBank->file_buku_tabungan) }}" type="application/pdf" width="100%" height="600px" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="display-file_proposal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body">
+          <embed src="{{ asset('storage/'.$proposal->file_proposal) }}" type="application/pdf" width="100%" height="600px" />
         </div>
       </div>
     </div>
