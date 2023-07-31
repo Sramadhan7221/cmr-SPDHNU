@@ -69,7 +69,7 @@ class BankController extends Controller
         $data['peruntukan'] = $all_data['peruntukan'];
         if (isset($all_data['file_proposal']))
         {
-            if ($all_data['file_proposal'] != 'kosong') 
+            if ($all_data['file_proposal'] != 'kosong')
             {
                 $file_proposal = $all_data['file_proposal'];
                 $file_proposal_name = $file_proposal->getClientOriginalName();
@@ -98,7 +98,7 @@ class BankController extends Controller
 
         $data_proposal = Proposal::where('id_proposal', $id_proposal)->get();
         $data_bank = Lembaga::where('id_lembaga', $id_lembaga)->get();
-        if ($data_proposal->file_proposal) 
+        if ($data_proposal->file_proposal)
         {
             $rules['file_proposal'] = 'max:2048';
         }

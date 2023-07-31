@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\RegisterUser;
 use App\Models\Role;
 use App\Models\Wilayah;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\UserLembaga;
+use App\Models\RegisterUser;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserSeeder extends Seeder
 {
@@ -27,6 +28,10 @@ class UserSeeder extends Seeder
                 'password' => "mwcNu@{$item->kode}",
                 'nama_mwc' => "MWC {$item->nama}",
                 'kecamatan' => $item->kode
+            ]);
+
+            UserLembaga::query()->create([
+                'user_nik' => $item->kode,
             ]);
         }
     }

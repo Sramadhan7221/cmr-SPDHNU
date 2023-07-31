@@ -82,12 +82,10 @@ class LembagaController extends Controller
 
         $validated = Validator::make($request->all(),$rules,$message);
         if($validated->fails()){
-            // return redirect()->back()->withErrors($validated)->withInput();
             Alert::error('Oops!', implode(",",$validated->errors()->messages()));
             return redirect()->back();
         }
         $data = $validated->validate();
-        //upload image
         $kop_surat = $request->file('kop_surat');
         $kop_surat_filename = $kop_surat->getClientOriginalName();
         $kop_surat_path = Storage::putFileAs($kop_surat, $kop_surat_filename);
@@ -95,13 +93,11 @@ class LembagaController extends Controller
         $domisili_filename = $domisili->getClientOriginalName();
         $domisili_path = Storage::putFileAs($domisili, $domisili_filename);
 
-        // $data['nama_lembaga'] = $user->nama_mwc;
-        // $data['alamat_lembaga'] = $user->kecamatan;
         $data['kop_surat'] = $kop_surat_path;
         $data['domisili'] = $domisili_path;
         $lembaga = Lembaga::create($data);
-        UserLembaga::where('user_nik', $user->nik)
-            ->update(['id_lembaga' => $lembaga->id_lembaga]);
+        $userlemabaga = UserLembaga::where('user_nik', $user->nik)
+        ->update(['id_lembaga' => $lembaga->id_lembaga]);
         session()->put('id_lembaga', $lembaga->id_lembaga);
         Alert::success('Data Berhasil Disimpan');
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
