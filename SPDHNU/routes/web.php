@@ -46,10 +46,10 @@ Route::get('/daftarhibah', [DaftarHibahController::class, 'index'])->name('dafta
 Route::get('/detailProposal', [DaftarHibahController::class, 'detailProposal'])->name('detailProposal');
 Route::post('/addProposal', [DaftarHibahController::class, 'addProposal'])->name('addProposal');
 Route::post('/addDanaHibah', [DaftarHibahController::class, 'addDanaHibah'])->name('addDanaHibah');
-Route::get('/deleteProposal/{id_proposal}', [DaftarHibahController::class, 'deleteProposal'])->name('deleteProposal');
-Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name('detailhibah');
+Route::get('/deleteProposal/{id_proposal}', [DaftarHibahController::class, 'deleteProposal'])->name('deleteProposal')->middleware('isMWC');
+Route::get('/detailHibah', [DaftarHibahController::class, 'detailHibah'])->name('detailhibah')->middleware('isMWC');
 
-Route::post('/addDataBank', [BankController::class, 'AddDataBank'])->name('addDataBank');
+Route::post('/addDataBank', [BankController::class, 'AddDataBank'])->name('addDataBank')->middleware('isMWC');
 Route::get('/bank/{id_proposal}', [BankController::class, 'index'])->name('bank');
 
 // Route::post('/addDataProposal', [ProposalController::class, 'addProposal'])->name('addProposal');
@@ -57,13 +57,13 @@ Route::get('/proposal/{id_proposal}', [ProposalController::class, 'index'])->nam
 
 Route::get('/rab/{id_kegiatan}', [RabController::class, 'index'])->name('dataRab');
 Route::get('/rab-detail', [RabController::class, 'getRabDetail'])->name('rab-detail');
-Route::post('/rab-add/{id_kegiatan}', [RabController::class, 'addRab'])->name('rab-add');
-Route::get('/rab-del/{id_rab}', [RabController::class, 'deletePersyaratan'])->name('rab-del');
+Route::post('/rab-add/{id_kegiatan}', [RabController::class, 'addRab'])->name('rab-add')->middleware('isMWC');
+Route::get('/rab-del/{id_rab}', [RabController::class, 'deletePersyaratan'])->name('rab-del')->middleware('isMWC');
 
 Route::get('/rab-kegiatan/{id}', [RabKegiatanController::class, 'index'])->name('rabKegiatan');
-Route::post('/add-kegiatan', [RabKegiatanController::class, 'addRabKegiatan'])->name('addRabKegiatan');
-Route::get('/edit-kegiatan', [RabKegiatanController::class, 'getRabKegiatan'])->name('getRabKegiatan');
-Route::get('/rab-kegiatan-del/{id}', [RabKegiatanController::class, 'deleteKegiatan'])->name('deleteKegiatan');
+Route::post('/add-kegiatan', [RabKegiatanController::class, 'addRabKegiatan'])->name('addRabKegiatan')->middleware('isMWC');
+Route::get('/edit-kegiatan', [RabKegiatanController::class, 'getRabKegiatan'])->name('getRabKegiatan')->middleware('isMWC');
+Route::get('/rab-kegiatan-del/{id}', [RabKegiatanController::class, 'deleteKegiatan'])->name('deleteKegiatan')->middleware('isMWC');
 
 Route::prefix('report')->group(function () {
   Route::get('/index', [GenerateFileController::class, 'index'])->name('generateFile')->middleware('isMWC');

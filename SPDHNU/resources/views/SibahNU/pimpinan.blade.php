@@ -75,7 +75,7 @@
             <div class="text-end">
                 <button type="submit" class="btn btn-outline-success">
                     <i class="ri-file-edit-line"></i>
-                    Perbaharui data MWCNU
+                    Simpan data MWCNU
                 </button>
             </div>
         </div>

@@ -64,9 +64,9 @@
                     Login
                   </button>
                 </div>
-                <div class="flex gap-2 mt-3">
+                {{-- <div class="flex gap-2 mt-3">
                     <p>Belum mempunyai akun?</p><a href="{{route('register')}}" class="text-cyan-600">Daftar Sekarang?</a>
-                </div>
+                </div> --}}
               </form>
             </div>
           </div>

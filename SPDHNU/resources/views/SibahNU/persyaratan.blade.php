@@ -76,7 +76,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-success">
+                  <button type="submit" class="btn btn-outline-success">
                     <i class="ri-file-edit-line"></i>
                     Simpan data
                   </button>

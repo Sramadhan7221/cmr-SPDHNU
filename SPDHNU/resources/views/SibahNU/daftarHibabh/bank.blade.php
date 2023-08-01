@@ -50,13 +50,19 @@
           <sup class="text-danger">*</sup>
         </label>
         <select id="input-bank" class="form-select" name="bank">
-          <option selected value="{{$dataBank->bank}}">Choose...</option>
+          <option selected value="{{$dataBank->bank}}">
+            @if($dataBank->bank < 1)
+            -- Pilih Bank --
+            @else
+            {{ $dataBank->bank }}
+            @endif
+          </option>
           <option value="BANK BNI">BNI</option>
           <option value="BANK BRI">BRI</option>
           <option value="BANK BSI">BSI</option>
           <option value="BANK MANDIRI">MANDIRI</option>
           <option value="BANK BJB">BJB</option>
-          <option value="BANK BJB">BJB SYARIAH</option>
+          <option value="BANK BJB SYARIAH">BJB SYARIAH</option>
         </select>
       </div>
       <div class="col-md-4">

@@ -41,28 +41,18 @@ h6 {
 /*--------------------------------------------------------------
   # Main
   --------------------------------------------------------------*/
-
 .custom-loader {
     width: 100px;
     height: 100px;
-    display: grid;
+    border-radius: 50%;
+    border: 20px solid;
+    border-color: #17594a #0000;
+    animation: s1 1s infinite;
 }
-.custom-loader::before,
-.custom-loader::after {
-    content: "";
-    grid-area: 1/1;
-    --c: radial-gradient(farthest-side, #17594a 92%, #0000);
-    background: var(--c) 50% 0, var(--c) 50% 100%, var(--c) 100% 50%,
-        var(--c) 0 50%;
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-    animation: s2 1s infinite;
-}
-.custom-loader::before {
-    margin: 4px;
-    filter: hue-rotate(45deg);
-    background-size: 12px 12px;
-    animation-timing-function: linear;
+@keyframes s1 {
+    to {
+        transform: rotate(0.5turn);
+    }
 }
 
 @keyframes s2 {

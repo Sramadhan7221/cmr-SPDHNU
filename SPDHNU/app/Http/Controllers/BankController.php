@@ -13,20 +13,34 @@ use App\Models\Lembaga;
 class BankController extends Controller
 {
     public function index($id_proposal){
-        if(!session()->get('id_lembaga')){
+        if(!session()->get('id_lembaga') && !session()->get('id_admin')){
             Alert::error('Oops!', 'Data Lembaga Belum Lengkap');
             return redirect()->back();
         }
 
         $proposal = $this->headHibah($id_proposal);
-        $DataBank = Lembaga::query()->where('id_lembaga',Session::get('id_lembaga'))->first();
-        $data = [
-            'dataBank' => $DataBank ?? new Lembaga,
-            'display_menu' => $this->display_menu,
-            'actived_menu' => 'Pengkinian Data',
-            'proposal' => $proposal
-        ];
-        return view('SibahNU.daftarHibabh.bank',$data);
+        if(session()->get('id_user')){
+            $DataBank = Lembaga::query()->where('id_lembaga',Session::get('id_lembaga'))->first();
+            $data = [
+                'dataBank' => $DataBank ?? new Lembaga,
+                'display_menu' => $this->display_menu,
+                'actived_menu' => 'Pengkinian Data',
+                'proposal' => $proposal
+            ];
+            return view('SibahNU.daftarHibabh.bank',$data);
+        } else {
+            $DataBank = Lembaga::select(['no_rek','bank','nama_rekening','cabang_bank','file_buku_tabungan'])
+            ->join('proposal','proposal.lembaga','=','lembaga.id_lembaga')
+            ->where('id_proposal',$id_proposal)
+            ->first();
+            $data = [
+                'dataBank' => $DataBank ?? new Lembaga,
+                'display_menu' => $this->display_menu,
+                'actived_menu' => 'Pengkinian Data',
+                'proposal' => $proposal
+            ];
+            return view('SibahNU.daftarHibabh.bank',$data);
+        }
     }
 
     public function AddDataBank(Request $request){

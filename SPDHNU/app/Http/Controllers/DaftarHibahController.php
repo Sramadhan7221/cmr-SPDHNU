@@ -23,7 +23,7 @@ class DaftarHibahController extends Controller
             return redirect()->back();
         }
         $mwc = Lembaga::select(['id_lembaga','nama_lembaga'])->get();
-        if($lembaga = session()->get('id_lembaga')){
+        if($lembaga = session()->get('id_user')){
             $proposal = Proposal::select(['id_proposal','sumber_dana','nama_lembaga','alamat_lembaga','peruntukan','nilai_pengajuan','tahun'])
                 ->join('lembaga', 'proposal.lembaga', '=', 'lembaga.id_lembaga')
                 ->where('lembaga', session('id_lembaga'))

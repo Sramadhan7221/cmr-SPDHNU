@@ -67,56 +67,14 @@
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Filter Daftar Hibah</h5>
-            <div class="row">
-              @if(session()->get('id_user') || session()->get('id_admin'))
-              <div class="col-lg-4">
-                <label for="filter-by-years" class="form-label d-flex justify-content-start">
-                  Berdasarkan Tahun Anggaran
-                </label>
-                <select id="filter-by-years" class="form-select">
-                  @foreach($tahun as $item)
-                  @if($item == date('Y'))
-                  <option value="{{$item}}" selected>{{ $item }}</option>
-                  @else
-                  <option value="{{$item}}">{{ $item }}</option>
-                  @endif
-                  @endforeach
-                </select>
-              </div>
-              @endif
-              @if(!session()->get('id_user'))
-              <div class="col-lg-4">
-                <label class="form-label d-flex justify-content-start">
-                  Berdasarkan MWC
-                </label>
-                <select id="filter-by-mwc" class="form-select">
-                  @if(count($mwc) < 1) <option disabled>Tidak ada mwc ditampilkan, pastikan mwc telah melengkapi data</option>
-                    @endif
-                    @foreach($mwc as $item)
-                    @if($item)
-                    <option value="{{$item->id_lembaga}}" selected>{{ $item->nama_lembaga }}</option>
-                    @else
-                    <option value="{{$item->id_lembaga}}">{{ $item->nama_lembaga }}</option>
-                    @endif
-                    @endforeach
-                </select>
-              </div>
-              @endif
-            </div>
+            <h5 class="card-title">Daftar Hibah</h5>
             <div class="text-end">
-              @if(!session()->get('id_user'))
-              <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#dana-hibah">
-                <i class="ri-file-edit-line"></i>
-                Tambah Dana Hibah
-              </button>
-              @endif
-              {{-- @if(session()->get('id_user'))
-              <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#mohon-hibah">
-                <i class="ri-file-edit-line"></i>
-                Daftar Hibah
-              </button>
-              @endif --}}
+                @if(!session()->get('id_user'))
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#dana-hibah">
+                  <i class="ri-file-edit-line"></i>
+                  Tambah Dana Hibah
+                </button>
+                @endif
             </div>
 
             <div class="modal fade" id="mohon-hibah" tabindex="-1">
@@ -253,12 +211,13 @@
                             <sup class="text-danger">*</sup>
                           </label>
                           <select id="lembaga" name="lembaga" class="form-select">
-                            @if(count($mwc) < 1) 
+                            @if(count($mwc) < 1)
                               <option disabled>Tidak ada mwc ditampilkan, pastikan mwc telah melengkapi data</option>
                             @endif
+                            <option value="0" selected>--Pilih MWCNU--</option>
                             @foreach($mwc as $item)
                               @if($item)
-                                <option value="{{$item->id_lembaga}}" selected>{{ $item->nama_lembaga }}</option>
+                                <option value="{{$item->id_lembaga}}">{{ $item->nama_lembaga }}</option>
                               @else
                                 <option value="{{$item->id_lembaga}}">{{ $item->nama_lembaga }}</option>
                               @endif
@@ -318,8 +277,7 @@
                   <th scope="col">Peruntukan</th>
                   <th scope="col">Tahun</th>
                   <th scope="col">Jumlah</th>
-                  <th scope="col">File</th>
-                  <!-- <th scope="col">Aksi</th> -->
+                  <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -331,9 +289,6 @@
                   <td>{{ $item->peruntukan }}</td>
                   <td>{{ $item->tahun }}</td>
                   <td>{{ number_format($item->nilai_pengajuan,0,',','.') }}</td>
-                  <td>
-                    <a class="btn btn-outline-success" href="{{ asset('storage/'.$item->file_proposal) }}">Lihat</a>
-                  </td>
                   <td>
                     <a class="btn btn-success" x-on:click="isLoading = true" href="{{route('bank',$item->id_proposal)}}">
                       Detail

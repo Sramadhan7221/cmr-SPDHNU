@@ -18,7 +18,7 @@ class isUser
         if(!session()->isStarted()) session()->start();
         if(!session()->has("logged", "id_user")) {
             return redirect()->route('login')->withErrors([
-                "msg" => "Silahkan Login Terlebih Dahulu"
+                "msg" => "Silahkan Login Sebagai User MWC"
             ]);
         }
         return $next($request);
