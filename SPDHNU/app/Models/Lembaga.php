@@ -19,6 +19,7 @@ class Lembaga extends Model
     protected $primaryKey = 'id_lembaga';
     protected $keyType = 'string';
     protected $guarded = 'id_lembaga';
+    public $incrementing = false;
     protected $fillable = [
         'nama_lembaga',
         'alamat_lembaga',

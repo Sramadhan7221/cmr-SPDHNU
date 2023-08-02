@@ -82,7 +82,8 @@ class LembagaController extends Controller
 
         $validated = Validator::make($request->all(),$rules,$message);
         if($validated->fails()){
-            Alert::error('Oops!', implode(",",$validated->errors()->messages()));
+            Alert::error('Oops!', "Sepertinya ada yang salah");
+            print_r($validated->errors()->messages());
             return redirect()->back();
         }
         $data = $validated->validate();
