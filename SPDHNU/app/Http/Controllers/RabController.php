@@ -42,7 +42,7 @@ class RabController extends Controller
     function addRab(Request $request,$id_kegiatan) {
         $proposal = Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')
                     ->where('id',$id_kegiatan)
-                    ->first(['sub_total','total_rab','id']);
+                    ->first(['sub_total','total_rab','id','nilai_pengajuan']);
         $rules = [
             'uraian'=> 'required|regex:/^[a-zA-Z\s.-]+$/',
             'satuan'=> 'required|regex:/^[a-zA-Z\s.-]+$/',
@@ -66,8 +66,15 @@ class RabController extends Controller
 
         $data = $validated->validate();
         if($request->id_rab) {
+            $data['total'] = $data['qty'] * $data['harga'];
+            $sub_total = $proposal['sub_total'] + $data['total'];
+            $total_rab = $proposal['total_rab'] + $data['total'];
+            RabKegiatan::where('id',$id_kegiatan)->update(['sub_total' => $sub_total]);
+            Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')
+                    ->where('id',$id_kegiatan)->update(['total_rab' => $total_rab]);
             Rab::where('id_rab', $request->id_rab)
                 ->update($data);
+            Alert::success('Data Berhasil Diupdate');
             return redirect()->back()->withSuccess('Data Berhasil Diupdate');
         }
         $data['total'] = $data['qty'] * $data['harga'];
@@ -75,7 +82,7 @@ class RabController extends Controller
         $sub_total = $proposal['sub_total'] + $data['total'];
         $total_rab = $proposal['total_rab'] + $data['total'];
         $data['rab_kegiatan'] = $proposal->id;
-        if($total_rab > 5000000){
+        if($total_rab > $proposal->nilai_pengajuan){
             Alert::error('Oops!','Total Rab Melebihi Batas Dana');
             return redirect()->back();
         }
@@ -83,6 +90,7 @@ class RabController extends Controller
         RabKegiatan::where('id',$id_kegiatan)->update(['sub_total' => $sub_total]);
         Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')
                     ->where('id',$id_kegiatan)->update(['total_rab' => $total_rab]);
+        Alert::success('Data Berhasil Disimpan');
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 
@@ -116,9 +124,11 @@ class RabController extends Controller
                 ->join('rab','rab_kegiatan','=','rab_kegiatan.id')
                 ->where('id_rab',$id_rab)
                 ->update(['total_rab' => $MinTotalRab]);
-        if ($deleted > 0)
-            return redirect()->back()->withSuccess('Data Berhasil Diupdate');
-        else
-           return redirect()->back()->withErrors('Data Gagal Diupdate');
+        if ($deleted > 0){
+            Alert::success('Data Berhasil DiHapus');
+            return redirect()->back();
+        } else {
+            return redirect()->back()->withErrors('Data Gagal Diupdate');
+        }
     }
 }

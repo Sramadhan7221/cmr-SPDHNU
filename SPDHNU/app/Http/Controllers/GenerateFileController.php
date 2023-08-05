@@ -48,7 +48,7 @@ class GenerateFileController extends Controller
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.surat_permohonan_pencarian',$data);
         set_time_limit(3600);
-        return $pdf->stream('surat_permohonan_pencairan'.Carbon::parse($lembaga->created_at)->format('d-m-y').'.pdf');
+        return $pdf->download('surat_permohonan_pencairan'.Carbon::parse($lembaga->created_at)->format('d-m-y').'.pdf');
     }
 
     protected function isPimpinanExist () {
@@ -73,7 +73,7 @@ class GenerateFileController extends Controller
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.fakta_integritas',$data);
         set_time_limit(3600);
-        return $pdf->stream('fakta_integritas'.Carbon::now()->format('d-m-y').'.pdf');
+        return $pdf->download('fakta_integritas'.Carbon::now()->format('d-m-y').'.pdf');
     }
 
     function naskahPerjanjian($proposal_id){
@@ -100,7 +100,7 @@ class GenerateFileController extends Controller
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.naskah_perjanjian_hibah', $data);
         set_time_limit(3600);
-        return $pdf->stream('naskah_perjanjian_hibah'.Carbon::now()->format('d-m-y').'.pdf');
+        return $pdf->download('naskah_perjanjian_hibah'.Carbon::now()->format('d-m-y').'.pdf');
     }
 
     function suratPernyataan(){
@@ -117,7 +117,7 @@ class GenerateFileController extends Controller
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.surat_pernyataan',$data);
         set_time_limit(3600);
-        return $pdf->stream('surat_pernyataan'.Carbon::now()->format('d-m-y').'.pdf');
+        return $pdf->download('surat_pernyataan'.Carbon::now()->format('d-m-y').'.pdf');
     }
 
     function suratKeabsahan(){
@@ -134,7 +134,7 @@ class GenerateFileController extends Controller
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.surat_keabsahan',$data);
         set_time_limit(3600);
-        return $pdf->stream('surat_keabsahan_document'.Carbon::now()->format('d-m-y').'.pdf');
+        return $pdf->download('surat_keabsahan_document'.Carbon::now()->format('d-m-y').'.pdf');
     }
 
     function rincianRAB($proposal_id)
@@ -162,6 +162,6 @@ class GenerateFileController extends Controller
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.rincian_rab',$data_all);
         set_time_limit(3600);
-        return $pdf->stream('rincian_rab'.Carbon::now()->format('d-m-y').'.pdf');
+        return $pdf->download('rincian_rab'.Carbon::now()->format('d-m-y').'.pdf');
     }
 }

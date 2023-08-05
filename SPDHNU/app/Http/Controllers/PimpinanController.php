@@ -73,7 +73,9 @@ class PimpinanController extends Controller
 
         $validated = Validator::make($request->all(),$rules,$message);
         if($validated->fails()){
-            return redirect()->back()->withErrors($validated)->withInput($request->all());
+            Alert::error('Oops!', "Sepertinya ada yang salah");
+            print_r($validated->errors()->messages());
+            return redirect()->back();
         }
 
         $data = $validated->validate();

@@ -69,7 +69,7 @@ class PersyaratanController extends Controller
         $data['id_lembaga'] = session('id_lembaga');
         Persyaratan::create($data);
         Alert::success('Data Berhasil Disimpan');
-        return redirect(route('persyaratan'))->withSuccess('Data Berhasil Disimpan');
+        return redirect(route('persyaratan'));
     }
 
     public function getPersyaratan(Request $request) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Proposal;
 use App\Models\RabKegiatan;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 class RabKegiatanController extends Controller
@@ -79,11 +80,21 @@ class RabKegiatanController extends Controller
 
     function deleteKegiatan($id)
     {
+        $proposal = Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')
+                    ->where('id',$id)
+                    ->first(['total_rab','id']);
         $deleted = RabKegiatan::where('id', $id)
             ->delete();
-        if ($deleted > 0)
-            return redirect()->back()->withSuccess('Data Berhasil Diupdate');
-        else
+        $restore = RabKegiatan::withTrashed()->where('id',$id)->first();
+        $updateTotalRab = $proposal['total_rab'] - $restore['sub_total'];
+        Proposal::join('rab_kegiatan','proposal','=','proposal.id_proposal')
+                ->where('id',$id)
+                ->update(['total_rab' => $updateTotalRab]);
+        if ($deleted > 0){
+            Alert::success('Data Berhasil DiHapus');
+            return redirect()->back();
+        } else {
             return redirect()->back()->withErrors('Data Gagal Diupdate');
+        }
     }
 }

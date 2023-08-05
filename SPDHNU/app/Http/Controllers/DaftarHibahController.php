@@ -41,7 +41,7 @@ class DaftarHibahController extends Controller
             $proposal = Proposal::select(['id_proposal','sumber_dana','nama_lembaga','alamat_lembaga','peruntukan','nilai_pengajuan','tahun'])
                 ->join('lembaga', 'proposal.lembaga', '=', 'lembaga.id_lembaga')
                 ->where('proposal.deleted_at',null)
-                ->get();
+                ->paginate(10);
             $data = [
                 'proposals' => $proposal,
                 'mwc' => $mwc,

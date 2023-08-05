@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=
     , initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css')
-    @vite('resources/js/index.js')
+    <link rel="stylesheet" href="{{asset('build/assets/app-bb628048.css')}}">
+    <link rel="stylesheet" href="{{asset('build/assets/app-0d91dc04.js')}}">
     <title>LOGIN</title>
 </head>
 <body>

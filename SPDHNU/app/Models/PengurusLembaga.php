@@ -20,6 +20,7 @@ class PengurusLembaga extends Model
     protected $primaryKey = 'id';
     protected $keyType = 'string';
     protected $guarded = 'id';
+    public $incrementing = false;
     protected $fillable = [
         'lembaga',
         'pengurus',
@@ -35,12 +36,12 @@ class PengurusLembaga extends Model
         });
     }
 
-    public function lembaga() : HasOne 
+    public function lembaga() : HasOne
     {
         return $this->hasOne(Lembaga::class);
     }
 
-    public function pengurus() : HasMany 
+    public function pengurus() : HasMany
     {
         return $this->hasMany(Kepengurusan::class);
     }

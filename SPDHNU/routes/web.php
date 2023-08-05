@@ -55,8 +55,8 @@ Route::get('/bank/{id_proposal}', [BankController::class, 'index'])->name('bank'
 // Route::post('/addDataProposal', [ProposalController::class, 'addProposal'])->name('addProposal');
 Route::get('/proposal/{id_proposal}', [ProposalController::class, 'index'])->name('proposal');
 
-Route::get('/rab/{id_kegiatan}', [RabController::class, 'index'])->name('dataRab');
-Route::get('/rab-detail', [RabController::class, 'getRabDetail'])->name('rab-detail');
+Route::get('/rab/{id_kegiatan}', [RabController::class, 'index'])->name('dataRab')->middleware('isMWC');
+Route::get('/rab-detail', [RabController::class, 'getRabDetail'])->name('rab-detail')->middleware('isMWC');
 Route::post('/rab-add/{id_kegiatan}', [RabController::class, 'addRab'])->name('rab-add')->middleware('isMWC');
 Route::get('/rab-del/{id_rab}', [RabController::class, 'deletePersyaratan'])->name('rab-del')->middleware('isMWC');
 

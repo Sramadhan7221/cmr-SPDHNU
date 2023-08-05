@@ -18,6 +18,7 @@ class Kepengurusan extends Model
     protected $primaryKey = 'id_pengurus';
     protected $keyType = 'string';
     protected $guarded = 'id_pengurus';
+    public $incrementing = false;
     protected $fillable = [
         'nama_pengurus',
         'jabatan',

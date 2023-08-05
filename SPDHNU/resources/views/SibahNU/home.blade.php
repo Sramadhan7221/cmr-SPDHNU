@@ -88,7 +88,7 @@
         <input type="file" name="kop_surat" class="form-control" id="kop_surat" value="{{asset('storage/'.$lembaga->kop_surat)}}" />
         <span class="badge text-start bg-success col-md-12 mt-2 mb-2">
           File harus berupa JPG/PNG, Layout kop Surat Harus Potrait A4<br>
-          <a href="{{asset('aseets/contoh_kop_surat.jpeg')}}" class="text-cyan-400"><i>lihat contoh kop surat</i></a>
+          <a href="{{asset('aseets/contoh_kop_surat.jpeg')}}" class="text-cyan-600"><i>lihat contoh kop surat</i></a>
         </span>
         <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#display-kop_surat">
           <i class="bi-image"></i>
