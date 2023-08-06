@@ -27,6 +27,31 @@
 </head>
 
 <body x-data="{isLoading: false}">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+        body {
+          font-family: "Open Sans", sans-serif;
+        }
+        .search {
+          top: 6px;
+          left: 10px;
+        }
+
+        .form-control {
+          border: none;
+          padding-left: 32px;
+        }
+
+        .form-control:focus {
+          border: none;
+          box-shadow: none;
+        }
+
+        .green {
+          color: green;
+        }
+      </style>
   @include('sweetalert::alert')
   <template x-if="isLoading">
     <div class="fixed inset-0 z-[100] bg-white">
@@ -68,6 +93,30 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Daftar Hibah</h5>
+            <div class="container mt-5 px-2">
+                <div class="table-responsive">
+                  <table class="table table-responsive table-borderless">
+                    <thead class="">
+                      <tr class="bg-green-400">
+                        <th scope="col" width="5%">
+                          <input class="form-check-input" type="checkbox" />
+                        </th>
+                        <th scope="col" width="5%">No</th>
+                        <th scope="col" width="20%">Nama MWC</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          <input class="form-check-input" type="checkbox" />
+                        </th>
+                        <td>12</td>
+                        <td>1 Oct, 21</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             <div class="text-end">
                 @if(!session()->get('id_user'))
                 <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#dana-hibah">
@@ -184,7 +233,7 @@
                             Sumber Dana Hibah
                             <sup class="text-danger">*</sup>
                           </label>
-                          <input type="text" class="form-control" name="sumber_dana" required />
+                          <input type="text" class="form-control" name="sumber_dana" required value="PCNU Kab. Tasikmalaya"/>
                         </div>
                       </div>
                       <div class="row mt-3">

@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
                 'nik' => $item->kode,
                 'nama' => "Admin MWC {$item->nama}",
                 'password' => "mwcNu@{$item->kode}",
-                'nama_mwc' => "MWC {$item->nama}",
+                'nama_mwc' => "MWC NU {$item->nama}",
                 'kecamatan' => $item->kode
             ]);
 

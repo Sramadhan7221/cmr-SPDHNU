@@ -74,6 +74,7 @@ class DaftarHibahController extends Controller
             return redirect()->back()->withErrors($validated)->withInput($request->all());
         }
         $data = $validated->validate();
+        $data['sumber_dana'] = "PCNU Kab. Tasikmalaya";
         Proposal::create($data);
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }

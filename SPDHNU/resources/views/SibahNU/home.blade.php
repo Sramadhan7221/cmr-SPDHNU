@@ -36,6 +36,9 @@
           No tlp / Handphone
           <sup class="text-danger">*</sup>
         </label>
+        <span class="badge text-start bg-success col-md-12 mt-2 mb-2">
+            Optional Nomor Handphone Ketua/Sekertaris
+          </span>
         <input type="text" name="no_telp" value="{{$lembaga->no_telp ?? ''}}" class="form-control" id="input-tlp" />
       </div>
 

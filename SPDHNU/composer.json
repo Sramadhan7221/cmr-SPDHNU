@@ -10,6 +10,7 @@
         "blade-ui-kit/blade-heroicons": "^2.1",
         "blade-ui-kit/blade-icons": "^1.5",
         "blade-ui-kit/blade-ui-kit": "^0.4.0",
+        "doctrine/dbal": "^3.6",
         "google/apiclient": "^2.15",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
