@@ -40,7 +40,7 @@
       <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
           <img src="{{asset('aseets/logo.png')}}" alt="" />
-          <span class="d-none text-green-800 d-lg-block">PCNU KAB Tasikmalaya</span>
+          <span class="d-none text-green-800 d-lg-block">PCNU<br>KAB.Tasikmalaya</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn "></i>
       </div>
