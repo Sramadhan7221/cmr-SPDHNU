@@ -65,11 +65,6 @@
             {{ $dataBank->bank }}
             @endif
           </option>
-          <option value="BANK BNI">BNI</option>
-          <option value="BANK BRI">BRI</option>
-          <option value="BANK BSI">BSI</option>
-          <option value="BANK MANDIRI">MANDIRI</option>
-          <option value="BANK BJB">BJB</option>
           <option value="BANK BJB SYARIAH">BJB SYARIAH</option>
         </select>
       </div>
