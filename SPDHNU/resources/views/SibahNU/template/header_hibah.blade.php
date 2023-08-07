@@ -5,13 +5,13 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-  <title>Components / Tabs - NiceAdmin Bootstrap Template</title>
+  <title>SIBAHNU-MediaNu</title>
   <meta content="" name="description" />
   <meta content="" name="keywords" />
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon" />
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="{{asset('aseets/logo.png')}}" rel="icon" />
+  <link href="{{asset('aseets/logo.png')}}" rel="apple-touch-icon" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect" />
@@ -23,7 +23,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <!-- Template Main CSS File -->
   <link href="{{asset('css/style.css')}}" rel="stylesheet" />
- <link rel="stylesheet" href="{{asset('build/assets/app-bb628048.css')}}">
+  <link rel="stylesheet" href="{{asset('build/assets/app-bb628048.css')}}">
 </head>
 
 <body x-data="{isLoading: false}">
@@ -105,4 +105,3 @@
         </div>
         <!-- End Default Card -->
       </div>
-

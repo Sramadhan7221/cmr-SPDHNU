@@ -54,6 +54,7 @@ class DaftarHibahController extends Controller
     }
 
     function addDanaHibah(Request $request){
+        dd($request);
         $rules = [
             'sumber_dana' => 'required|regex:/^[a-zA-Z\s.-]+$/',
             'nilai_pengajuan' => 'required|regex:/^[0-9]+$/',
@@ -75,7 +76,29 @@ class DaftarHibahController extends Controller
         }
         $data = $validated->validate();
         $data['sumber_dana'] = "PCNU Kab. Tasikmalaya";
-        Proposal::create($data);
+        foreach ($data['lembaga'] as $value) {
+            if ($value == "all") {
+                $lembaga = Lembaga::select('id_lembaga')->get();
+                foreach ($lembaga as $item) {
+                    $val = [
+                        'sumber_dana' => $data['sumber_dana'],
+                        'nilai_pengajuan' => $data['nilai_pengajuan'],
+                        'tahun' => $data['tahun'],
+                        'lembaga' => $item
+                    ];
+                    Proposal::create($val);
+                }
+            }
+            else {
+                $val = [
+                    'sumber_dana' => $data['sumber_dana'],
+                    'nilai_pengajuan' => $data['nilai_pengajuan'],
+                    'tahun' => $data['tahun'],
+                    'lembaga' => $value
+                ];
+                Proposal::create($val);
+            }
+        }
         return redirect()->back()->withSuccess('Data Berhasil Disimpan');
     }
 

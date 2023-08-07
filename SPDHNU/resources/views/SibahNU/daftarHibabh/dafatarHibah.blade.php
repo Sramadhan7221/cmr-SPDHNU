@@ -5,13 +5,13 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-  <title>Components / Tabs - NiceAdmin Bootstrap Template</title>
+  <title>SIBAHNU-MediaNu</title>
   <meta content="" name="description" />
   <meta content="" name="keywords" />
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon" />
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="{{asset('aseets/logo.png')}}" rel="icon" />
+  <link href="{{asset('aseets/logo.png')}}" rel="apple-touch-icon" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect" />
@@ -21,37 +21,14 @@
   <!-- Option 1: Include in HTML -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
   <!-- Template Main CSS File -->
   <link href="{{asset('css/style.css')}}" rel="stylesheet" />
   <link rel="stylesheet" href="{{asset('build/assets/app-bb628048.css')}}">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body x-data="{isLoading: false}">
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
-
-        body {
-          font-family: "Open Sans", sans-serif;
-        }
-        .search {
-          top: 6px;
-          left: 10px;
-        }
-
-        .form-control {
-          border: none;
-          padding-left: 32px;
-        }
-
-        .form-control:focus {
-          border: none;
-          box-shadow: none;
-        }
-
-        .green {
-          color: green;
-        }
-      </style>
   @include('sweetalert::alert')
   <template x-if="isLoading">
     <div class="fixed inset-0 z-[100] bg-white">
@@ -81,7 +58,6 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item text-success">Permohonan</li>
           <li class="breadcrumb-item active">Daftar Hibah</li>
         </ol>
       </nav>
@@ -89,214 +65,78 @@
     <!-- End Page Title -->
 
     <section class="section">
+      @if(!session()->get('id_user'))
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Daftar Hibah</h5>
-            <div class="container mt-5 px-2">
-                <div class="table-responsive">
-                  <table class="table table-responsive table-borderless">
-                    <thead class="">
-                      <tr class="bg-green-400">
-                        <th scope="col" width="5%">
-                          <input class="form-check-input" type="checkbox" />
-                        </th>
-                        <th scope="col" width="5%">No</th>
-                        <th scope="col" width="20%">Nama MWC</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">
-                          <input class="form-check-input" type="checkbox" />
-                        </th>
-                        <td>12</td>
-                        <td>1 Oct, 21</td>
-                      </tr>
-                    </tbody>
-                  </table>
+            <form id="proposal_form" method="POST" action="{{route('addDanaHibah')}}">
+              @csrf
+              <div class="row mt-3">
+                <div class="col-md-12">
+                  <label for="sumber_dana" class="form-label">
+                    Sumber Dana Hibah
+                    <sup class="text-danger">*</sup>
+                  </label>
+                  <input type="text" class="form-control" name="sumber_dana" required value="PCNU Kab. Tasikmalaya" />
                 </div>
               </div>
-            <div class="text-end">
-                @if(!session()->get('id_user'))
-                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#dana-hibah">
+              <div class="row mt-3">
+                <div class="col-md-12">
+                  <label for="tahun" class="form-label d-flex justify-content-start">
+                    Tahun
+                    <sup class="text-danger">*</sup>
+                  </label>
+                  <select id="tahun" name="tahun" class="form-select">
+                    @foreach($tahun as $item)
+                    @if($item == date('Y'))
+                    <option value="{{$item}}" selected>{{ $item }}</option>
+                    @elseif((int)$item > (int)date('Y'))
+                    <option value="{{$item}}">{{ $item }}</option>
+                    @endif
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-8">
+                  <label for="lembaga" class="form-label d-flex justify-content-start">
+                    MWCNU
+                    <sup class="text-danger">*</sup>
+                  </label>
+                  <select id="lembaga" name="lembaga[]" class="form-select select2" multiple="multiple">
+                    <option value="all">Pilih Semua</option>
+                    @foreach($mwc as $item)
+                      @if($item)
+                        <option value="{{$item->id_lembaga}}">{{ $item->nama_lembaga }}</option>
+                      @else
+                        <option value="{{$item->id_lembaga}}">{{ $item->nama_lembaga }}</option>
+                      @endif
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-12">
+                  <label for="nilai_pengajuan" class="form-label d-flex justify-content-start">
+                    Jumlah
+                    <sup class="text-danger">*</sup>
+                  </label>
+                  <input type="text" class="form-control" name="nilai_pengajuan" required />
+                </div>
+              </div>
+              <div class="mt-5 d-flex justify-content-end">
+                <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
                   <i class="ri-file-edit-line"></i>
-                  Tambah Dana Hibah
+                  Tambah Hibah
                 </button>
-                @endif
-            </div>
-
-            <div class="modal fade" id="mohon-hibah" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Tambah Permohonan Hibah</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <form id="proposal_form" method="POST" action="{{route('addProposal')}}">
-                      @csrf
-                      <div class="row mt-3">
-                        <div class="col-md-12">
-                          <label for="peruntukan" class="form-label d-flex justify-content-start">
-                            No NPHD
-                            <sup class="text-danger">*</sup>
-                          </label>
-                          <input type="text" class="form-control" name="no_NPHD" required />
-                          <input type="hidden" name="id_proposal" />
-                        </div>
-                      </div>
-                      <div class="row mt-3">
-                        <div class="col-md-12">
-                          <label for="peruntukan" class="form-label d-flex justify-content-start">
-                            Peruntukan
-                            <sup class="text-danger">*</sup>
-                          </label>
-                          <input type="text" class="form-control" name="peruntukan" required />
-                        </div>
-                      </div>
-                      <div class="row mt-3">
-                        <div class="col-md-12">
-                          <label for="sumber_dana" class="form-label d-flex justify-content-start">
-                            Sumber Dana Hibah
-                            <sup class="text-danger">*</sup>
-                          </label>
-                          <input type="text" class="form-control" name="sumber_dana" readonly />
-                        </div>
-                      </div>
-                      <div class="row mt-3">
-                        <div class="col-md-12">
-                          <label for="tahun" class="form-label d-flex justify-content-start">
-                            Tahun
-                            <sup class="text-danger">*</sup>
-                          </label>
-                          <select id="tahun" name="tahun" class="form-select">
-                            @foreach($tahun as $item)
-                            @if($item == date('Y'))
-                            <option value="{{$item}}" selected>{{ $item }}</option>
-                            @elseif((int)$item > (int)date('Y'))
-                            <option value="{{$item}}">{{ $item }}</option>
-                            @endif
-                            @endforeach
-                          </select>
-                        </div>
-                      </div>
-                      <div class="row mt-3">
-                        <div class="col-md-12">
-                          <label for="nilai_pengajuan" class="form-label d-flex justify-content-start">
-                            Jumlah
-                            <sup class="text-danger">*</sup>
-                          </label>
-                          <input type="text" class="form-control" name="nilai_pengajuan" readonly />
-                        </div>
-                      </div>
-                      <div class="row mt-3">
-                        <div class="col-md-12">
-                          <label for="file_proposal" class="form-label">
-                            File Proposal
-                            <sup class="text-danger">*</sup>
-                          </label>
-                          <input type="file" name="file_proposal" class="form-control" id="file_proposal" required accept="application/pdf" />
-                          <span class="badge bg-success">
-                            File harus berupa PDF
-                          </span>
-                          <button type="button" class="btn btn-outline-success" id="display_file">
-                            <i class="fa-solid fa-file-pdf"></i>
-                            Lihat file
-                          </button>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
-                      <i class="ri-file-edit-line"></i>
-                      Simpan data
-                    </button>
-                  </div>
-                  </form>
-                </div>
               </div>
-            </div>
-            <div class="modal fade" id="dana-hibah" tabindex="-1">
-              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Tambah Dana Hibah</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <form id="proposal_form" method="POST" action="{{route('addDanaHibah')}}">
-                      @csrf
-                      <div class="row mt-3">
-                        <div class="col-md-12">
-                          <label for="sumber_dana" class="form-label d-flex justify-content-start">
-                            Sumber Dana Hibah
-                            <sup class="text-danger">*</sup>
-                          </label>
-                          <input type="text" class="form-control" name="sumber_dana" required value="PCNU Kab. Tasikmalaya"/>
-                        </div>
-                      </div>
-                      <div class="row mt-3">
-                        <div class="col-md-12">
-                          <label for="tahun" class="form-label d-flex justify-content-start">
-                            Tahun
-                            <sup class="text-danger">*</sup>
-                          </label>
-                          <select id="tahun" name="tahun" class="form-select">
-                            @foreach($tahun as $item)
-                            @if($item == date('Y'))
-                            <option value="{{$item}}" selected>{{ $item }}</option>
-                            @elseif((int)$item > (int)date('Y'))
-                            <option value="{{$item}}">{{ $item }}</option>
-                            @endif
-                            @endforeach
-                          </select>
-                        </div>
-                      </div>
-                      <div class="row mt-3">
-                        <div class="col-md-12">
-                          <label for="lembaga" class="form-label d-flex justify-content-start">
-                            MWCNU
-                            <sup class="text-danger">*</sup>
-                          </label>
-                          <select id="lembaga" name="lembaga" class="form-select">
-                            @if(count($mwc) < 1)
-                              <option disabled>Tidak ada mwc ditampilkan, pastikan mwc telah melengkapi data</option>
-                            @endif
-                            <option value="0" selected>--Pilih MWCNU--</option>
-                            @foreach($mwc as $item)
-                              @if($item)
-                                <option value="{{$item->id_lembaga}}">{{ $item->nama_lembaga }}</option>
-                              @else
-                                <option value="{{$item->id_lembaga}}">{{ $item->nama_lembaga }}</option>
-                              @endif
-                            @endforeach
-                          </select>
-                        </div>
-                      </div>
-                      <div class="row mt-3">
-                        <div class="col-md-12">
-                          <label for="nilai_pengajuan" class="form-label d-flex justify-content-start">
-                            Jumlah
-                            <sup class="text-danger">*</sup>
-                          </label>
-                          <input type="text" class="form-control" name="nilai_pengajuan" required />
-                        </div>
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
-                      <i class="ri-file-edit-line"></i>
-                      Simpan data
-                    </button>
-                  </div>
-                  </form>
-                </div>
-              </div>
-            </div>
+            </form>
+          </div>
           </div>
         </div>
       </div>
+      @endif
 
       <div class="modal fade" id="display-file_tabungan" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -307,6 +147,98 @@
             <div class="modal-body">
               <embed id="file_display" src="" type="application/pdf" width="100%" height="600px" />
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="mohon-hibah" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Tambah Permohonan Hibah</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="proposal_form" method="POST" action="{{route('addProposal')}}">
+                @csrf
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                    <label for="peruntukan" class="form-label d-flex justify-content-start">
+                      No NPHD
+                      <sup class="text-danger">*</sup>
+                    </label>
+                    <input type="text" class="form-control" name="no_NPHD" required />
+                    <input type="hidden" name="id_proposal" />
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                    <label for="peruntukan" class="form-label d-flex justify-content-start">
+                      Peruntukan
+                      <sup class="text-danger">*</sup>
+                    </label>
+                    <input type="text" class="form-control" name="peruntukan" required />
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                    <label for="sumber_dana" class="form-label d-flex justify-content-start">
+                      Sumber Dana Hibah
+                      <sup class="text-danger">*</sup>
+                    </label>
+                    <input type="text" class="form-control" name="sumber_dana" readonly />
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                    <label for="tahun" class="form-label d-flex justify-content-start">
+                      Tahun
+                      <sup class="text-danger">*</sup>
+                    </label>
+                    <select id="tahun" name="tahun" class="form-select">
+                      @foreach($tahun as $item)
+                      @if($item == date('Y'))
+                      <option value="{{$item}}" selected>{{ $item }}</option>
+                      @elseif((int)$item > (int)date('Y'))
+                      <option value="{{$item}}">{{ $item }}</option>
+                      @endif
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                    <label for="nilai_pengajuan" class="form-label d-flex justify-content-start">
+                      Jumlah
+                      <sup class="text-danger">*</sup>
+                    </label>
+                    <input type="text" class="form-control" name="nilai_pengajuan" readonly />
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-12">
+                    <label for="file_proposal" class="form-label">
+                      File Proposal
+                      <sup class="text-danger">*</sup>
+                    </label>
+                    <input type="file" name="file_proposal" class="form-control" id="file_proposal" required accept="application/pdf" />
+                    <span class="badge bg-success">
+                      File harus berupa PDF
+                    </span>
+                    <button type="button" class="btn btn-outline-success" id="display_file">
+                      <i class="fa-solid fa-file-pdf"></i>
+                      Lihat file
+                    </button>
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">
+                <i class="ri-file-edit-line"></i>
+                Simpan data
+              </button>
+            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -360,3 +292,13 @@
   <!-- End #main -->
 </body>
 @include('SibahNU.template.footer')
+<script>
+  let mwcCount = {{count($mwc)}};
+  let placeholder = mwcCount < 1 ? "Tidak ada mwcnu ditampilkan, pastikan mwcnu telah melengkapi data" : "-- Pilih MWCNU --";
+  $(document).ready(function() {
+    $("#lembaga").select2({
+      placeholder: placeholder,
+      allowClear:true
+    });
+  });
+</script>
