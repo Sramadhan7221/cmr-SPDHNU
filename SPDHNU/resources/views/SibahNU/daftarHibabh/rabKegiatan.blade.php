@@ -11,7 +11,7 @@
 <div class="text-end">
   <button type="submit" class="btn btn-outline-success col-md-3" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#verticalycentered">
     <i class="ri-file-edit-line"></i>
-    Tambah Sub Kegiatan
+    Tambah RAB
   </button>
 </div>
 <div class="modal fade" id="verticalycentered" tabindex="-1">
@@ -79,7 +79,7 @@
       </td>
       <td>
         <a href="{{route('dataRab', $value->id)}}" class="btn btn-outline-primary p-1 rounded-md">
-          Tambah RAB
+          Tambah Rincian RAB
         </a>
       </td>
     </tr>

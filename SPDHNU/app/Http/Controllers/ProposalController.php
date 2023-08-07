@@ -41,6 +41,7 @@ class ProposalController extends Controller
         $rules = [
             'peruntukan' => 'required',
             'no_NPHD' => 'required|unique:proposal,no_NPHD',
+            'no_surat_permohonan' => 'required',
             'file_proposal' => 'required|max:2048'
         ];
 
@@ -48,6 +49,7 @@ class ProposalController extends Controller
             'peruntukan.required' => 'Peruntukan Harus Diisi',
             'no_NPHD.required' => 'No NPHD Harus Diisi',
             'no_NPHD.unique' => 'No NPHD sudah Terdaftar',
+            'no_surat_permohonan.required' => 'No NPHD Harus Diisi',
             'file_proposal.required' => 'File Proposal Harus Di Upload',
             'file_proposal.max' => 'File Harus Berukuran 2MB'
         ];

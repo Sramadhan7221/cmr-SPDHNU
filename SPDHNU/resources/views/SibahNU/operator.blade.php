@@ -16,7 +16,7 @@
       <div class="row g-3 mt-4">
         <div class="col-md-4">
           <label for="inputName5" class="form-label">
-            Nama Lengkap
+            Nama Lengkap Sesuai KTP
             <sup class="text-danger">*</sup>
           </label>
           <input type="text" name="nama_pengurus" class="form-control" id="inputName5" value="{{$operator->nama_pengurus}}" required />

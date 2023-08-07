@@ -15,10 +15,18 @@
         <div class="row g-3">
       <div class="col-md-6">
         <label for="peruntukan" class="form-label d-flex justify-content-start">
-          No NPHD
+          No Surat NPH
           <sup class="text-danger">*</sup>
         </label>
         <input type="text" class="form-control" name="no_NPHD" value="{{ $proposal->no_NPHD }}" required />
+        <input type="hidden" name="id_proposal" value="{{ $proposal->id_proposal }}" />
+      </div>
+      <div class="col-md-6">
+        <label for="peruntukan" class="form-label d-flex justify-content-start">
+          No Surat Permohonan
+          <sup class="text-danger">*</sup>
+        </label>
+        <input type="text" class="form-control" name="no_surat_permohonan" value="{{ $proposal->no_surat_permohonan }}" required />
         <input type="hidden" name="id_proposal" value="{{ $proposal->id_proposal }}" />
       </div>
       <div class="col-md-6">
