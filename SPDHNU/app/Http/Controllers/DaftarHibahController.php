@@ -54,7 +54,6 @@ class DaftarHibahController extends Controller
     }
 
     function addDanaHibah(Request $request){
-        dd($request);
         $rules = [
             'sumber_dana' => 'required|regex:/^[a-zA-Z\s.-]+$/',
             'nilai_pengajuan' => 'required|regex:/^[0-9]+$/',
@@ -84,7 +83,7 @@ class DaftarHibahController extends Controller
                         'sumber_dana' => $data['sumber_dana'],
                         'nilai_pengajuan' => $data['nilai_pengajuan'],
                         'tahun' => $data['tahun'],
-                        'lembaga' => $item
+                        'lembaga' => $item->id_lembaga
                     ];
                     Proposal::create($val);
                 }
