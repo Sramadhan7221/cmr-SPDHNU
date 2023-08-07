@@ -12,15 +12,15 @@
         </a>
       </li>
       <li class="nav-item" role="presentation">
-        <a href="/pimpinan" x-on:click="isLoading = true" class="btn nav-link {{ $pimpinan ? 'active' : '' }}">
-          <i class="ri-file-copy-2-line"></i>
-          Data Pimpinan MWCNU
-        </a>
-      </li>
-      <li class="nav-item" role="presentation">
         <a href="/operator" x-on:click="isLoading = true" class="btn nav-link {{ $operator ? 'active' : '' }}">
           <i class="ri-file-copy-2-line"></i>
           Data Operator MWCNU
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a href="/pimpinan" x-on:click="isLoading = true" class="btn nav-link {{ $pimpinan ? 'active' : '' }}">
+          <i class="ri-file-copy-2-line"></i>
+          Data Pimpinan MWCNU
         </a>
       </li>
       <li class="nav-item" role="presentation">
