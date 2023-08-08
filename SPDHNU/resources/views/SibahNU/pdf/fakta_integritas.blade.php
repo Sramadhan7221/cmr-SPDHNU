@@ -66,6 +66,11 @@
             left: -170px;
         }
 
+        section p{
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
         .kecamatan{
             margin-left: 20px;
         }

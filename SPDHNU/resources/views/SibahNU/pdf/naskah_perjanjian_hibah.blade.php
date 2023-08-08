@@ -53,13 +53,13 @@
         .content .pihak1 :nth-child(2){
             position: relative;
             left: 150px;
-            top: -20px;
+            top: -22px;
             width: 560px;
         }
         .content .pihak1 :nth-child(3){
             position: relative;
             left: 160px;
-            top: -39px;
+            top: -42px;
             width: 560px;
         }
         .content .pihak2{
@@ -69,14 +69,14 @@
         .content .pihak2 :nth-child(2){
             position: relative;
             left: 150px;
-            top: -20px;
+            top: -22px;
             width: 560px;
         }
 
         .content .pihak2 :nth-child(3){
             position: relative;
             left: 160px;
-            top: -39px;
+            top: -42px;
             width: 560px;
         }
 
@@ -171,9 +171,10 @@
         <p>{{$nilai_rab->no_NPHD}}</p>
     </section>
     <section style="margin-top: 18px" class="content">
-        <p>Pada hari ini, Senin tanggal Empat Belas bulan Agustus tahun Dua Ribu Dua Puluh Tiga (14-08-2023), yang bertanda tangan di bawah ini:</p>
+        <p style="text-align: justify;
+                  text-justify: inter-word;">Pada hari ini, Senin tanggal Empat Belas bulan Agustus tahun Dua Ribu Dua Puluh Tiga (14-08-2023), yang bertanda tangan di bawah ini:</p>
         <div class="pihak1">
-            <p>I. PIHAK KESATU</p>
+            <p >I. PIHAK KESATU</p>
             <p> : </p>
             <P> Drs. KH. ATAM RUSTAM, M.SI, berkedudukan di Tasikmalaya, Kp. Sukamanah RT 013 RW 003 Desa Sukarapih Kec. Sukarame,
                 dalam hal ini bertindak untuk dan atas nama Pengurus Cabang Nahdaltul Ulama Kab. Tasikmalaya, selanjutnya disebut PIHAK KESATU.</P>
@@ -186,8 +187,10 @@
         </div>
     </section>
     <section class="content2">
-        <p>PIHAK KESATU dan PIHAK KEDUA selanjutnya secara bersama-sama dalam Perjanjian Hibah Nahdaltul ulama ini disebut PARA PIHAK.</p>
-        <p>PARA PIHAK berdasarkan Peraturan PCNU Kab. Tasikmalaya Nomor 151 Tahun 2022 dan ketentuan mengenai tata cara penganggaran,
+        <p style="text-align: justify;
+        text-justify: inter-word;">PIHAK KESATU dan PIHAK KEDUA selanjutnya secara bersama-sama dalam Perjanjian Hibah Nahdaltul ulama ini disebut PARA PIHAK.</p>
+        <p style="text-align: justify;
+        text-justify: inter-word;">PARA PIHAK berdasarkan Peraturan PCNU Kab. Tasikmalaya Nomor 151 Tahun 2022 dan ketentuan mengenai tata cara penganggaran,
             pelaksanaan dan penatausahaan, pertanggungjawaban dan pelaporan serta monitoring dan evaluasi bantuan hibah yang bersumber
             dari Anggaran PCNU Kab. Tasikmalaya, sesuai dengan kedudukan dan kewenangan masing-masing, bersepakat untuk melakukan
             Perjanjian Belanja Hibah berupa uang, dengan ketentuan dan syarat-syarat sebagai berikut:</p>
@@ -195,7 +198,8 @@
             <p>Pasal 1</p>
             <p>JUMLAH DAN TUJUAN HIBAH</p>
         </div>
-        <div class="page-break">
+        <div class="page-break" style="text-align: justify;
+        text-justify: inter-word;">
             <p>(1).	PIHAK KESATU pada Tahun Anggaran 2023 memberikan belanja hibah kepada PIHAK KEDUA, berupa uang sebesar Rp. {{number_format($nilai_rab->nilai_pengajuan,0,',','.')}}.</p>
             <p>(2).	PIHAK KEDUA menyatakan menerima belanja hibah dari PIHAK KESATU berupa uang sebesar Rp. {{number_format($nilai_rab->nilai_pengajuan,0,',','.')}}.</p>
             <p>(3).	Besaran bantuan hibah sebagaimana dimaksud pada ayat (1) sesuai dengan rencana penggunaan belanja hibah/proposal yang diajukan PIHAK KEDUA, yang merupakan bagian tidak terpisahkan dari Naskah Perjanjian Belanja Hibah (NPH) ini, meliputi:</p>
@@ -252,7 +256,8 @@
                 <p>Pasal 2</p>
                 <p>PENCAIRAN BELANJA HIBAH</p>
             </div>
-            <div>
+            <div style="text-align: justify;
+            text-justify: inter-word;">
                 <p>(1).	Pencairan belanja hibah berupa uang sebagaimana dimaksud dalam Pasal 1 ayat (1) dilakukan sesuai ketentuan peraturan perundang-undangan.</p>
                 <p>(2).	PIHAK KEDUA mengajukan permohonan kepada PIHAK KESATU, dengan melampirkan:</p>
                 <div class="list">
@@ -274,13 +279,15 @@
             <p>HAK DAN KEWAJIBAN PIHAK KESATU</p>
         </div>
         <p>(1).	PIHAK KESATU mempunyai hak:</p>
-        <div class="ham" class="page-break">
-            <p>a.	menunda pencairan belanja hibah, dalam hal PIHAK KEDUA tidak/belum memenuhi persyaratan yang ditetapkan;</p>
-            <p>b.	menerima Laporan Pertanggungjawaban Penggunaan Belanja Hibah dari PIHAK KEDUA.</p>
-            <p>c.	menerima sisa dana hibah, dalam hal sampai akhir kegiatan masih terdapat sisa dana hibah.</p>
+        <div class="ham" class="page-break" style="text-align: justify;
+        text-justify: inter-word;">
+            <p style="margin-left: 20px;">a.	menunda pencairan belanja hibah, dalam hal PIHAK KEDUA tidak/belum memenuhi persyaratan yang ditetapkan;</p>
+            <p style="margin-left: 20px;">b.	menerima Laporan Pertanggungjawaban Penggunaan Belanja Hibah dari PIHAK KEDUA.</p>
+            <p style="margin-left: 20px;">c.	menerima sisa dana hibah, dalam hal sampai akhir kegiatan masih terdapat sisa dana hibah.</p>
         </div>
         <p style="margin-top: 70px">(2). PIHAK KESATU mempunyai kewajiban:</p>
-        <div class="ham">
+        <div class="ham"style="text-align: justify;
+        text-justify: inter-word;" >
             <p>a.	mencairkan belanja hibah, dalam hal seluruh persyaratan dan kelengkapan berkas pengajuan
             pencairan dana telah dipenuhi oleh PIHAK KEDUA; dan</p>
             <p>b.	melaksanakan evaluasi dan monitoring terhadap penggunaan belanja hibah.</p>
@@ -289,11 +296,14 @@
             <p>Pasal 4</p>
             <p>HAK DAN KEWAJIBAN PIHAK KEDUA</p>
         </div>
-        <p>(1).	PIHAK KEDUA mempunyai hak menerima belanja hibah, dalam hal seluruh persyaratan dan kelengkapan berkas pengajuan pencairan dana telah dipenuhi oleh PIHAK KEDUA.</p>
-        <p>(2).	PIHAK KEDUA mempunyai kewajiban:</p>
-        <div class="ham">
+        <p style="text-align: justify;
+        text-justify: inter-word;">(1).	PIHAK KEDUA mempunyai hak menerima belanja hibah, dalam hal seluruh persyaratan dan kelengkapan berkas pengajuan pencairan dana telah dipenuhi oleh PIHAK KEDUA.</p>
+        <p style="text-align: justify;
+        text-justify: inter-word;">(2).	PIHAK KEDUA mempunyai kewajiban:</p>
+        <div class="ham" style="text-align: justify;
+        text-justify: inter-word;">
             <p>a.	menandatangani Pakta Integritas/Surat Pernyataan Tanggungjawab Permohonan Belanja Hibah;</p>
-            <p>b.	membuat dan menyampaikan Laporan Pertanggungjawaban Penggunaan Belanja Hibah PIHAK KESATU kepada PCNU Kab. Tasikmalaya, 1 (satu) bulan setelah kegiatan selesai atau paling lambat tanggal 27 (dua puluh tujuh) bulan Agustus tahun 2023.</p>
+            <p>b. membuat dan menyampaikan Laporan Pertanggungjawaban Penggunaan Belanja Hibah PIHAK KESATU kepada PCNU Kab. Tasikmalaya, 1 (satu) bulan setelah kegiatan selesai atau paling lambat tanggal 27 (dua puluh tujuh) bulan Agustus tahun 2023.</p>
             <p>c.	mematuhi proses pengadaan barang dan jasa sesuai ketentuan peraturan perundang- undangan, dalam hal dana hibah digunakan untuk pengadaan barang dan jasa; dan</p>
             <p>d.	mengembalikan sisa dana hibah, ke Kas Umum PCNU Kab. Tasikmalaya dengan nomor rekening 516 012 2700045 dan menyerahkan bukti setorannya kepada PCNU Kab. Tasikmalaya, dalam hal sampai akhir kegiatan masih terdapat sisa dana hibah.</p>
         </div>
@@ -301,22 +311,26 @@
             <p>Pasal 5</p>
             <p>SANKSI</p>
         </div>
-        <p>Dalam hal PIHAK KEDUA melanggar ketentuan Pasal 1 ayat (3) dan Pasal 2 ayat (4), dikenakan sanksi administratif berupa peringatan tertulis, penundaan/penghentian pencairan/penyaluran belanja hibah atau sanksi lain sesuai ketentuan peraturan perundang-undangan.</p>
+        <p style="text-align: justify;
+        text-justify: inter-word;">Dalam hal PIHAK KEDUA melanggar ketentuan Pasal 1 ayat (3) dan Pasal 2 ayat (4), dikenakan sanksi administratif berupa peringatan tertulis, penundaan/penghentian pencairan/penyaluran belanja hibah atau sanksi lain sesuai ketentuan peraturan perundang-undangan.</p>
         <div class="pasal2">
             <p>Pasal 6</p>
             <p>LARANGAN</p>
         </div>
-        <P>Belanja hibah sebagaimana dimaksud dalam Pasal 1 dilarang untuk dilakukan pemotongan oleh pihak manapun, dalam jumlah berapapun, untuk tujuan apapun. Dalam hal terjadi pemotongan, maka pelakunya harus dilaporkan kepada yang berwajib dan diproses sesuai ketentuan peraturan perundang- undangan.</P>
+        <P style="text-align: justify;
+        text-justify: inter-word;">Belanja hibah sebagaimana dimaksud dalam Pasal 1 dilarang untuk dilakukan pemotongan oleh pihak manapun, dalam jumlah berapapun, untuk tujuan apapun. Dalam hal terjadi pemotongan, maka pelakunya harus dilaporkan kepada yang berwajib dan diproses sesuai ketentuan peraturan perundang- undangan.</P>
         <div class="pasal2">
             <p>Pasal 7</p>
             <p>BEA MATERAI, PAJAK-PAJAK DAN BIAYA LAIN-LAIN</p>
         </div>
-        <p class="page-break">Biaya materai, pajak-pajak serta biaya lainnya yang timbul sehubungan dengan pelaksanaan Perjanjian Hibah Daerah ini, menjadi beban dan tanggungjawab PIHAK KEDUA, sesuai ketentuan peraturan perundang-undangan.</p>
+        <p class="page-break" style="text-align: justify;
+        text-justify: inter-word;">Biaya materai, pajak-pajak serta biaya lainnya yang timbul sehubungan dengan pelaksanaan Perjanjian Hibah Daerah ini, menjadi beban dan tanggungjawab PIHAK KEDUA, sesuai ketentuan peraturan perundang-undangan.</p>
         <div class="pasal2" style="margin-top: 70px;">
             <p>Pasal 8</p>
             <p>PENUTUP</p>
         </div>
-        <P>Hal-hal yang belum dan/atau belum cukup diatur dalam Perjanjian Hibah ini akan diatur kemudian oleh PARA PIHAK berdasarkan kesepakatan bersama yang dituangkan dalam Perjanjian Tambahan (addendum), yang merupakan bagian tidak terpisahkan dari Perjanjian Hibah Daerah ini.   </P>
+        <P style="text-align: justify;
+        text-justify: inter-word;">Hal-hal yang belum dan/atau belum cukup diatur dalam Perjanjian Hibah ini akan diatur kemudian oleh PARA PIHAK berdasarkan kesepakatan bersama yang dituangkan dalam Perjanjian Tambahan (addendum), yang merupakan bagian tidak terpisahkan dari Perjanjian Hibah Daerah ini.   </P>
         <p style="margin-top: 18px;">Demikian Perjanjian Hibah ini dibuat dan ditandatangani oleh PARA PIHAK di Tasikmalaya pada hari, tanggal, bulan dan tahun tersebut di atas dalam rangkap 2 (dua) bermaterai cukup, masing- masing mempunyai kekuatan hukum yang sama.
             </p>
     </section>

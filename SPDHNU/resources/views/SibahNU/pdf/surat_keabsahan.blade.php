@@ -25,7 +25,7 @@
             margin-bottom: 28px;
         }
 
-        .biodata p,ul,li{
+        p,ul,li{
             font-family: 'Times New Roman', Times, serif;
             font-size: 11pt;
         }
@@ -34,9 +34,11 @@
             margin-top: 18px;
         }
 
-        .content p{
+        .content .paragraf1{
             font-family: 'Times New Roman', Times, serif;
             font-size: 11pt;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
         .footer{
@@ -80,20 +82,22 @@
             </ul>
         </section>
         <section class="content">
-            <p>Dengan ini menyatakan bahwa, Seluruh Data dan Dokumen yang di Isikan dan di Unggah ke dalam Aplikasi SiBahNU sebagai persyaratan pencairan bantuan hibah tahun anggaran 2023 adalah Data yang sebenar benarnya dan Dokumen Asli milik Majelis Wakil Cabang Nahdlatul Ulama Kecamatan {{$kecamatan->nama}}. Apabila dilain hari ditemukan ketidak sesuaian Data dan Dokumen sepenuhnya adalah tanggung jawab kami.</p>
-            <p class="mt-4">
-                Demikian surat pernyataan ini dibuat dalam keadaan sadar tanpa ada nya tekanan dari pihak manapun dan bersedia dituntut di pengadilan apabila dikemudian hari terbukti bahwa pernyataan ini tidak benar.
-                </p>
-            <div class="footer">
-                <div class="ttd">
-                    <p>{{strtoupper($kecamatan->nama)}}, {{$date}}</p>
-                    <p>MAJELIS WAKIL CABANG NAHDLATUL ULAMA</p>
-                    <P>KECAMATAN {{strtoupper($kecamatan->nama)}}</P>
-                    <p>KETUA</p>
-                    <p style="margin-top: 90px;">{{strtoupper($pengurus->nama_pengurus)}}</p>
-                </div>
+            <div class="paragraf1">
+                <p>Dengan ini menyatakan bahwa, Seluruh Data dan Dokumen yang di Isikan dan di Unggah ke dalam Aplikasi SiBahNU sebagai persyaratan pencairan bantuan hibah tahun anggaran 2023 adalah Data yang sebenar benarnya dan Dokumen Asli milik Majelis Wakil Cabang Nahdlatul Ulama Kecamatan {{$kecamatan->nama}}. Apabila dilain hari ditemukan ketidak sesuaian Data dan Dokumen sepenuhnya adalah tanggung jawab kami.</p>
+                <p class="mt-4">
+                    Demikian surat pernyataan ini dibuat dalam keadaan sadar tanpa ada nya tekanan dari pihak manapun dan bersedia dituntut di pengadilan apabila dikemudian hari terbukti bahwa pernyataan ini tidak benar.
+                    </p>
             </div>
-        </section>
+                <div class="footer">
+                    <div class="ttd">
+                        <p>{{strtoupper($kecamatan->nama)}}, {{$date}}</p>
+                        <p>MAJELIS WAKIL CABANG NAHDLATUL ULAMA</p>
+                        <P>KECAMATAN {{strtoupper($kecamatan->nama)}}</P>
+                        <p>KETUA</p>
+                        <p style="margin-top: 90px;">{{strtoupper($pengurus->nama_pengurus)}}</p>
+                    </div>
+                </div>
+            </section>
     </body>
 </body>
 </html>

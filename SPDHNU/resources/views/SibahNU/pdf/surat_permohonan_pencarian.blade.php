@@ -48,6 +48,11 @@
             padding: 0px;
         }
 
+        .paragraf1{
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
         .footer {
             text-align: center;
             position: relative;
@@ -93,7 +98,7 @@
         </div>
     </header>
     <section class="content">
-        <div class="">
+        <div class="paragraf1">
             <p class="w-full"><span class="ml-20">Berdasarkan Peraturan Pengurus Cabang Nahdlatul Ulama Kab. Tasikmalaya</span> Nomor 121/PC-A.II/D.22/XII/2022 tahun 2022 tentang Bantuan Hibah PCNU Kab. Tasikmalaya Tahun Anggaran 2023,
                 bahwa Majelis Wakil Cabang Nahdlatul Ulama kami tercatat sebagai satu diantara calon penerima Bantuan Hibah bersumber dari Anggaran PCNU Kab. Tasikmalya dengan nilai Rp. {{number_format($proposal->nilai_pengajuan,0,',','.')}}</p>
             <p class="mt-4"><span class="ml-20">Sehubungan dengan hal tersebut, dengan ini Kami sampaikan permohonan</span> pencairan bantuan hibah sebesar Rp. {{number_format($proposal->nilai_pengajuan,0,',','.')}}, yang akan di gunakan untuk {{$proposal->peruntukan}} sebagaimana naskah perjanjian hibah Nahdlatul Ulama (NPHNU), dengan kelengkapan terlampir, sebagai berikut</p>
