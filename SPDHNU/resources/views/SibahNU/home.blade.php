@@ -77,7 +77,7 @@
         <select name="desa" class="form-control" id="input-desa">
           <option value="0">--Pilih Desa--</option>
           @foreach ($desa as $item)
-          <option value="{{ $item->kode }}">{{ $item->nama }}</option>
+          <option value="{{ $item->kode }}">{{ strtoupper($item->nama) }}</option>
           @endforeach
         </select>
       </div>
