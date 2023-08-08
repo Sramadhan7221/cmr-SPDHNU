@@ -69,12 +69,12 @@
         <section class="biodata">
             <p>Yang bertanda tangan dibawah ini : </p>
             <ul class="bodata_lengkap">
-                <li>Nama Ketua MWCNU <span class="ml-24">: {{$pengurus->nama_pengurus}}</span></li>
-                <li>Jabatan <span style="margin-left: 187px">: {{$pengurus->jabatan}}</span></li>
-                <li>Nomor KTP <span style="margin-left: 158px">: {{$pengurus->no_ktp}}</span></li>
-                <li>Alamat Sesuai KTP <span style="margin-left: 114px">: {{$pengurus->alamat_ktp}}</span></li>
-                <li>Bertindak Untuk dan Atas Nama <span style="margin-left: 38px">: {{$user->nama_mwc}}</span></li>
-                <li>Alamat Lembaga <span style="margin-left: 129px">: {{$lembaga->alamat_lembaga}}</span></li>
+                <li>Nama Ketua MWCNU <span class="ml-24">: {{strtoupper($pengurus->nama_pengurus)}}</span></li>
+                <li>Jabatan <span style="margin-left: 187px">: {{strtoupper($pengurus->jabatan)}}</span></li>
+                <li>Nomor KTP <span style="margin-left: 158px">: {{strtoupper($pengurus->no_ktp)}}</span></li>
+                <li>Alamat Sesuai KTP <span style="margin-left: 114px">: {{strtoupper($pengurus->alamat_ktp)}}</span></li>
+                <li>Bertindak Untuk dan Atas Nama <span style="margin-left: 38px">: {{strtoupper($user->nama_mwc)}}</span></li>
+                <li>Alamat Lembaga <span style="margin-left: 129px">: {{strtoupper($lembaga->alamat_lembaga)}}</span></li>
                 <li>Telepon/HP <span style="margin-left: 160px">: {{$lembaga->no_telp}}</span></li>
                 <li>Email <span style="margin-left: 195px;">: {{$lembaga->email_lembaga}}</span></li>
             </ul>
@@ -86,13 +86,12 @@
                 </p>
             <div class="footer">
                 <div class="ttd">
-                    <p>Tasikmalaya, {{$date}}</p>
+                    <p>{{strtoupper($kecamatan->nama)}}, {{$date}}</p>
                     <p>MAJELIS WAKIL CABANG NAHDLATUL ULAMA</p>
-                    <P>KECAMATAN {{$kecamatan->nama}}</P>
-                    <p>Ketua</p>
-                    <p class="mt-16">({{$pengurus->nama_pengurus}})</p>
+                    <P>KECAMATAN {{strtoupper($kecamatan->nama)}}</P>
+                    <p>KETUA</p>
+                    <p style="margin-top: 90px;">{{strtoupper($pengurus->nama_pengurus)}}</p>
                 </div>
-                <img src="{{public_path('aseets/Picture1.jpg')}}" alt="">
             </div>
         </section>
     </body>

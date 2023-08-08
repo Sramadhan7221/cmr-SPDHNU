@@ -59,10 +59,10 @@
     </style>
     <header>
         <img src="{{public_path('storage/'.$lembaga->kop_surat)}}" alt="">
-        <p>RENCANA ANGGARAN BIAYA</p>
+        <p style="margin-top:20px;">RENCANA ANGGARAN BIAYA</p>
     </header>
     <section class="rab">
-        <table class="page_break">
+        <table>
             <thead>
                 <tr>
                     <th>NO</th>
@@ -110,17 +110,18 @@
     </section>
     <footer>
         <div class="mwc">
+            <p>{{strtoupper($kecamatan->nama)}}, {{$date}}</p>
             <p>MAJELIS WAKIL CABANG NAHDLATUL ULAMA</p>
-            <P>KECAMATAN TANJUNGJAYA</P>
+            <P>KECAMATAN {{strtoupper($kecamatan->nama)}}</P>
         </div>
         <div class="ttd">
             <div class="ttd1">
-                <p>PIHAK KEDUA,</p>
-                <p style="margin-top: 80px;">{{$pengurus->nama_pengurus}}</p>
+                <p>KETUA</p>
+                <p style="margin-top: 80px;">{{strtoupper($pengurus->nama_pengurus)}}</p>
             </div>
             <div class="ttd2">
-                <p>PIHAK KESATU,</p>
-                <p style="margin-top: 80px;">Drs. KH. ATAM RUSTAM, M.SI</p>
+                <p>BENDAHARA</p>
+                <p style="margin-top: 80px;">.................................................</p>
             </div>
         </div>
     </footer>

@@ -76,7 +76,7 @@
         <img src="{{public_path('storage/'.$lembaga->kop_surat)}}" alt="">
         <div class="">
             <div style="width: 380px">
-                <p>Nomor<span class="ml-9"> : </span>{{$proposal->no_NPHD}}</p>
+                <p>Nomor<span class="ml-9"> : </span>{{$proposal->no_surat_permohonan}}</p>
                 <p>Lampiran   <span class="ml-4"> : </span> 1 (Satu) Berkas</p>
                 <p>Perihal    <span class="ml-9">: </span> Permohonan Pencairan</p>
                 <p class="ml-24">Bantuan Hibah Nahdlatul Ulama Tahun Anggaran 2023</p>
@@ -111,11 +111,10 @@
     <div class="footer">
         <div class="ttd">
             <p>MAJELIS WAKIL CABANG NAHDLATUL ULAMA</p>
-            <p>{{$kecamatan->nama}}</p>
-            <p>Ketua</p>
-            <p class="mt-16">{{($pengurus->nama_pengurus)}}</p>
+            <p>KECAMATAN {{strtoupper($kecamatan->nama)}}</p>
+            <p>KETUA</p>
+            <p style="margin-top: 90px;">{{strtoupper($pengurus->nama_pengurus)}}</p>
         </div>
-        <img src="{{public_path('aseets/Picture1.jpg')}}" style="object-fit: contain;" alt="">
     </div>
 </body>
 

@@ -43,12 +43,12 @@ class GenerateFileController extends Controller
             'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'lembaga' => $lembaga,
             'proposal' => $proposal,
-            'date' => Carbon::parse($lembaga->created_at)->format('d-m-y'),
+            'date' => $this->dateIndo(),
             'pengurus' => $this->isPimpinanExist()
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.surat_permohonan_pencarian',$data);
         set_time_limit(3600);
-        return $pdf->download('surat_permohonan_pencairan'.Carbon::parse($lembaga->created_at)->format('d-m-y').'.pdf');
+        return $pdf->stream('surat_permohonan_pencairan'.Carbon::parse($lembaga->created_at)->format('d-m-y').'.pdf');
     }
 
     protected function isPimpinanExist () {
@@ -68,12 +68,12 @@ class GenerateFileController extends Controller
             'user' => $user,
             'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'lembaga' => $lembaga,
-            'date' => Carbon::now()->format('d-m-y'),
+            'date' => $this->dateIndo(),
             'pengurus' => $this->isPimpinanExist()
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.fakta_integritas',$data);
         set_time_limit(3600);
-        return $pdf->download('fakta_integritas'.Carbon::now()->format('d-m-y').'.pdf');
+        return $pdf->stream('fakta_integritas'.Carbon::now()->format('d-m-y').'.pdf');
     }
 
     function naskahPerjanjian($proposal_id){
@@ -83,7 +83,7 @@ class GenerateFileController extends Controller
                             ->first();
         $total_rab = Proposal::where('lembaga',session()->get('id_lembaga'))
                             ->where('id_proposal',$proposal_id)
-                            ->first(['total_rab','nilai_pengajuan','peruntukan']);
+                            ->first(['total_rab','nilai_pengajuan','peruntukan','no_NPHD']);
         $data = RabKegiatan::join('proposal','proposal','=','proposal.id_proposal')
                             ->where('proposal',$proposal_id)
                             ->get()->toArray();
@@ -94,13 +94,14 @@ class GenerateFileController extends Controller
             });
         $data = [
             'lembaga' => $lembaga,
+            'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'pengurus' => $this->isPimpinanExist(),
             'list_rab' => $list,
             'nilai_rab'=> $total_rab
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.naskah_perjanjian_hibah', $data);
         set_time_limit(3600);
-        return $pdf->download('naskah_perjanjian_hibah'.Carbon::now()->format('d-m-y').'.pdf');
+        return $pdf->stream('naskah_perjanjian_hibah'.Carbon::now()->format('d-m-y').'.pdf');
     }
 
     function suratPernyataan(){
@@ -112,12 +113,12 @@ class GenerateFileController extends Controller
             'user' => $user,
             'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'lembaga' => $lembaga,
-            'date' => Carbon::now()->format('d-m-y'),
+            'date' => $this->dateIndo(),
             'pengurus' => $this->isPimpinanExist()
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.surat_pernyataan',$data);
         set_time_limit(3600);
-        return $pdf->download('surat_pernyataan'.Carbon::now()->format('d-m-y').'.pdf');
+        return $pdf->stream('surat_pernyataan'.Carbon::now()->format('d-m-y').'.pdf');
     }
 
     function suratKeabsahan(){
@@ -129,12 +130,12 @@ class GenerateFileController extends Controller
             'user' => $user,
             'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'lembaga' => $lembaga,
-            'date' => Carbon::now()->format('d-m-y'),
+            'date' => $this->dateIndo(),
             'pengurus' => $this->isPimpinanExist()
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.surat_keabsahan',$data);
         set_time_limit(3600);
-        return $pdf->download('surat_keabsahan_document'.Carbon::now()->format('d-m-y').'.pdf');
+        return $pdf->stream('surat_keabsahan_document'.Carbon::now()->format('d-m-y').'.pdf');
     }
 
     function rincianRAB($proposal_id)
@@ -157,11 +158,65 @@ class GenerateFileController extends Controller
         $data_all = [
             'list_rab'=>$list,
             'total_rab'=>$total_rab,
+            'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'lembaga' => $lembaga,
+            'date' => $this->dateIndo(),
             'pengurus' => $this->isPimpinanExist()
         ];
         $pdf = Pdf::loadView('SibahNU.pdf.rincian_rab',$data_all);
         set_time_limit(3600);
-        return $pdf->download('rincian_rab'.Carbon::now()->format('d-m-y').'.pdf');
+        return $pdf->stream('rincian_rab'.Carbon::now()->format('d-m-y').'.pdf');
+    }
+
+    function dateIndo(){
+        $user = RegisterUser::query()->where('nik', session()->get('id_user'))->first();
+        $lembaga = UserLembaga::join('lembaga', 'user_lembaga.id_lembaga', '=', 'lembaga.id_lembaga')
+            ->where('user_nik', $user->nik)
+            ->first();
+        $tanggal = Carbon::parse($lembaga->created_at)->format('y-m-d');
+        switch(date('m', strtotime($tanggal))){
+            case '01':
+                $bulan = 'Januari';
+                break;
+            case '02':
+                $bulan = 'Februari';
+                break;
+            case '03':
+                $bulan = 'Maret';
+                break;
+            case '04':
+                $bulan = 'April';
+                break;
+            case '05':
+                $bulan = 'Mei';
+                break;
+            case '06':
+                $bulan = 'Juni';
+                break;
+            case '07':
+                $bulan = 'Juli';
+                break;
+            case '08':
+                $bulan = 'Agustus';
+                break;
+            case '09':
+                $bulan = 'September';
+                break;
+            case '10':
+                $bulan = 'Oktober';
+                break;
+            case '11':
+                $bulan = 'November';
+                break;
+            case '12':
+                $bulan = 'Desember';
+                break;
+            default:
+            $bulan = 'Tidak Diketahui';
+        }
+
+        $formatDateIndo = date('d', strtotime($tanggal)).' '.$bulan.' '.
+                          date('Y', strtotime($tanggal));
+        return $formatDateIndo;
     }
 }

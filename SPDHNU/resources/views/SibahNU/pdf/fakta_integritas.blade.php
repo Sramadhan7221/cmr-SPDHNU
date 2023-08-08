@@ -14,6 +14,10 @@
             padding: 0px;
         }
 
+        header {
+            margin-top: 10px;
+        }
+
         p {
             font-family: 'Times New Roman', Times, serif;
             font-size: 11pt;
@@ -61,6 +65,10 @@
             top: -80px;
             left: -170px;
         }
+
+        .kecamatan{
+            margin-left: 20px;
+        }
     </style>
 </head>
     <body>
@@ -84,13 +92,13 @@
                     <li>Email </li>
                 </div>
                 <div class="kanan">
-                    <li> : {{$pengurus->nama_pengurus}}</li>
-                    <li> : {{$pengurus->jabatan}}</li>
-                    <li> : {{$pengurus->no_ktp}}</li>
-                    <li> : {{$pengurus->alamat_ktp}}</li>
-                    <li> : {{$user->nama_mwc}}</li>
-                    <li> : {{$lembaga->alamat_lembaga}}</li>
-                    <li> : {{$lembaga->no_telp}}</li>
+                    <li> : {{strtoupper($pengurus->nama_pengurus)}}</li>
+                    <li> : {{strtoupper($pengurus->jabatan)}}</li>
+                    <li> : {{strtoupper($pengurus->no_ktp)}}</li>
+                    <li> : {{strtoupper($pengurus->alamat_ktp)}}</li>
+                    <li> : {{strtoupper($user->nama_mwc)}}</li>
+                    <li> : {{strtoupper($lembaga->alamat_lembaga)}}</li>
+                    <li> : {{strtoupper($lembaga->no_telp)}}</li>
                     <li> : {{$lembaga->email_lembaga}}</li>
                 </div>
             </ul>
@@ -109,12 +117,13 @@
         </section>
         <div class="footer">
             <div class="ttd">
+                <p class="kecamatan">{{strtoupper($kecamatan->nama)}}, {{$date}}</p>
                 <p>MAJELIS WAKIL CABANG NAHDLATUL ULAMA</p>
-                <p>Kecamatan {{$kecamatan->nama}}</p>
-                <p>Ketua</p>
-                <p class="mt-16">{{($pengurus->nama_pengurus)}}</p>
+                <p>KECAMATAN {{strtoupper($kecamatan->nama)}}</p>
+                <p>KETUA</p>
+                <p style="margin-top: 40px; color:dimgray;">MATREI Rp.10.000</p>
+                <p style="margin-top: 50px;">{{strtoupper($pengurus->nama_pengurus)}}</p>
             </div>
-            <img src="{{public_path('/aseets/Picture1.jpg')}}" alt="">
         </div>
     </body>
 </html>

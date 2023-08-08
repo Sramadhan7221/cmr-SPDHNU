@@ -157,20 +157,21 @@
         <p>NASKAH PERJANJIAN HIBAH ANTARA</p>
         <P>PENGURUS CABANG NAHDALTUL ULAMA KAB. TASIKMALAYA</P>
         <P>DENGAN</P>
-        <P>{{$lembaga->nama_lembaga}}</P>
-        <P>{{$lembaga->alamat_lembaga}}</P>
+        <P>MAJELIS WAKIL CABANG NAHDLATUL ULAMA</P>
+        <P>KECAMATAN {{strtoupper($kecamatan->nama)}}</P>
         <P>TENTANG</P>
-        <P>HIBAH TAHUN ANGGARAN 2023</P>
+        <P>HIBAH PENGURUS CABANG NAHDALTUL ULAMA KAB. TASIKMALAYA</P>
+        <p>TAHUN ANGGARAN 2023</p>
         <hr style="border: 1px solid black; margin-top: 8px;">
     </header>
     <section class="nomor_surat">
-        <p>Nomor Surat PC Nu</p>
+        <p>215/PC/A.II/D.22/VIII/2023</p>
         <p>Nomor : </p>
         <span></span>
-        <p>Nomor Surat MWC NU</p>
+        <p>{{$nilai_rab->no_NPHD}}</p>
     </section>
     <section style="margin-top: 18px" class="content">
-        <p>Pada hari ini, Jumat tanggal Enam Belas bulan Juni tahun Dua Ribu Dua Puluh Tiga (16-06-2023), yang bertanda tangan di bawah ini:</p>
+        <p>Pada hari ini, Senin tanggal Empat Belas bulan Agustus tahun Dua Ribu Dua Puluh Tiga (14-08-2023), yang bertanda tangan di bawah ini:</p>
         <div class="pihak1">
             <p>I. PIHAK KESATU</p>
             <p> : </p>
@@ -180,8 +181,8 @@
         <div class="pihak2">
             <p>I. PIHAK KEDUA</p>
             <p> : </p>
-            <P> {{$pengurus->nama_pengurus}}. berkedudukan di {{$pengurus->alamat_ktp}}
-                dalam hal ini bertindak untuk dan atas nama {{$lembaga->nama_lembaga}}. selanjutnya disebut PIHAK KEDUA.</P>
+            <P> {{strtoupper($pengurus->nama_pengurus)}}. berkedudukan di {{strtoupper($pengurus->alamat_ktp)}}
+                dalam hal ini bertindak untuk dan atas nama {{strtoupper($lembaga->nama_lembaga)}}. selanjutnya disebut PIHAK KEDUA.</P>
         </div>
     </section>
     <section class="content2">
@@ -257,14 +258,14 @@
                 <div class="list">
                     <p style="margin-left: 20px">a.	Surat Permohonan Pencairan Bantuan Hibah, dilengkapi rencana penggunaan Bantuan Hibah;</p>
                     <p>b.	Naskah Perjanjian Belanja Hibah;</p>
-                    <p>c.	Fotokopi Kartu Tanda Penduduk Elektronik atas nama {{$pengurus->nama_pengurus}};</p>
-                    <p>d.	Fotokopi Rekening Bank yang masih aktif atas nama {{$lembaga->nama_rekening}} {{($lembaga->no_rek)}};</p>
+                    <p>c.	Fotokopi Kartu Tanda Penduduk Elektronik atas nama {{strtoupper($pengurus->nama_pengurus)}};</p>
+                    <p>d.	Fotokopi Rekening Bank yang masih aktif atas nama {{strtoupper($lembaga->nama_rekening)}} {{($lembaga->no_rek)}};</p>
                     <p>e.	Surat keterangan domisili dari desa setempat; dan</p>
                     <p>f.	Pakta integritas/Surat Pernyataan Tanggung Jawab.</p>
                 </div>
                 <p>(3).	Belanja hibah sebagaimana dimaksud dalam Pasal 1 ayat (1) dibayarkan melalui pemindah bukuan
-                    dari Rekening Kas Umum PCNU Kab. Tasikmalaya ke Rekening Bank BJBS {{$lembaga->cabang_bank}}
-                    Atas nama {{$lembaga->nama_rekening}} selaku PIHAK KEDUA dengan nomor Rekening {{($lembaga->no_rek)}}, sebagaimana ketentuan yang berlaku.</p>
+                    dari Rekening Kas Umum PCNU Kab. Tasikmalaya ke Rekening Bank BJBS {{strtoupper($lembaga->cabang_bank)}}
+                    Atas nama {{strtoupper($lembaga->nama_rekening)}} selaku PIHAK KEDUA dengan nomor Rekening {{($lembaga->no_rek)}}, sebagaimana ketentuan yang berlaku.</p>
                 <p>(4).	PIHAK KEDUA dilarang mengalihkan sebagian atau seluruh bantuan hibah sebagaimana dimaksud pada ayat (2) kepada pihak lain dengan dalih apapun juga, kecuali diatur lain sebagaimana tercantum dalam NPH ini.</p>
                 <p>(5).	Setelah menerima pencairan bantuan hibah dari PIHAK KESATU, selanjutnya PIHAK KEDUA segera melaksanakan kegiatan dengan berpedoman pada rencana penggunaan hibah/proposal sesuai ketentuan peraturan perundang- undangan.</p>
             </div>
@@ -321,12 +322,12 @@
     </section>
     <section  class="footer">
         <div class="ttd1">
-            <p>PIHAK KEDUA,</p>
-            <p style="margin-top: 80px;">{{$pengurus->nama_pengurus}}</p>
+            <p>KETUA</p>
+            <p style="margin-top: 80px;">{{strtoupper($pengurus->nama_pengurus)}}</p>
         </div>
         <div class="ttd2">
-            <p>PIHAK KESATU,</p>
-            <p style="margin-top: 80px;">Drs. KH. ATAM RUSTAM, M.SI</p>
+            <p>BENDAHARA</p>
+            <p style="margin-top: 80px;">.................................................</p>
         </div>
     </section>
 </body>
