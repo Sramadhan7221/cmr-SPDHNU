@@ -48,6 +48,7 @@ class BankController extends Controller
 
         $message = [
             'no_NPHD.required' => 'Nomor NPHD Harus Diisi',
+            'no_surat_permohonan.required' => 'Nomor surat Harus Diisi',
             'peruntukan.required' => 'Peruntukan Dana harus diisi',
             'bank.required' => 'Bank Harus Diisi',
             'no_rek.required' => 'No Rekening Harus Diisi',
@@ -80,6 +81,7 @@ class BankController extends Controller
     function updateProposal($id_proposal,$all_data)
     {
         $data['no_NPHD'] = $all_data['no_NPHD'];
+        $data['no_surat_permohonan'] = $all_data['no_surat_permohonan'];
         $data['peruntukan'] = $all_data['peruntukan'];
         if (isset($all_data['file_proposal']))
         {
@@ -93,7 +95,7 @@ class BankController extends Controller
         }
 
         Proposal::query()->where('id_proposal', $id_proposal)->update($data);
-        unset($all_data['no_NPHD'], $all_data['peruntukan'], $all_data['file_proposal']);
+        unset($all_data['no_NPHD'], $all_data['peruntukan'], $all_data['file_proposal'], $all_data['no_surat_permohonan']);
         return $all_data;
     }
 
@@ -101,6 +103,7 @@ class BankController extends Controller
     {
         $rules = [
             'no_NPHD' => 'required',
+            'no_surat_permohonan' => 'required',
             'peruntukan' => 'required',
             'file_proposal' => 'required|max:2048',
             'bank' => 'required',

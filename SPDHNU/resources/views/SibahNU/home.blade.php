@@ -65,7 +65,7 @@
           Kecamatan
           <sup class="text-danger">*</sup>
         </label>
-        <input type="text" value="{{$kecamatan->nama}}" class="form-control" id="input-kecamatan" disabled />
+        <input type="text" value="{{strtoupper($kecamatan->nama)}}" class="form-control" id="input-kecamatan" disabled />
         <input type="hidden" name="kecamatan" value="{{$kecamatan->kode}}" />
       </div>
 
