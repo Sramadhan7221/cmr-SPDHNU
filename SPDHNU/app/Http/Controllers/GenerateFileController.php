@@ -40,6 +40,8 @@ class GenerateFileController extends Controller
         $proposal = Proposal::query()->where('lembaga', session()->get('id_lembaga'))->first();
         $data = [
             'user' => $user,
+            'kabupaten' => Wilayah::query()->where('kode', "32.06")->first(['kode', 'nama']),
+            'desa' => Wilayah::query()->where('kode', $lembaga->desa)->first(['kode', 'nama']),
             'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'lembaga' => $lembaga,
             'proposal' => $proposal,
@@ -66,6 +68,8 @@ class GenerateFileController extends Controller
             ->first(['alamat_lembaga', 'no_telp', 'email_lembaga','desa', 'kop_surat', 'domisili']);
         $data = [
             'user' => $user,
+            'kabupaten' => Wilayah::query()->where('kode', "32.06")->first(['kode', 'nama']),
+            'desa' => Wilayah::query()->where('kode', $lembaga->desa)->first(['kode', 'nama']),
             'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'lembaga' => $lembaga,
             'date' => $this->dateIndo(),
@@ -94,6 +98,8 @@ class GenerateFileController extends Controller
             });
         $data = [
             'lembaga' => $lembaga,
+            'kabupaten' => Wilayah::query()->where('kode', "32.06")->first(['kode', 'nama']),
+            'desa' => Wilayah::query()->where('kode', $lembaga->desa)->first(['kode', 'nama']),
             'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'pengurus' => $this->isPimpinanExist(),
             'list_rab' => $list,
@@ -111,6 +117,8 @@ class GenerateFileController extends Controller
             ->first();
         $data = [
             'user' => $user,
+            'kabupaten' => Wilayah::query()->where('kode', "32.06")->first(['kode', 'nama']),
+            'desa' => Wilayah::query()->where('kode', $lembaga->desa)->first(['kode', 'nama']),
             'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'lembaga' => $lembaga,
             'date' => $this->dateIndo(),
@@ -128,6 +136,8 @@ class GenerateFileController extends Controller
                             ->first(['alamat_lembaga', 'no_telp', 'email_lembaga','desa', 'kop_surat', 'domisili']);
         $data = [
             'user' => $user,
+            'kabupaten' => Wilayah::query()->where('kode', "32.06")->first(['kode', 'nama']),
+            'desa' => Wilayah::query()->where('kode', $lembaga->desa)->first(['kode', 'nama']),
             'kecamatan' => Wilayah::query()->where('kode', $user->kecamatan)->first(['kode', 'nama']),
             'lembaga' => $lembaga,
             'date' => $this->dateIndo(),

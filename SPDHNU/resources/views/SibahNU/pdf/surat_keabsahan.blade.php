@@ -31,7 +31,8 @@
         }
 
         .content{
-            margin-top: 18px;
+            position: relative;
+            top: -10rem;
         }
 
         .content .paragraf1{
@@ -59,6 +60,11 @@
             top: 120px;
             z-index: -1;
         }
+        .kanan {
+            position: relative;
+            top: -175px;
+            right: -220px;
+        }
     </style>
     <body class="w-[700px] mx-auto">
         <header>
@@ -70,15 +76,27 @@
         </header>
         <section class="biodata">
             <p>Yang bertanda tangan dibawah ini : </p>
-            <ul class="bodata_lengkap">
-                <li>Nama Ketua MWCNU <span class="ml-24">: {{strtoupper($pengurus->nama_pengurus)}}</span></li>
-                <li>Jabatan <span style="margin-left: 187px">: {{strtoupper($pengurus->jabatan)}}</span></li>
-                <li>Nomor KTP <span style="margin-left: 158px">: {{strtoupper($pengurus->no_ktp)}}</span></li>
-                <li>Alamat Sesuai KTP <span style="margin-left: 114px">: {{strtoupper($pengurus->alamat_ktp)}}</span></li>
-                <li>Bertindak Untuk dan Atas Nama <span style="margin-left: 38px">: {{strtoupper($user->nama_mwc)}}</span></li>
-                <li>Alamat Lembaga <span style="margin-left: 129px">: {{strtoupper($lembaga->alamat_lembaga)}}</span></li>
-                <li>Telepon/HP <span style="margin-left: 160px">: {{$lembaga->no_telp}}</span></li>
-                <li>Email <span style="margin-left: 195px;">: {{$lembaga->email_lembaga}}</span></li>
+            <ul class="">
+                <div class="">
+                    <li>Nama Ketua MWCNU</li>
+                    <li>Jabatan </li>
+                    <li>Nomor KTP </li>
+                    <li>Alamat Sesuai KTP </li>
+                    <li>Bertindak Untuk dan Atas Nama </li>
+                    <li>Alamat Lembaga </li>
+                    <li>Telepon/HP </li>
+                    <li>Email </li>
+                </div>
+                <div class="kanan">
+                    <li> : {{strtoupper($pengurus->nama_pengurus)}}</li>
+                    <li> : {{strtoupper($pengurus->jabatan)}}</li>
+                    <li> : {{strtoupper($pengurus->no_ktp)}}</li>
+                    <li> : {{strtoupper($pengurus->alamat_ktp)}}</li>
+                    <li> : {{strtoupper($user->nama_mwc)}}</li>
+                    <li> : {{strtoupper($lembaga->alamat_lembaga)}},DESA {{strtoupper($desa->nama)}},KEC. {{strtoupper($kecamatan->nama)}},{{strtoupper($kabupaten->nama)}}</li>
+                    <li> : {{strtoupper($lembaga->no_telp)}}</li>
+                    <li> : {{$lembaga->email_lembaga}}</li>
+                </div>
             </ul>
         </section>
         <section class="content">

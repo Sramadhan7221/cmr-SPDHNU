@@ -102,7 +102,7 @@
                     <li> : {{strtoupper($pengurus->no_ktp)}}</li>
                     <li> : {{strtoupper($pengurus->alamat_ktp)}}</li>
                     <li> : {{strtoupper($user->nama_mwc)}}</li>
-                    <li> : {{strtoupper($lembaga->alamat_lembaga)}}</li>
+                    <li> : {{strtoupper($lembaga->alamat_lembaga)}},DESA {{strtoupper($desa->nama)}},KEC. {{strtoupper($kecamatan->nama)}},{{strtoupper($kabupaten->nama)}}</li>
                     <li> : {{strtoupper($lembaga->no_telp)}}</li>
                     <li> : {{$lembaga->email_lembaga}}</li>
                 </div>

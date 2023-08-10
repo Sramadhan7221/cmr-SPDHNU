@@ -109,14 +109,14 @@
     <section class="biodata">
         <p>Yang bertanda tangan dibawah ini : </p>
         <ul class="bodata_lengkap">
-            <li>Nama Ketua MWCNU <span class="ml-24">: {{strtoupper($pengurus->nama_pengurus)}}</span></li>
-            <li>Jabatan <span style="margin-left: 187px">: {{strtoupper($pengurus->jabatan)}}</span></li>
-            <li>Nomor KTP <span style="margin-left: 158px">: {{strtoupper($pengurus->no_ktp)}}</span></li>
-            <li>Alamat Sesuai KTP <span style="margin-left: 114px">: {{strtoupper($pengurus->alamat_ktp)}}</span></li>
-            <li>Bertindak Untuk dan Atas Nama <span style="margin-left: 38px">: {{strtoupper($user->nama_mwc)}}</span></li>
-            <li>Alamat Lembaga <span style="margin-left: 129px">: {{strtoupper($lembaga->alamat_lembaga)}}</span></li>
-            <li>Telepon/HP <span style="margin-left: 160px">: {{$lembaga->no_telp}}</span></li>
-            <li>Email <span style="margin-left: 195px;">: {{$lembaga->email_lembaga}}</span></li>
+            <li>Nama Ketua MWCNU <span style="margin-left: 66;">: {{strtoupper($pengurus->nama_pengurus)}}</span></li>
+            <li>Jabatan <span style="margin-left: 180px">: {{strtoupper($pengurus->jabatan)}}</span></li>
+            <li>Nomor KTP <span style="margin-left: 150px">: {{strtoupper($pengurus->no_ktp)}}</span></li>
+            <li>Alamat Sesuai KTP <span style="margin-left: 107px">: {{strtoupper($pengurus->alamat_ktp)}}</span></li>
+            <li>Bertindak Untuk dan Atas Nama <span style="margin-left: 31px">: {{strtoupper($user->nama_mwc)}}</span></li>
+            <li>Alamat Lembaga <span style="margin-left: 122px">: {{strtoupper($lembaga->alamat_lembaga)}}, DESA.{{strtoupper($desa->nama)}}, KEC.{{strtoupper($kecamatan->nama)}},{{$kabupaten->nama}}</span></li>
+            <li>Telepon/HP <span style="margin-left: 153px">: {{$lembaga->no_telp}}</span></li>
+            <li>Email <span style="margin-left: 188px;">: {{$lembaga->email_lembaga}}</span></li>
         </ul>
     </section>
     <section class="content">
