@@ -52,10 +52,12 @@
             top: -125px;
             text-align: center;
         }
-
-        .page_break {
-            page-break-after: always;
+        @page{
+            margin-bottom: 2cm;
         }
+        /* .page_break {
+            page-break-after: always;
+        } */
     </style>
     <header>
         <img src="{{public_path('storage/'.$lembaga->kop_surat)}}" alt="">

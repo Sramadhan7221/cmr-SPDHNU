@@ -97,7 +97,7 @@
         }
 
         .content2 .rab{
-            margin-top: 70px;
+            margin-top: 30px;
         }
 
         .content2 .rab table thead tr th{
@@ -148,12 +148,12 @@
             text-align: center;
         }
 
-        .page-break{
-            page-break-after: always;
-            margin-bottom: 100px
+        @page {
+            margin-top: 3cm;
+            margin-bottom: 2cm;
         }
     </style>
-    <header>
+    <header style="margin-top: 0;">
         <p>NASKAH PERJANJIAN HIBAH ANTARA</p>
         <P>PENGURUS CABANG NAHDALTUL ULAMA KAB. TASIKMALAYA</P>
         <P>DENGAN</P>
@@ -198,7 +198,7 @@
             <p>Pasal 1</p>
             <p>JUMLAH DAN TUJUAN HIBAH</p>
         </div>
-        <div class="page-break" style="text-align: justify;
+        <div class="" style="text-align: justify;
         text-justify: inter-word;">
             <p>(1).	PIHAK KESATU pada Tahun Anggaran 2023 memberikan belanja hibah kepada PIHAK KEDUA, berupa uang sebesar Rp. {{number_format($nilai_rab->nilai_pengajuan,0,',','.')}}.</p>
             <p>(2).	PIHAK KEDUA menyatakan menerima belanja hibah dari PIHAK KESATU berupa uang sebesar Rp. {{number_format($nilai_rab->nilai_pengajuan,0,',','.')}}.</p>
@@ -279,13 +279,13 @@
             <p>HAK DAN KEWAJIBAN PIHAK KESATU</p>
         </div>
         <p>(1).	PIHAK KESATU mempunyai hak:</p>
-        <div class="ham" class="page-break" style="text-align: justify;
+        <div class="ham" class="" style="text-align: justify;
         text-justify: inter-word;">
             <p style="margin-left: 20px;">a.	menunda pencairan belanja hibah, dalam hal PIHAK KEDUA tidak/belum memenuhi persyaratan yang ditetapkan;</p>
             <p style="margin-left: 20px;">b.	menerima Laporan Pertanggungjawaban Penggunaan Belanja Hibah dari PIHAK KEDUA.</p>
             <p style="margin-left: 20px;">c.	menerima sisa dana hibah, dalam hal sampai akhir kegiatan masih terdapat sisa dana hibah.</p>
         </div>
-        <p style="margin-top: 70px">(2). PIHAK KESATU mempunyai kewajiban:</p>
+        <p>(2). PIHAK KESATU mempunyai kewajiban:</p>
         <div class="ham"style="text-align: justify;
         text-justify: inter-word;" >
             <p>a.	mencairkan belanja hibah, dalam hal seluruh persyaratan dan kelengkapan berkas pengajuan
@@ -323,9 +323,9 @@
             <p>Pasal 7</p>
             <p>BEA MATERAI, PAJAK-PAJAK DAN BIAYA LAIN-LAIN</p>
         </div>
-        <p class="page-break" style="text-align: justify;
+        <p class="" style="text-align: justify;
         text-justify: inter-word;">Biaya materai, pajak-pajak serta biaya lainnya yang timbul sehubungan dengan pelaksanaan Perjanjian Hibah Daerah ini, menjadi beban dan tanggungjawab PIHAK KEDUA, sesuai ketentuan peraturan perundang-undangan.</p>
-        <div class="pasal2" style="margin-top: 70px;">
+        <div class="pasal2">
             <p>Pasal 8</p>
             <p>PENUTUP</p>
         </div>
@@ -336,12 +336,12 @@
     </section>
     <section  class="footer">
         <div class="ttd1">
-            <p>KETUA</p>
-            <p style="margin-top: 80px;">{{strtoupper($pengurus->nama_pengurus)}}</p>
+            <p>PIHAK KEDUA</p>
+            <p style="margin-top: 90px;">{{strtoupper($pengurus->nama_pengurus)}}</p>
         </div>
         <div class="ttd2">
-            <p>BENDAHARA</p>
-            <p style="margin-top: 80px;">.................................................</p>
+            <p>PIHAK KESATU</p>
+            <p style="margin-top: 90px;">Drs. KH. ATAM RUSTAM, M.SI</p>
         </div>
     </section>
 </body>
