@@ -10,8 +10,13 @@
       </li>
       <!-- End Dashboard Nav -->
       @endif
-      <li class="nav-heading">Permohonan</li>
+      <li class="nav-heading">SibahNU</li>
       <li class="nav-item">
+        @if(!session()->get('id_user'))
+        <a class="nav-link collapsed" x-on:click="isLoading = true" href="{{route('adminHome')}}">
+          <span>Home</span>
+        </a>
+        @endif()
         <a class="nav-link collapsed" x-on:click="isLoading = true" href="{{route('daftarHibah')}}">
             <i class="fa-solid fa-paste"></i>
           <span>Daftar Hibah</span>
