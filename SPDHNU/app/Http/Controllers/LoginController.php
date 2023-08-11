@@ -92,7 +92,7 @@ class LoginController extends Controller
             if(Session::get('id_user'))
                 return redirect(route('home'));
             if(Session::get('id_admin'))
-                return redirect(route('daftarHibah'));
+                return redirect(route('adminHome'));
 
     }
 
