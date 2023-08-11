@@ -77,7 +77,7 @@ Route::prefix('report')->group(function () {
 });
 
 Route::prefix('admin')->group(function () {
-  Route::get('/index', [AdminController::class, 'index'])->name('adminHome');
-  Route::get('/mwc-detail', [AdminController::class, 'getDetail'])->name('adminMwcDetail');
+  Route::get('/index', [AdminController::class, 'index'])->name('adminHome')->middleware('isAdmin');
+  Route::get('/mwc-detail', [AdminController::class, 'getDetail'])->name('adminMwcDetail')->middleware('isAdmin');
 });
 
