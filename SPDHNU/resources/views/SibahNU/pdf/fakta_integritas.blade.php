@@ -26,11 +26,16 @@
         ul {
             font-family: 'Times New Roman', Times, serif;
             font-size: 11pt;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
         li {
             font-family: 'Times New Roman', Times, serif;
             font-size: 11pt;
+            position: relative;
+            text-align: justify;
+            text-justify: inter-word;
         }
 
         .kanan {
@@ -71,8 +76,43 @@
             text-justify: inter-word;
         }
 
-        .kecamatan{
-            margin-left: 20px;
+        .list2 {
+            position: relative;
+            top: -22px;
+        }
+
+        .list3{
+            position: relative;
+            top: -42px;
+        }
+
+        .list4{
+            position: relative;
+            top: -62px;
+        }
+
+        .list5{
+            position: relative;
+            top: -82px;
+        }
+
+        .list6{
+            position: relative;
+            top: -102px;
+        }
+        .list7{
+            position: relative;
+            top: -122px;
+        }
+        .list8{
+            position: relative;
+            top: -142px;
+        }
+
+        .childList {
+            position: relative;
+            top: -22px;
+            right: -220px;
         }
     </style>
 </head>
@@ -86,25 +126,68 @@
         <section class="mt-6 px-4 w-full">
             <p>Yang bertanda tangan dibawah ini : </p>
             <ul class="">
-                <div class="">
-                    <li>Nama Ketua MWCNU</li>
-                    <li>Jabatan </li>
-                    <li>Nomor KTP </li>
-                    <li>Alamat Sesuai KTP </li>
-                    <li>Bertindak Untuk dan Atas Nama </li>
-                    <li>Alamat Lembaga </li>
-                    <li>Telepon/HP </li>
-                    <li>Email </li>
+                <div class="list1">
+                    <div>
+                        <li>Nama Ketua MWCNU</li>
+                    </div>
+                    <div class="childList">
+                        <li> : {{strtoupper($pengurus->nama_pengurus)}}</li>
+                    </div>
+                <div class="list2">
+                    <div>
+                        <li>Jabatan </li>
+                    </div>
+                    <div class="childList">
+                        <li> : {{strtoupper($pengurus->jabatan)}}</li>
+                    </div>
                 </div>
-                <div class="kanan">
-                    <li> : {{strtoupper($pengurus->nama_pengurus)}}</li>
-                    <li> : {{strtoupper($pengurus->jabatan)}}</li>
-                    <li> : {{strtoupper($pengurus->no_ktp)}}</li>
-                    <li> : {{strtoupper($pengurus->alamat_ktp)}}</li>
-                    <li> : {{strtoupper($user->nama_mwc)}}</li>
-                    <li> : {{strtoupper($lembaga->alamat_lembaga)}},DESA {{strtoupper($desa->nama)}},KEC. {{strtoupper($kecamatan->nama)}},{{strtoupper($kabupaten->nama)}}</li>
-                    <li> : {{strtoupper($lembaga->no_telp)}}</li>
-                    <li> : {{$lembaga->email_lembaga}}</li>
+                <div class="list3">
+                    <div>
+                        <li>Nomor KTP </li>
+                    </div>
+                    <div class="childList">
+                        <li> : {{strtoupper($pengurus->no_ktp)}}</li>
+                    </div>
+                </div>
+                <div class="list4">
+                    <div>
+                        <li>Alamat Sesuai KTP </li>
+                    </div>
+                    <div class="childList">
+                        <li style="width: 500px;"> : {{strtoupper($pengurus->alamat_ktp)}}</li>
+                    </div>
+                </div>
+                <div class="list5">
+                    <div>
+                        <li>Bertindak Untuk dan Atas Nama </li>
+                    </div>
+                    <div class="childList">
+                        <li> : {{strtoupper($user->nama_mwc)}}</li>
+                    </div>
+                </div>
+                <div class="list6">
+                    <div>
+                        <li>Alamat Lembaga </li>
+                    </div>
+                    <div class="childList">
+                        <li style="width: 500px;"> : {{strtoupper($lembaga->alamat_lembaga)}},DESA {{strtoupper($desa->nama)}},KECAMATAN {{strtoupper($kecamatan->nama)}},{{strtoupper($kabupaten->nama)}}</li>
+                    </div>
+                </div>
+                <div class="list7">
+                    <div>
+                        <li>Telepon/HP </li>
+                    </div>
+                    <div class="childList">
+                        <li> : {{strtoupper($lembaga->no_telp)}}</li>
+                    </div>
+                </div>
+                <div class="list8">
+                    <div>
+                        <li>Email </li>
+                    </div>
+                    <div class="childList">
+                        <li> : {{$lembaga->email_lembaga}}</li>
+                    </div>
                 </div>
             </ul>
         </section>
