@@ -12,6 +12,7 @@ use App\Http\Controllers\GenerateFileController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\RabController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,5 +74,10 @@ Route::prefix('report')->group(function () {
   Route::get('/surat_pernyataan', [GenerateFileController::class, 'suratPernyataan'])->name('surat_pernyataan');
   Route::get('/surat_keabsahan', [GenerateFileController::class, 'suratKeabsahan'])->name('surat_keabsahan');
   Route::get('/rincian_rab/{id}', [GenerateFileController::class, 'rincianRAB'])->name('rincian_rab');
+});
+
+Route::prefix('admin')->group(function () {
+  Route::get('/index', [AdminController::class, 'index'])->name('adminHome')->middleware('isAdmin');
+  Route::get('/mwc-detail', [AdminController::class, 'getDetail'])->name('adminMwcDetail')->middleware('isAdmin');
 });
 
